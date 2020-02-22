@@ -80,7 +80,7 @@ Buildings
 		icon:icons[9,7]
 		cost:50 subscribers
 		on tick:yield 0.5 subscribers
-		req:25 bunnies:earned
+		req:25 subscribers:earned
 
 	*collab|collabs
 		name:コラボ|コラボ
@@ -88,7 +88,7 @@ Buildings
 		icon:icons[8,12]
 		cost:100 subscribers
 		on tick:yield 1 subscribers
-		req:50 bunnies:earned
+		req:50 subscribers:earned
 		
 Upgrades
 	*TEMPLATE
