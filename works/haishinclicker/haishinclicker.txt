@@ -56,7 +56,7 @@ Resources
 		desc:お金はとてもレアで貴重で珍しいものです！
 		icon:icons[0,0]
 		class:noBackground
-		hidden when 0
+		show earned
 
 		
 Shinies
@@ -84,12 +84,21 @@ Buildings
 
 	*live|lives
 		name:配信|配信
-		desc:生放送をします。<//><b>効果:</b><.>2秒に1人、登録者が増えます。<.>10秒に1人、ファンが増えます。
+		desc:生放送をします。<//><b>効果:</b><.>10秒に1人、登録者が増えます。<.>10秒に1人、ファンが増えます。
 		icon:icons[9,7]
-		cost:50 subscribers
-		on tick:yield 0.5 subscribers
+		cost:10 subscribers
+		on tick:yield 0.1 subscribers
 		on tick:yield 0.1 fans
-		req:25 subscribers:earned
+		unlocked
+
+	*mine|mines
+		name:鉱山|鉱山
+		desc:鉱山から登録者と鉱石を採掘します。<//><b>効果:</b><.>10秒に1人、登録者が増えます。<.>10秒に1G、お金が増えます。
+		icon:icons[0,2]
+		cost:10 subscribers
+		on tick:yield 0.1 subscribers
+		on tick:yield 0.1 golds
+		unlocked
 
 	*collab|collabs
 		name:コラボ|コラボ
@@ -100,18 +109,10 @@ Buildings
 		on tick:yield 1 fans
 		req:50 subscribers:earned
 
-	*mine|mines
-		name:鉱山|鉱山
-		desc:鉱山から登録者を採掘します。<//><b>効果:</b><.>1秒に5人、登録者が増えます。
-		icon:icons[0,2]
-		cost:500 subscribers
-		on tick:yield 5 subscribers
-		req:250 subscribers:earned
-
 	*divine|divines
 		name:召喚|召喚
 		desc:異世界から登録者を召喚します。<//><b>効果:</b><.>1秒に10人、登録者が増えます。
-		icon:icons[0,12]
+		icon:icons[0,13]
 		cost:1000 subscribers
 		on tick:yield 10 subscribers
 		req:500 subscribers:earned
@@ -119,7 +120,7 @@ Buildings
 	*biology|biologies
 		name:生化学|生化学
 		desc:生物化学で登録者を生成します。<//><b>効果:</b><.>1秒に50人、登録者が増えます。
-		icon:icons[2,13]
+		icon:icons[2,14]
 		cost:5000 subscribers
 		on tick:yield 50 subscribers
 		req:2500 subscribers:earned
@@ -134,17 +135,23 @@ Buildings
 
 	*purchase|purchases
 		name:購入|購入
-		desc:金の力で登録者を購入します。<//><b>効果:</b><.>10000人、登録者が増えます。
+		desc:金の力で登録者を購入します。<//><b>効果:</b><.>10000人、登録者が増えます。<.>高評価とファン x0.5
 		icon:icons[3,4]
 		cost:1000 golds
 		on earn:yield 10000 subscribers
+		on earn:
+			$cnt = fans:own * 0.5
+			lose $cnt fans
+		end
+		on earn:
+			$cnt = likes:own * 0.5
+			lose $cnt likes
+		end
 		req:1000 golds:earned
 		
 Upgrades
 	*TEMPLATE
 		on click:anim glow
-	
-	//building upgrades
 	
 	*buildingUpgrade1
 		name:週刊動画投稿
