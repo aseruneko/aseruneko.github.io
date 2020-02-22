@@ -32,17 +32,32 @@ Buttons
 Resources
 	*subscriber|subscribers
 		name:登録者|登録者
-		desc:あなたのチャンネルの登録者です。Buildingの購入などに使えます。あなたの目的は可能な限り、登録者を増やすことです！
+		desc:あなたのチャンネルの登録者です。Buildingの購入などに使えます。<//>あなたの目的は可能な限り、登録者を増やすことです！
 		icon:icons[0,5]
 		class:noBackground
 		show earned
 		
+	*like|likes
+		name:高評価|高評価
+		desc:あなたのチャンネルの高評価です。<//>イメージはよくしていきたいものですね。
+		icon:icons[4,3]
+		class:noBackground
+		show earned
+
+	*fan|fans
+		name:ファン|ファン
+		desc:あなたのチャンネルのファンです。<//>コメントをいつも残してくれます。
+		icon:icons[10,11]
+		class:noBackground
+		show earned
+
 	*gold|golds
 		name:お金|お金
 		desc:お金はとてもレアで貴重で珍しいものです！
 		icon:icons[0,0]
 		class:noBackground
 		hidden when 0
+
 		
 Shinies
 	*commercial
