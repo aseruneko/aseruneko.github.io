@@ -1,13 +1,13 @@
 Let's make a game!
 	name:配信Clicker
 	by:@arukuneko
-	desc:クリックを貴重に登録者を稼ぐゲームです。<//>配信王に君もなろう！
+	desc:クリックを基調に登録者を稼ぐゲームです。<//>配信王に君もなろう！
 	created:22/02/2020
 	updated:22/02/2020
 	version:0.0.1
 
 Settings
-	background:stuff/meadow.jpg
+	background:https://github.com/aseruneko/aseruneko.github.io/raw/master/images/catground.png
 	building cost increase:115%
 	building cost refund:50%
 	spritesheet:icons, 48 by 48, stuff/bunnyIcons.png
