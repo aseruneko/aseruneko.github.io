@@ -1,6 +1,6 @@
 body {
-	font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
-font-weight: 500;
+	font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "メイリオ", sans-serif !important;
+	font-weight: 500 !important;
 }
 
 .box

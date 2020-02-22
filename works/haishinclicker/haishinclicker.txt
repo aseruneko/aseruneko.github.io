@@ -1,6 +1,6 @@
 Let's make a game!
 	name:配信Clicker
-	by:@arukuneko
+	by:@aseruneko
 	desc:クリックを基調に登録者を稼ぐゲームです。<//>配信王に君もなろう！<//>アイコンは化け猫缶さんから。
 	created:22/02/2020
 	updated:22/02/2020
