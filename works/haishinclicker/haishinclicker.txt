@@ -159,7 +159,7 @@ Upgrades
 		desc:A nice little supplement to your bunnies' diet.<//><b>Effect:</b><.>+1 bunny/click
 		icon:icons[1,1]
 		cost:100 bunnies
-		passive:increase bunny yield of suscribeButton by 1
+		passive:increase bunny yield of subscribeButton by 1
 		req:10 bunnies:earned
 		
 	*spinach
@@ -167,7 +167,7 @@ Upgrades
 		desc:Big tasty leaves, perfect for hungry bunnies.<//><b>Effect:</b><.>+1 bunny/click
 		icon:icons[1,2]
 		cost:200 bunnies
-		passive:increase bunny yield of suscribeButton by 1
+		passive:increase bunny yield of subscribeButton by 1
 		req:50 bunnies:earned
 		
 	*lettuce
@@ -175,7 +175,7 @@ Upgrades
 		desc:Frilly greens loved by all bunnies.<//><b>Effect:</b><.>+1 bunny/click
 		icon:icons[1,3]
 		cost:400 bunnies
-		passive:increase bunny yield of suscribeButton by 1
+		passive:increase bunny yield of subscribeButton by 1
 		req:200 bunnies:earned
 		
 	*broccoli
@@ -183,7 +183,7 @@ Upgrades
 		desc:Crunchy greens that look like little trees.<//><b>Effect:</b><.>bunnies/click x2<.>bunny production +5%
 		icon:icons[1,4]
 		cost:3000 bunnies
-		passive:multiply bunny yield of suscribeButton by 2
+		passive:multiply bunny yield of subscribeButton by 2
 		passive:multiply yield of bunnies by 1.05
 		req:1000 bunnies:earned
 		
@@ -192,7 +192,7 @@ Upgrades
 		desc:Nice pieces of juicy red apples.<//><b>Effect:</b><.>bunnies/click x1.5<.>bunny production +5%
 		icon:icons[1,5]
 		cost:10000 bunnies
-		passive:multiply bunny yield of suscribeButton by 1.5
+		passive:multiply bunny yield of subscribeButton by 1.5
 		passive:multiply yield of bunnies by 1.05
 		req:1000 bunnies:earned
 		
@@ -201,7 +201,7 @@ Upgrades
 		desc:Purple, crunchy, and strangely spicy.<//><b>Effect:</b><.>bunnies/click x1.5<.>bunny production +5%
 		icon:icons[1,6]
 		cost:50000 bunnies
-		passive:multiply bunny yield of suscribeButton by 1.5
+		passive:multiply bunny yield of subscribeButton by 1.5
 		passive:multiply yield of bunnies by 1.05
 		req:10000 bunnies:earned
 		
@@ -210,7 +210,7 @@ Upgrades
 		desc:Tasty, and gives your bunnies a lovely breath.<//><b>Effect:</b><.>bunnies/click x1.5<.>bunny production +5%
 		icon:icons[1,7]
 		cost:100000 bunnies
-		passive:multiply bunny yield of suscribeButton by 1.5
+		passive:multiply bunny yield of subscribeButton by 1.5
 		passive:multiply yield of bunnies by 1.05
 		req:50000 bunnies:earned
 		
@@ -219,7 +219,7 @@ Upgrades
 		desc:Broad leaves that make for a tasty salad.<//><b>Effect:</b><.>bunnies/click x1.5<.>bunny production +5%
 		icon:icons[1,8]
 		cost:500000 bunnies
-		passive:multiply bunny yield of suscribeButton by 1.5
+		passive:multiply bunny yield of subscribeButton by 1.5
 		passive:multiply yield of bunnies by 1.05
 		req:100000 bunnies:earned
 		
@@ -228,7 +228,7 @@ Upgrades
 		desc:Your bunnies look like little vampires when they start munching on these!<//><b>Effect:</b><.>bunnies/click x1.5<.>bunny production +5%
 		icon:icons[1,9]
 		cost:1000000 bunnies
-		passive:multiply bunny yield of suscribeButton by 1.5
+		passive:multiply bunny yield of subscribeButton by 1.5
 		passive:multiply yield of bunnies by 1.05
 		req:500000 bunnies:earned
 		
@@ -237,7 +237,7 @@ Upgrades
 		desc:The quintessential rabbit food! Crunchy, orange, and perfect.<//><b>Effect:</b><.>bunnies/click x2<.>bunny production +10%
 		icon:icons[1,0]
 		cost:100000000 bunnies
-		passive:multiply bunny yield of suscribeButton by 2
+		passive:multiply bunny yield of subscribeButton by 2
 		passive:multiply yield of bunnies by 1.1
 		req:1000000 bunnies:earned
 	
@@ -378,17 +378,17 @@ Achievements
 	*clickAchiev1
 		name:That tickles
 		desc:Click the bunny <b>10</b> times.
-		req:10 suscribeButton clicks
+		req:10 subscribeButton clicks
 		icon:icons[2,2] icons[0,2] icons[0,6]
 	*clickAchiev2
 		name:Don't squeeze me I'll fart
 		desc:Click the bunny <b>100</b> times.
-		req:100 suscribeButton clicks
+		req:100 subscribeButton clicks
 		icon:icons[2,2] icons[0,3] icons[0,6]
 	*clickAchiev3
 		name:You're cruising for a bruising, dude
 		desc:Click the bunny <b>2000</b> times.
-		req:2000 suscribeButton clicks
+		req:2000 subscribeButton clicks
 		icon:icons[2,2] icons[0,4] icons[0,6]
 		
 	*bunnyPsAchiev1
