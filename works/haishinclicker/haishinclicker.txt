@@ -89,6 +89,46 @@ Buildings
 		cost:100 subscribers
 		on tick:yield 1 subscribers
 		req:50 subscribers:earned
+
+	*mine|mines
+		name:鉱山|鉱山
+		desc:鉱山から登録者を採掘します。<//><b>効果:</b><.>1秒に5人、登録者が増えます。
+		icon:icons[0,2]
+		cost:500 subscribers
+		on tick:yield 5 subscribers
+		req:250 subscribers:earned
+
+	*divine|divines
+		name:召喚|召喚
+		desc:異世界から登録者を召喚します。<//><b>効果:</b><.>1秒に10人、登録者が増えます。
+		icon:icons[0,12]
+		cost:1000 subscribers
+		on tick:yield 10 subscribers
+		req:500 subscribers:earned
+
+	*biology|biologies
+		name:生化学|生化学
+		desc:生物化学で登録者を生成します。<//><b>効果:</b><.>1秒に50人、登録者が増えます。
+		icon:icons[2,13]
+		cost:5000 subscribers
+		on tick:yield 50 subscribers
+		req:2500 subscribers:earned
+
+	*factory|factories
+		name:工場|工場
+		desc:工場で登録者を大量生産します。<//><b>効果:</b><.>1秒に100人、登録者が増えます。
+		icon:icons[5,8]
+		cost:10000 subscribers
+		on tick:yield 100 subscribers
+		req:5000 subscribers:earned
+
+	*purchase|purchases
+		name:購入|購入
+		desc:金の力で登録者を購入します。<//><b>効果:</b><.>10000人、登録者が増えます。
+		icon:icons[3,4]
+		cost:1000 moneys
+		on earn:yield 10000 subscribers
+		req:1000 moneys:earned
 		
 Upgrades
 	*TEMPLATE
@@ -97,12 +137,55 @@ Upgrades
 	//building upgrades
 	
 	*buildingUpgrade1
-		name:weeklyMovie
+		name:週刊動画投稿
 		desc:毎週動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2
 		icon:icons[3,7]
 		cost:100 subscribers
 		passive:multiply yield of movie by 2
-		req:10 subscribers:earned
+		req:50 subscribers:earned
+
+	*buildingUpgrade2
+		name:日刊動画投稿
+		desc:毎日動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2
+		icon:icons[4,7]
+		cost:200 subscribers
+		passive:multiply yield of movie by 2
+		req:50 subscribers:earned
+
+	*buildingUpgrade3
+		name:秒間動画投稿
+		desc:毎秒動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2
+		icon:icons[5,7]
+		cost:400 subscribers
+		passive:multiply yield of movie by 2
+		req:50 subscribers:earned
+
+	*buildingUpgrade4
+		name:動画編集
+		desc:見やすい動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2<.>クリックによる登録者 x10
+		icon:icons[6,7]
+		cost:100 subscribers
+		passive:multiply yield of movie by 2
+		passive:multiply yield of subscribeButton by 10
+		req:50 subscribers:earned
+
+	*buildingUpgrade5
+		name:丁寧編集
+		desc:丁寧に編集された動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2<.>クリックによる登録者 x10
+		icon:icons[7,7]
+		cost:500 subscribers
+		passive:multiply yield of movie by 2
+		passive:multiply yield of subscribeButton by 10
+		req:250 subscribers:earned
+
+	*buildingUpgrade6
+		name:豪華編集
+		desc:豪華に編集された動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2<.>クリックによる登録者 x10
+		icon:icons[8,7]
+		cost:1000 subscribers
+		passive:multiply yield of movie by 2
+		passive:multiply yield of subscribeButton by 10
+		req:500 subscribers:earned
 		
 Achievements
 	*TEMPLATE
