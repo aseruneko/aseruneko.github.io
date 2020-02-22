@@ -8,8 +8,8 @@ Let's make a game!
 
 Settings
 	background:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/catground.png
-	building cost increase:115%
-	building cost refund:50%
+	building cost increase:110%
+	building cost refund:90%
 	spritesheet:icons, 48 by 48, https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/icon.png
 	stylesheet:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/style.txt
 
@@ -57,14 +57,38 @@ Shinies
 Buildings
 	*TEMPLATE
 		on click:anim glow
+
+	*debug|debugs
+		name:デバッグ用|デバッグ用
+		desc:デバッグ用です。<//><b>効果:</b><.>デバッグ用です。
+		icon:icons[10,3]
+		cost:0 subscribers
+		on earn:yield 10000 subscribers
+		unlocked
 		
 	*movie|movies
 		name:動画|動画
 		desc:動画を投稿します。<//><b>効果:</b><.>10秒に1人、登録者が増えます。
 		icon:icons[2,7]
-		cost:15 subscribers
+		cost:10 subscribers
 		on tick:yield 0.1 subscribers
 		unlocked
+
+	*live|lives
+		name:配信|配信
+		desc:生放送をします。<//><b>効果:</b><.>2秒に1人、登録者が増えます。
+		icon:icons[9,7]
+		cost:50 subscribers
+		on tick:yield 0.5 subscribers
+		req:25 bunnies:earned
+
+	*collab|collabs
+		name:コラボ|コラボ
+		desc:他の配信者とコラボをします。<//><b>効果:</b><.>1秒に1人、登録者が増えます。
+		icon:icons[8,12]
+		cost:100 subscribers
+		on tick:yield 1 subscribers
+		req:50 bunnies:earned
 		
 Upgrades
 	*TEMPLATE
