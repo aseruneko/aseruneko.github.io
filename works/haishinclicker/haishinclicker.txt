@@ -1,7 +1,7 @@
 Let's make a game!
 	name:配信Clicker
 	by:@arukuneko
-	desc:クリックを基調に登録者を稼ぐゲームです。<//>配信王に君もなろう！<//>アイコンは化け猫缶さんから
+	desc:クリックを基調に登録者を稼ぐゲームです。<//>配信王に君もなろう！<//>アイコンは化け猫缶さんから。
 	created:22/02/2020
 	updated:22/02/2020
 	version:0.0.1
@@ -11,7 +11,7 @@ Settings
 	building cost increase:115%
 	building cost refund:50%
 	spritesheet:icons, 24 by 24, https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/icon.png
-	stylesheet:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/style.css
+	stylesheet:stuff/bigBlue.css
 
 Layout
 	use default
