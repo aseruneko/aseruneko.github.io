@@ -140,11 +140,11 @@ Buildings
 		cost:1000 golds
 		on earn:yield 10000 subscribers
 		on earn:
-			$cnt = fans:own * 0.5
+			$cnt = fans * 0.5
 			lose $cnt fans
 		end
 		on earn:
-			$cnt = likes:own * 0.5
+			$cnt = likes * 0.5
 			lose $cnt likes
 		end
 		req:1000 golds:earned
