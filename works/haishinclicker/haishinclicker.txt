@@ -126,7 +126,7 @@ Buildings
 		name:購入|購入
 		desc:金の力で登録者を購入します。<//><b>効果:</b><.>10000人、登録者が増えます。
 		icon:icons[3,4]
-		cost:1000 moneys
+		cost:1000 golds
 		on earn:yield 10000 subscribers
 		req:1000 golds:earned
 		
