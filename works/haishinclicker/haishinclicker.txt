@@ -45,14 +45,14 @@ Resources
 		hidden when 0
 		
 Shinies
-	*luckyBunny
+	*commercial
 		on click:log Woop
 		movement:onRight moveLeft fade bounce:0.05
 		frequency:60
 		frequency variation:30
 		icon:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/douga_haishin_youtuber.png
 		class:bigButton
-		on click: yield 1000 golds
+		on click:yield 1000 golds
 
 Buildings
 	*TEMPLATE
