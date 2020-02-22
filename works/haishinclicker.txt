@@ -1,10 +1,10 @@
 Let's make a game!
-	name:Bunny Clicker
-	by:Orteil
-	desc:This is a simple idle game to showcase some of the basic functionalities of Idle Game Maker.<//>Make bunnies and shoot for the stars!
-	created:25/7/2017
-	updated:24/10/2017
-	version:1
+	name:配信Clicker
+	by:@arukuneko
+	desc:クリックを貴重に登録者を稼ぐゲームです。<//>配信王に君もなろう！
+	created:22/02/2020
+	updated:22/02/2020
+	version:0.0.1
 
 Settings
 	background:stuff/meadow.jpg
