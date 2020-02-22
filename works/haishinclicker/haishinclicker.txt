@@ -72,37 +72,32 @@ Shinies
 Buildings
 	*TEMPLATE
 		on click:anim glow
-
-	*debug|debugs
-		name:デバッグ用|デバッグ用
-		desc:デバッグ用です。<//><b>効果:</b><.>デバッグ用です。
-		icon:icons[10,3]
-		cost:0 subscribers
-		on earn:yield 10000 subscribers
-		unlocked
 		
 	*movie|movies
 		name:動画|動画
-		desc:動画を投稿します。<//><b>効果:</b><.>10秒に1人、登録者が増えます。
+		desc:動画を投稿します。<//><b>効果:</b><.>10秒に1人、登録者が増えます。<.>10秒に1つ、高評価が増えます。
 		icon:icons[2,7]
 		cost:10 subscribers
 		on tick:yield 0.1 subscribers
+		on tick:yield 0.1 likes
 		unlocked
 
 	*live|lives
 		name:配信|配信
-		desc:生放送をします。<//><b>効果:</b><.>2秒に1人、登録者が増えます。
+		desc:生放送をします。<//><b>効果:</b><.>2秒に1人、登録者が増えます。<.>10秒に1人、ファンが増えます。
 		icon:icons[9,7]
 		cost:50 subscribers
 		on tick:yield 0.5 subscribers
+		on tick:yield 0.1 fans
 		req:25 subscribers:earned
 
 	*collab|collabs
 		name:コラボ|コラボ
-		desc:他の配信者とコラボをします。<//><b>効果:</b><.>1秒に1人、登録者が増えます。
+		desc:他の配信者とコラボをします。<//><b>効果:</b><.>1秒に1人、登録者が増えます。<.>1秒に1人、ファンが増えます。
 		icon:icons[8,12]
 		cost:100 subscribers
 		on tick:yield 1 subscribers
+		on tick:yield 1 fans
 		req:50 subscribers:earned
 
 	*mine|mines
