@@ -17,13 +17,13 @@ Layout
 	use default
 		
 Buttons
-	*bunnyButton
-		name:Make a bunny
-		desc:Click this little bunny to get more bunnies!
+	*subscribeButton
+		name:Subscribe
+		desc:クリックして登録しよう！
 		on click:anim icon wobble
 		on click:yield 1 bunny
 		on click:if (have goldenTouch and chance(1%)) yield 1 goldenCarrot
-		icon:stuff/bunny.png
+		icon:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/game_jikkyou.png
 		no text
 		class:bigButton hasFlares
 		icon class:shadowed
