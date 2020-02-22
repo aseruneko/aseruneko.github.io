@@ -128,7 +128,7 @@ Buildings
 		icon:icons[3,4]
 		cost:1000 moneys
 		on earn:yield 10000 subscribers
-		req:1000 moneys:earned
+		req:1000 golds:earned
 		
 Upgrades
 	*TEMPLATE
