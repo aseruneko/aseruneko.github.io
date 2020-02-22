@@ -10,7 +10,7 @@ Settings
 	background:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/catground.png
 	building cost increase:115%
 	building cost refund:50%
-	spritesheet:icons, 24 by 24, https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/icon.png
+	spritesheet:icons, 48 by 48, https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/icon.png
 	stylesheet:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/style.txt
 
 Layout
