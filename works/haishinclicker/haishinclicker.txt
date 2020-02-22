@@ -33,7 +33,7 @@ Resources
 	*subscriber|subscribers
 		name:登録者|登録者
 		desc:あなたのチャンネルの登録者です。Buildingの購入などに使えます。あなたの目的は可能な限り、登録者を増やすことです！
-		icon:icons[5,0]
+		icon:icons[0,5]
 		class:noBackground
 		show earned
 		
@@ -61,7 +61,7 @@ Buildings
 	*movie|movies
 		name:動画|動画
 		desc:動画を投稿します。<//><b>効果:</b><.>10秒に1人、登録者が増えます。
-		icon:icons[7,2]
+		icon:icons[2,7]
 		cost:15 subscribers
 		on tick:yield 0.1 subscribers
 		unlocked
@@ -75,7 +75,7 @@ Upgrades
 	*buildingUpgrade1
 		name:weeklyMovie
 		desc:毎週動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2
-		icon:icons[7,3]
+		icon:icons[3,7]
 		cost:100 subscribers
 		passive:multiply yield of movie by 2
 		req:10 subscribers:earned
