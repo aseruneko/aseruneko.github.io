@@ -325,34 +325,34 @@ Upgrades
 
 		*likeUpgrade4
 			name:無料動画制作ソフト
-			desc:無料の動画編集ソフトで動画を編集します。<//><b><.>高評価の増加量が1%増えます。<.>1秒につき、高評価÷ファンx10000人、登録者が増えます。
+			desc:無料の動画編集ソフトで動画を編集します。<//><b><.>高評価の増加量が1%増えます。<.>1秒につき、高評価÷ファンx10000人（最高1000000人）、登録者が増えます。
 			icon:icons[10,0]
 			cost:10000000000 subscriber
 			cost:10000 like
 			on tick:yield (like:ps * 0.01) like
-			on tick:yield (fan / like * 10000) subscriber
+			on tick:yield (min(100, (fan / like)) * 10000) subscriber
 			req:1000000000 subscriber
 			req:1000 like
 
 		*likeUpgrade5
 			name:有料動画制作ソフト
-			desc:有料の動画編集ソフトで動画を編集します。<//><b><.>高評価の増加量が1%増えます。<.>1秒につき、高評価÷ファンx100000人、登録者が増えます。
+			desc:有料の動画編集ソフトで動画を編集します。<//><b><.>高評価の増加量が1%増えます。<.>1秒につき、高評価÷ファンx100000人（最高100000000人）、登録者が増えます。
 			icon:icons[11,0]
 			cost:100000000000 subscriber
 			cost:100000 like
 			on tick:yield (like:ps * 0.01) like
-			on tick:yield (fan / like * 100000) subscriber
+			on tick:yield (min(1000, (fan / like)) * 100000) subscriber
 			req:10000000000 subscriber
 			req:10000 like
 
 		*likeUpgrade6
 			name:プロ用動画制作ソフト
-			desc:プロ用の動画編集ソフトで動画を編集します。<//><b><.>高評価の増加量が1%増えます。<.>1秒につき、高評価÷ファンx1000000人、登録者が増えます。
+			desc:プロ用の動画編集ソフトで動画を編集します。<//><b><.>高評価の増加量が1%増えます。<.>1秒につき、高評価÷ファンx1000000人（最高10000000000人）、登録者が増えます。
 			icon:icons[12,0]
 			cost:10000000000000000 subscriber
 			cost:10000 like
 			on tick:yield (like:ps * 0.01) like
-			on tick:yield (fan / like * 1000000) subscriber
+			on tick:yield (min(10000, (fan / like)) * 1000000) subscriber
 			req:1000000000000000 subscriber
 			req:1000 like
 
@@ -392,34 +392,34 @@ Upgrades
 
 		*fanUpgrade4
 			name:ファンと仲良し
-			desc:ファンと仲良しになります。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき、ファン÷お金x10000人、登録者が増えます。
+			desc:ファンと仲良しになります。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき、ファン÷お金x10000人（最高1000000人）、登録者が増えます。
 			icon:icons[3,1]
 			cost:10000000000 subscriber
 			cost:10000 fan
 			on tick:yield (fan:ps * 0.01) fan
-			on tick:yield (fan / gold * 10000) subscriber
+			on tick:yield (min(100, (fan / gold)) * 10000) subscriber
 			req:1000000000 subscriber
 			req:1000 fan
 
 		*fanUpgrade5
 			name:ファンと友だち
-			desc:ファンと友だちになります。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき、ファン÷お金x100000人、登録者が増えます。
+			desc:ファンと友だちになります。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき、ファン÷お金x100000人（最高100000000人）、登録者が増えます。
 			icon:icons[4,1]
 			cost:100000000000 subscriber
 			cost:100000 fan
 			on tick:yield (fan:ps * 0.01) fan
-			on tick:yield (fan / gold * 100000) subscriber
+			on tick:yield (min(1000, (fan / gold)) * 100000) subscriber
 			req:10000000000 subscriber
 			req:10000 fan
 
 		*fanUpgrade6
 			name:ファンと恋仲
-			desc:ファンと恋仲になります。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき、ファン÷お金x10000000人、登録者が増えます。
+			desc:ファンと恋仲になります。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき、ファン÷お金x10000000人（最高10000000000人）、登録者が増えます。
 			icon:icons[5,1]
 			cost:10000000000000000 subscriber
 			cost:1000000 fan
 			on tick:yield (fan:ps * 0.01) fan
-			on tick:yield (fan / gold * 1000000) subscriber
+			on tick:yield (min(10000, (fan / gold)) * 1000000) subscriber
 			req:1000000000000000 subscriber
 			req:100000 fan
 
@@ -459,34 +459,34 @@ Upgrades
 
 		*goldUpgrade4
 			name:動画の外注
-			desc:動画の制作を外注します。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき、お金÷高評価x10000人、登録者が増えます。
+			desc:動画の制作を外注します。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき、お金÷高評価x10000人（最高1000000人）、登録者が増えます。
 			icon:icons[10,1]
 			cost:10000000000 subscriber
 			cost:10000 gold
 			on tick:yield (gold:ps * 0.01) gold
-			on tick:yield (gold / like * 10000) subscriber
+			on tick:yield (min(100, (gold / like)) * 10000) subscriber
 			req:1000000000 subscriber
 			req:1000 gold
 
 		*goldUpgrade5
 			name:動画制作チーム
-			desc:動画制作チームを立ち上げます。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき、お金÷高評価x100000人、登録者が増えます。
+			desc:動画制作チームを立ち上げます。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき、お金÷高評価x100000人（最高100000000人）、登録者が増えます。
 			icon:icons[11,1]
 			cost:100000000000 subscriber
 			cost:100000 gold
 			on tick:yield (gold:ps * 0.01) gold
-			on tick:yield (gold / like * 100000) subscriber
+			on tick:yield (min(1000, (gold / like)) * 100000) subscriber
 			req:10000000000 subscriber
 			req:10000 gold
 
 		*goldUpgrade6
 			name:動画制作会社
-			desc:動画制作会社を起業します。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき、お金÷高評価x1000000人、登録者が増えます。
+			desc:動画制作会社を起業します。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき、お金÷高評価x1000000人（最高10000000000人）、登録者が増えます。
 			icon:icons[12,1]
 			cost:10000000000000000 subscriber
 			cost:1000000 gold
 			on tick:yield (gold:ps * 0.01) gold
-			on tick:yield (gold / like * 1000000) subscriber
+			on tick:yield (min(10000, (gold / like)) * 1000000) subscriber
 			req:1000000000000000 subscriber
 			req:100000 gold
 
