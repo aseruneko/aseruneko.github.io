@@ -4,7 +4,7 @@ Let's make a game!
 	desc:クリックを基調に登録者を稼ぐゲームです。<//>配信王に君もなろう！<//>アイコンは化け猫缶さんから。
 	created:27/02/2020
 	updated:27/02/2020
-	version:0.2
+	version:0.2.1
 
 Settings
 	background:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/catground.png
@@ -212,6 +212,7 @@ Buildings
 	icon:icons[8,8]
 	cost:100 gold
 	on earn:
+		yield 10000 subscriber
 		like is (like * 0.5)
 		fan is (fan * 0.5)
 	end
