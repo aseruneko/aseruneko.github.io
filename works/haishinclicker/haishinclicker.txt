@@ -2,14 +2,14 @@ Let's make a game!
 	name:配信Clicker
 	by:@aseruneko
 	desc:クリックを基調に登録者を稼ぐゲームです。<//>配信王に君もなろう！<//>アイコンは化け猫缶さんから。
-	created:23/02/2020
-	updated:23/02/2020
-	version:0.1
+	created:27/02/2020
+	updated:27/02/2020
+	version:0.2
 
 Settings
 	background:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/catground.png
-	building cost increase:110%
-	building cost refund:90%
+	building cost increase:120%
+	building cost refund:80%
 	spritesheet:icons, 48 by 48, https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/icon.png
 	stylesheet:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/style.txt
 
@@ -30,774 +30,2223 @@ Buttons
 		tooltip class:red
 		
 Resources
-	*subscriber|subscribers
-		name:登録者|登録者
-		desc:あなたのチャンネルの登録者です。Buildingの購入などに使えます。<//>あなたの目的は可能な限り、登録者を増やすことです！
-		icon:icons[0,5]
-		class:noBackground
-		show earned
-		
-	*like|likes
-		name:高評価|高評価
-		desc:あなたのチャンネルの高評価です。<//>イメージはよくしていきたいものですね。
-		icon:icons[4,3]
-		class:noBackground
-		show earned
-
-	*fan|fans
-		name:ファン|ファン
-		desc:あなたのチャンネルのファンです。<//>コメントをいつも残してくれます。
-		icon:icons[10,11]
-		class:noBackground
-		show earned
-
-	*gold|golds
-		name:お金|お金
-		desc:お金はとてもレアで貴重で珍しいものです！
+	*subscriber
+		name:登録者
+		desc:あなたのチャンネルの登録者です。<//>これを増やすのがこのゲームの目的です。<//>さぁ、登録しよう！
 		icon:icons[0,0]
 		class:noBackground
 		show earned
 
-		
+	*like
+		name:高評価
+		desc:あなたの動画についた高評価です。<//>クォリティの高い動画を目指しましょう！
+		icon:icons[8,0]
+		class:noBackground
+		show earned
+
+	*fan
+		name:ファン
+		desc:あなたについたファンです。<//>ファンサービスも忘れずに！
+		icon:icons[0,1]
+		class:noBackground
+		show earned
+	
+	*gold
+		name:お金
+		desc:何かを買うのに必要になるお金です。<//>地獄の沙汰も金次第！
+		icon:icons[8,1]
+		class:noBackground
+		show earned
+
+	*magicpower
+		name:MP 
+		desc:不思議なことをするのに必要なパワーです。<//>イオナズン使えますよ、イオナズン。
+		icon:icons[8,10]
+		class:noBackground
+		hidden when 0
+
+
 Shinies
-	*commercial
+	*luckymovie
 		on click:log Woop
 		movement:onRight moveLeft fade bounce:0.05
 		frequency:60
 		frequency variation:30
 		icon:https://github.com/aseruneko/aseruneko.github.io/raw/master/works/haishinclicker/src/douga_haishin_youtuber.png
 		class:bigButton
-		on click:yield 1000 golds
+		on click:
+			$v = subscriber:ps
+			yield (60*$v) subscriber
+			$v = like:ps
+			yield (60*$v) like
+			$v = fan:ps
+			yield (60*$v) fan
+			$v = gold:ps
+			yield (60*$v) gold
+			$v = magicpower:ps
+			yield (60*$v) magicpower
+		end
 
 Buildings
 	*TEMPLATE
 		on click:anim glow
-	
-	*movie|movies
-		name:動画|動画
-		desc:動画を投稿します。<//><b>効果:</b><.>10秒に1人、登録者が増えます。<.>10秒に1つ、高評価が増えます。
-		icon:icons[2,7]
-		cost:10 subscribers
-		on tick:yield 0.1 subscribers
-		on tick:yield 0.1 likes
-		unlocked
 
-	*live|lives
-		name:配信|配信
-		desc:生放送をします。<//><b>効果:</b><.>10秒に1人、登録者が増えます。<.>10秒に1人、ファンが増えます。
-		icon:icons[9,7]
-		cost:10 subscribers
-		on tick:yield 0.1 subscribers
-		on tick:yield 0.1 fans
-		unlocked
+	*debug
+	name:デバッグ
+	desc:デバッグ用です。<//><b>購入時の効果:</b><.>登録者の数を0にします。<.>60秒分の産出量を得ます。
+	icon:icons[15,0]
+	cost:0 subscriber
+	on earn:
+		subscriber is 0
+		$v = subscriber:ps
+		yield (60*$v) subscriber
+		$v = like:ps
+		yield (60*$v) like
+		$v = fan:ps
+		yield (60*$v) fan
+		$v = gold:ps
+		yield (60*$v) gold
+		$v = magicpower:ps
+		yield (60*$v) magicpower
+	end
+	req:specialAchiev1
 
-	*mine|mines
-		name:鉱山|鉱山
-		desc:鉱山から登録者と鉱石を採掘します。<//><b>効果:</b><.>10秒に1人、登録者が増えます。<.>10秒に1G、お金が増えます。
-		icon:icons[0,2]
-		cost:10 subscribers
-		on tick:yield 0.1 subscribers
-		on tick:yield 0.1 golds
-		unlocked
+	*movie
+	name:動画
+	desc:動画を投稿します。<//><b>効果:</b><.>10秒につき1人、登録者が増えます。<.>10秒につき1つ、高評価が増えます。
+	icon:icons[0,3]
+	cost:10 subscriber
+	on tick:yield 0.1 subscriber
+	on tick:yield 0.1 like
+	unlocked
 
-	*collab|collabs
-		name:コラボ|コラボ
-		desc:他の配信者とコラボをします。<//><b>効果:</b><.>1秒に1人、登録者が増えます。<.>1秒に1人、ファンが増えます。
-		icon:icons[8,12]
-		cost:100 subscribers
-		on tick:yield 1 subscribers
-		on tick:yield 1 fans
-		req:50 subscribers:earned
+	*live
+	name:配信
+	desc:生放送をします。<//><b>効果:</b><.>10秒につき1人、登録者が増えます。<.>10秒につき1人、ファンが増えます。
+	icon:icons[8,3]
+	cost:10 subscriber
+	on tick:yield 0.1 subscriber
+	on tick:yield 0.1 fan
+	unlocked
 
-	*divine|divines
-		name:召喚|召喚
-		desc:異世界から登録者を召喚します。<//><b>効果:</b><.>1秒に10人、登録者が増えます。
-		icon:icons[0,13]
-		cost:1000 subscribers
-		on tick:yield 10 subscribers
-		req:500 subscribers:earned
+	*mine
+	name:採掘
+	desc:登録者を採掘します。<//><b>効果:</b><.>10秒につき1人、登録者が増えます。<.>10秒につき1G、お金が増えます。
+	icon:icons[0,4]
+	cost:10 subscriber
+	on tick:yield 0.1 subscriber
+	on tick:yield 0.1 gold
+	unlocked
 
-	*biology|biologies
-		name:生化学|生化学
-		desc:生物化学で登録者を生成します。<//><b>効果:</b><.>1秒に100人、登録者が増えます。
-		icon:icons[2,14]
-		cost:10000 subscribers
-		on tick:yield 100 subscribers
-		req:5000 subscribers:earned
+	*collab
+	name:コラボ
+	desc:他の配信者とコラボをします。<//><b>効果:</b><.>1秒につき1人、登録者が増えます。
+	icon:icons[11,4]
+	cost:1000 subscriber
+	on tick:yield 1 subscriber
+	unlocked
 
-	*factory|factories
-		name:工場|工場
-		desc:工場で登録者を大量生産します。<//><b>効果:</b><.>1秒に50人、登録者が増えます。<.>1秒に50G、お金が増えます。
-		icon:icons[5,8]
-		cost:10000 subscribers
-		on tick:yield 50 subscribers
-		on tick:yield 50 golds
-		req:5000 subscribers:earned
+	*divine
+	name:神頼み
+	desc:神頼みで登録者を増やします。<//><b>効果:</b><.>1秒につき100人、登録者が増えます。
+	icon:icons[3,5]
+	cost:100000 subscriber
+	on tick:yield 100 subscriber
+	req:10000 subscriber
 
-	*time|times
-		name:時間操作|時間操作
-		desc:未来から登録者を前借りします。<//><b>効果:</b><.>1秒に10000人、登録者が増えます。
-		icon:icons[11,4]
-		cost:1000000 subscribers
-		on tick:yield 10000 subscribers
-		req:500000 subscribers:earned
+	*time
+	name:時間操作
+	desc:別の時間軸から登録者を引っ張ってきます。<//><b>効果:</b><.>1秒につき1000000人、登録者が増えます。<.>1秒につき、高評価の数の1%、登録者が増えます。
+	icon:icons[8,6]
+	cost:10000000000 subscriber
+	on tick:yield 1000000 subscriber
+	on tick:yield (like * 0.01) subscriber
+	req:1000000000 subscriber
 
-	*magic|magics
-		name:魔法|魔法
-		desc:魔法の力で登録者を増やします。<//><b>効果:</b><.>1秒に1000000人、登録者が増えます。
-		icon:icons[0,11]
-		cost:100000000 subscribers
-		on tick:yield 1000000 subscribers
-		req:50000000 subscribers:earned
+	*biology
+	name:複製
+	desc:生物学によって登録者を増やします。<//><b>効果:</b><.>1秒につき1000000人、登録者が増えます。<.>1秒につき、ファンの数の1%、登録者が増えます。
+	icon:icons[8,5]
+	cost:10000000000 subscriber
+	on tick:yield 1000000 subscriber
+	on tick:yield (fan * 0.01) subscriber
+	req:1000000000 subscriber
 
-	*cat|cats
-		name:猫|猫
-		desc:猫を動画に出します。<//><b>効果:</b><.>1秒に100000000人、登録者が増えます。
-		icon:icons[13,11]
-		cost:10000000000 subscribers
-		on tick:yield 100000000 subscribers
-		req:5000000000 subscribers:earned
+	*factory
+	name:工場
+	desc:工場で登録者を生産します。<//><b>効果:</b><.>1秒につき1000000人、登録者が増えます。<.>1秒につき、お金の数の1%、登録者が増えます。
+	icon:icons[0,6]
+	cost:10000000000 subscriber
+	on tick:yield 1000000 subscriber
+	on tick:yield (gold * 0.01) subscriber
+	req:1000000000 subscriber
 
-	*purchase|purchases
-		name:購入|購入
-		desc:金の力で登録者を購入します。<//><b>購入時の効果:</b><.>1000人、登録者が増えます。<.>高評価とファン x0.5
-		icon:icons[3,4]
-		cost:100 golds
-		on earn:yield 1000 subscribers
-		on earn:
-			$cnt=fans*0.5
-			lose $cnt fans
-		end
-		on earn:
-			$cnt=likes*0.5
-			lose $cnt likes
-		end
-		req:50 golds:earned
+	*magic
+	name:魔法
+	desc:魔法で登録者を増やします。<//><b>効果:</b><.>1秒につき10000000000000人、登録者が増えます。<.>1秒につき1、MPが増えます。
+	icon:icons[0,7]
+	cost:10000000000000000 subscriber
+	on tick:yield 10000000000000 subscriber
+	on tick:yield 1 magicpower
+	req:100000000000000 subscriber
 
-	*commerce|commerces
-		name:宣伝|宣伝
-		desc:金を使って宣伝を行います。<//><b>購入時の効果:</b><.>ファンと高評価の乗数、登録者が増えます。
-		icon:icons[3,3]
-		cost:10000 golds
-		on earn:yield (fans*likes) subscribers
-		req:100 golds:earned
+	*cat
+	name:猫
+	desc:動画に猫を出します。<//><b>効果:</b><.>1秒につき1000000000000000人、登録者が増えます。
+	icon:icons[8,7]
+	cost:10000000000000000000 subscriber
+	on tick:yield 1000000000000000 subscriber 
+	req:100000000000000000 subscriber
+
+	*cheat
+	name:チート
+	desc:チートを使って登録者を増やします。<//><b>効果:</b><.>1秒につき10000000000000000000000人、登録者が増えます。
+	icon:icons[0,8]
+	cost:1000000000000000000000000 subscriber
+	on tick:yield 10000000000000000000000 subscriber
+	req:10000000000000000000000 subscriber
+
+	*purchase
+	name:購入
+	desc:お金を使って登録者を購入します。<//><b>購入時の効果:</b><.>登録者が10000人、増えます。<.>高評価とファンが半分になります。
+	icon:icons[8,8]
+	cost:100 gold
+	on earn:
+		like is (like * 0.5)
+		fan is (fan * 0.5)
+	end
+	cost refund:0.000000000001%
+	unlocked
+
+	*commerce
+	name:広告
+	desc:お金を使ってチャンネルを広告します。<//><b>購入時の効果:</b><.>登録者がファンと高評価の乗数、増えます。
+	icon:icons[12,8]
+	cost:1000 gold
+	on earn:
+		yield (like * fan) subscriber
+	end
+	cost refund:0.000000000001%
+	unlocked
 		
 Upgrades
 	*TEMPLATE
 		on click:anim glow
-	
-	*buildingUpgrade1
-		name:週刊動画投稿
-		desc:毎週動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2<.>動画による高評価 x0.5
-		icon:icons[3,7]
-		cost:100 subscribers
-		passive:multiply subscribers yield of movie by 2
-		passive:multiply likes yield of movie by 0.5
-		req:movies>=1
 
-	*buildingUpgrade2
-		name:日刊動画投稿
-		desc:毎日動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2<.>動画による高評価 x0.5
-		icon:icons[4,7]
-		cost:200 subscribers
-		passive:multiply subscribers yield of movie by 2
-		passive:multiply likes yield of movie by 0.5
-		req:movies>=10
+	//subscriberUpgrade
+		*subscriberUpgrade1
+			name:ぼそぼそ配信者
+			desc:ぼそぼそと喋ります。<//><b>効果:</b><.>登録者の増加量が1%増えます。<.>クリックによる登録者が2倍になります。
+			icon:icons[1,0]
+			cost:10 subscriber
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (subscriber:ps * 0.01) subscriber
+			req:1 subscriber
 
-	*buildingUpgrade3
-		name:秒間動画投稿
-		desc:毎秒動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2<.>動画による高評価 x0.5
-		icon:icons[5,7]
-		cost:400 subscribers
-		passive:multiply subscribers yield of movie by 2
-		passive:multiply likes yield of movie by 0.5
-		req:movies>=50
+		*subscriberUpgrade2
+			name:ハキハキ配信者
+			desc:ハキハキと喋ります。<//><b>効果:</b><.>登録者の増加量が1%増えます。<.>クリックによる登録者が2倍になります。
+			icon:icons[2,0]
+			cost:1000 subscriber
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (subscriber:ps * 0.01) subscriber
+			req:100 subscriber
 
-	*buildingUpgrade4
-		name:動画編集
-		desc:見やすい動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2<.>クリックによる登録者 x10<.>動画による高評価 x2
-		icon:icons[6,7]
-		cost:100 subscribers
-		passive:multiply subscribers yield of movie by 2
-		passive:multiply subscribers yield of subscribeButton by 10
-		passive:multiply likes yield of movie by 2
-		req:movies>=10
+		*subscriberUpgrade3
+			name:イケヴォ配信者
+			desc:イケヴォで喋ります。<//><b>効果:</b><.>登録者の増加量が1%増えます。<.>クリックによる登録者が2倍になります。
+			icon:icons[3,0]
+			cost:100000 subscriber
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (subscriber:ps * 0.01) subscriber
+			req:10000 subscriber
 
-	*buildingUpgrade5
-		name:丁寧編集
-		desc:丁寧に編集された動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2<.>クリックによる登録者 x10<.>動画による高評価 x2
-		icon:icons[7,7]
-		cost:500 subscribers
-		passive:multiply subscribers yield of movie by 2
-		passive:multiply subscribers yield of subscribeButton by 10
-		passive:multiply likes yield of movie by 2
-		req:movies>=50
+		*subscriberUpgrade4
+			name:静止画配信者
+			desc:静止画で配信をします。<//><b>効果:</b><.>クリックによる登録者が2倍になります。<//><b>購入時の効果:</b><.>登録者が2倍になります。
+			icon:icons[4,0]
+			cost:1000000000 subscriber
+			passive:multiply subscriber yield of subscribeButton by 2
+			on earn:subscriber is (subscriber * 2)
+			req:100000000 subscriber
 
-	*buildingUpgrade6
-		name:豪華編集
-		desc:豪華に編集された動画を投稿します。<//><b>効果:</b><.>動画による登録者 x2<.>クリックによる登録者 x10<.>動画による高評価 x2
-		icon:icons[8,7]
-		cost:1000 subscribers
-		passive:multiply subscribers yield of movie by 2
-		passive:multiply subscribers yield of subscribeButton by 10
-		passive:multiply likes yield of movie by 2
-		req:movies>=100
+		*subscriberUpgrade5
+			name:顔出し配信者
+			desc:顔出しで配信をします。<//><b>効果:</b><.>クリックによる登録者が2倍になります。<//><b>購入時の効果:</b><.>登録者が2倍になります。
+			icon:icons[5,0]
+			cost:10000000000 subscriber
+			passive:multiply subscriber yield of subscribeButton by 2
+			on earn:subscriber is (subscriber * 2)
+			req:1000000000 subscriber
 
-	*buildingUpgrade7
-		name:30分生放送
-		desc:30分間生放送を行います。<//><b>効果:</b><.>配信による登録者 x2<.>配信によるファン x0.5
-		icon:icons[10,7]
-		cost:100 subscribers
-		passive:multiply subscribers yield of live by 2
-		passive:multiply fans yield of live by 0.5
-		req:lives>=1
+		*subscriberUpgrade6
+			name:バ美肉配信者
+			desc:バーチャルで配信をします。<//><b>効果:</b><.>クリックによる登録者が2倍になります。<//><b>購入時の効果:</b><.>登録者が2倍になります。
+			icon:icons[6,0]
+			cost:100000000000000000 subscriber
+			passive:multiply subscriber yield of subscribeButton by 2
+			on earn:subscriber is (subscriber * 2)
+			req:10000000000000000 subscriber
 
-	*buildingUpgrade8
-		name:1時間生放送
-		desc:1時間生放送を行います。<//><b>効果:</b><.>配信による登録者 x2<.>配信によるファン x0.5
-		icon:icons[11,7]
-		cost:200 subscribers
-		passive:multiply subscribers yield of lives by 2
-		passive:multiply fans yield of live by 0.5
-		req:lives>=10
+	//likeUpgrade
+		*likeUpgrade1
+			name:気だるげ配信者
+			desc:気だるげに喋ります。<//><b>効果:</b><.>高評価の増加量が1%増えます。<.>1秒につき1つ、高評価が増えます。
+			icon:icons[9,0]
+			cost:10 subscriber
+			cost:10 like
+			on tick:yield (like:ps * 0.01) like
+			on tick:yield 1 like
+			req:1 subscriber
+			req:1 like
 
-	*buildingUpgrade9
-		name:24時間生放送
-		desc:24時間生放送を行います。<//><b>効果:</b><.>配信による登録者 x2<.>配信によるファン x0.5
-		icon:icons[12,7]
-		cost:400 subscribers
-		passive:multiply subscribers yield of live by 2
-		passive:multiply fans yield of live by 0.5
-		req:lives>=50
+		*likeUpgrade2
+			name:普段のノリ配信者
+			desc:普段のノリで喋ります。<//><b>効果:</b><.>高評価の増加量が1%増えます。<.>1秒につき10個、高評価が増えます。
+			icon:icons[13,0]
+			cost:100000 subscriber
+			cost:100 like
+			on tick:yield (like:ps * 0.01) like
+			on tick:yield 10 like
+			req:10000 subscriber
+			req:10 like
 
-	*buildingUpgrade10
-		name:企画配信
-		desc:面白い企画の配信をします。<//><b>効果:</b><.>配信による登録者 x2<.>コラボによる登録者 x2<.>配信によるファン x2
-		icon:icons[13,7]
-		cost:100 subscribers
-		passive:multiply subscribers yield of live by 2
-		passive:multiply subscribers yield of collab by 10
-		passive:multiply fans yield of live by 2
-		req:lives>=10
+		*likeUpgrade3
+			name:楽しげ配信者
+			desc:楽しげに喋ります。<//><b>効果:</b><.>高評価の増加量が1%増えます。<.>1秒につき100個、高評価が増えます。
+			icon:icons[14,0]
+			cost:10000000000 subscriber
+			cost:1000 like
+			on tick:yield (like:ps * 0.01) like
+			on tick:yield 100 like
+			req:1000000000 subscriber
+			req:100 like
 
-	*buildingUpgrade11
-		name:良企画配信
-		desc:アホ面白い企画の配信をします。<//><b>効果:</b><.>配信による登録者 x2<.>コラボによる登録者 x2<.>配信によるファン x2
-		icon:icons[14,7]
-		cost:500 subscribers
-		passive:multiply subscribers yield of live by 2
-		passive:multiply subscribers yield of collab by 10
-		passive:multiply fans yield of live by 2
-		req:lives>=50
+		*likeUpgrade4
+			name:無料動画制作ソフト
+			desc:無料の動画編集ソフトで動画を編集します。<//><b><.>高評価の増加量が1%増えます。<.>1秒につき、高評価÷ファンx10000人、登録者が増えます。
+			icon:icons[10,0]
+			cost:10000000000 subscriber
+			cost:10000 like
+			on tick:yield (like:ps * 0.01) like
+			on tick:yield (fan / like * 10000) subscriber
+			req:1000000000 subscriber
+			req:1000 like
 
-	*buildingUpgrade12
-		name:神企画配信
-		desc:クソ面白い企画の配信をします。<//><b>効果:</b><.>配信による登録者 x2<.>コラボによる登録者 x2<.>配信によるファン x2
-		icon:icons[15,7]
-		cost:1000 subscribers
-		passive:multiply subscribers yield of live by 2
-		passive:multiply subscribers yield of collab by 10
-		passive:multiply fans yield of live by 2
-		req:lives>=100
+		*likeUpgrade5
+			name:有料動画制作ソフト
+			desc:有料の動画編集ソフトで動画を編集します。<//><b><.>高評価の増加量が1%増えます。<.>1秒につき、高評価÷ファンx100000人、登録者が増えます。
+			icon:icons[11,0]
+			cost:100000000000 subscriber
+			cost:100000 like
+			on tick:yield (like:ps * 0.01) like
+			on tick:yield (fan / like * 100000) subscriber
+			req:10000000000 subscriber
+			req:10000 like
 
-	*buildingUpgrade13
-		name:石炭登録者
-		desc:石炭製の登録者たちが現れます。<//><b>効果:</b><.>採掘による登録者 x1.5<.>採掘によるお金 x1.5
-		icon:icons[1,2]
-		cost:100 subscribers
-		passive:multiply subscribers yield of mine by 1.5
-		passive:multiply golds yield of mine by 1.5
-		req:mines>=1
+		*likeUpgrade6
+			name:プロ用動画制作ソフト
+			desc:プロ用の動画編集ソフトで動画を編集します。<//><b><.>高評価の増加量が1%増えます。<.>1秒につき、高評価÷ファンx1000000人、登録者が増えます。
+			icon:icons[12,0]
+			cost:10000000000000000 subscriber
+			cost:10000 like
+			on tick:yield (like:ps * 0.01) like
+			on tick:yield (fan / like * 1000000) subscriber
+			req:1000000000000000 subscriber
+			req:1000 like
 
-	*buildingUpgrade14
-		name:鉄登録者
-		desc:鉄製の登録者たちが現れます。<//><b>効果:</b><.>採掘による登録者 x1.5<.>採掘によるお金 x1.5
-		icon:icons[2,2]
-		cost:200 subscribers
-		passive:multiply subscribers yield of mine by 1.5
-		passive:multiply golds yield of mine by 1.5
-		req:mines>=10
+	//fanUpgrade
+		*fanUpgrade1
+			name:ファンと通信
+			desc:ファンからのお便りを読みます。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき1人、ファンが増えます。
+			icon:icons[2,1]
+			cost:10 subscriber
+			cost:10 fan
+			on tick:yield (fan:ps * 0.01) fan
+			on tick:yield 1 fan
+			req:1 subscriber
+			req:1 fan
 
-	*buildingUpgrade15
-		name:金登録者
-		desc:金製の登録者たちが現れます。<//><b>効果:</b><.>採掘による登録者 x1.5<.>採掘によるお金 x1.5
-		icon:icons[3,2]
-		cost:400 subscribers
-		passive:multiply subscribers yield of mine by 1.5
-		passive:multiply golds yield of mine by 1.5
-		req:mines>=50
+		*fanUpgrade2
+			name:ファンと交流
+			desc:ファンと通話で交流します。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき10人、ファンが増えます。
+			icon:icons[6,1]
+			cost:100000 subscriber
+			cost:100 fan
+			on tick:yield (fan:ps * 0.01) fan
+			on tick:yield 10 fan
+			req:10000 subscriber
+			req:10 fan
 
-	*buildingUpgrade16
-		name:効率採掘
-		desc:ファンを採掘に勧誘します。<//><b>効果:</b><.>採掘による登録者 x1.5<.>採掘によるお金 x1.5<.>1秒に1人、ファンが減ります。
-		icon:icons[4,2]
-		cost:100 subscribers
-		passive:multiply subscribers yield of mine by 1.5
-		passive:multiply golds yield of mine by 1.5
-		on tick:lose 1 fans
-		req:mines>=10
+		*fanUpgrade3
+			name:ファンとオフ会
+			desc:ファンとオフ会を開きます。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき100人、ファンが増えます。
+			icon:icons[1,1]
+			cost:1000000000 subscriber
+			cost:1000 fan
+			on tick:yield (fan:ps * 0.01) fan
+			on tick:yield 100 fan
+			req:100000000 subscriber
+			req:100 fan
 
-	*buildingUpgrade17
-		name:超効率採掘
-		desc:ファンを採掘に誘導します。<//><b>効果:</b><.>採掘による登録者 x1.5<.>採掘によるお金 x1.5<.>1秒に10人、ファンが減ります。
-		icon:icons[5,2]
-		cost:500 subscribers
-		passive:multiply subscribers yield of mine by 1.5
-		passive:multiply golds yield of mine by 1.5
-		on tick:lose 10 fans
-		req:mines>=50
+		*fanUpgrade4
+			name:ファンと仲良し
+			desc:ファンと仲良しになります。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき、ファン÷お金x10000人、登録者が増えます。
+			icon:icons[3,1]
+			cost:10000000000 subscriber
+			cost:10000 fan
+			on tick:yield (fan:ps * 0.01) fan
+			on tick:yield (fan / gold * 10000) subscriber
+			req:1000000000 subscriber
+			req:1000 fan
 
-	*buildingUpgrade18
-		name:廃効率採掘
-		desc:ファンを採掘に連行します。<//><b>効果:</b><.>採掘による登録者 x1.5<.>採掘によるお金 x1.5<.>1秒に100人、ファンが減ります。
-		icon:icons[6,2]
-		cost:1000 subscribers
-		passive:multiply subscribers yield of mine by 1.5
-		passive:multiply golds yield of mine by 1.5
-		on tick:lose 100 fans
-		req:mines>=100
+		*fanUpgrade5
+			name:ファンと友だち
+			desc:ファンと友だちになります。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき、ファン÷お金x100000人、登録者が増えます。
+			icon:icons[4,1]
+			cost:100000000000 subscriber
+			cost:100000 fan
+			on tick:yield (fan:ps * 0.01) fan
+			on tick:yield (fan / gold * 100000) subscriber
+			req:10000000000 subscriber
+			req:10000 fan
 
-	*buildingUpgrade19
-		name:神効率採掘
-		desc:ファンを採掘場に住まわせます。<//><b>効果:</b><.>採掘による登録者 x1.5<.>採掘によるお金 x1.5<.>1秒に1000人、ファンが減ります。
-		icon:icons[7,2]
-		cost:5000 subscribers
-		passive:multiply subscribers yield of mine by 1.5
-		passive:multiply golds yield of mine by 1.5
-		on tick:lose 1000 fans
-		req:mines>=500
+		*fanUpgrade6
+			name:ファンと恋仲
+			desc:ファンと恋仲になります。<//><b>効果:</b><.>ファンの増加量が1%増えます。<.>1秒につき、ファン÷お金x10000000人、登録者が増えます。
+			icon:icons[5,1]
+			cost:10000000000000000 subscriber
+			cost:1000000 fan
+			on tick:yield (fan:ps * 0.01) fan
+			on tick:yield (fan / gold * 1000000) subscriber
+			req:1000000000000000 subscriber
+			req:100000 fan
 
-	*buildingUpgrade20
-		name:ともだちコラボ
-		desc:友達とコラボします。<//><b>効果:</b><.>コラボによる登録者 x1.5<.>コラボによるファン x1.5
-		icon:icons[9,12]
-		cost:1000 subscribers
-		passive:multiply subscribers yield of collab by 1.5
-		passive:multiply fans yield of collab by 1.5
-		req:collabs>=1
+	//goldUpgrade
+		*goldUpgrade1
+			name:節約生活
+			desc:節約してお金をためます。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき1G、お金が増えます。
+			icon:icons[9,1]
+			cost:10 subscriber
+			cost:1 gold
+			on tick:yield (gold:ps * 0.01) gold
+			on tick:yield 1 gold
+			req:1 subscriber
+			req:1 gold
 
-	*buildingUpgrade21
-		name:しんゆうコラボ
-		desc:親友とコラボします。<//><b>効果:</b><.>コラボによる登録者 x1.5<.>コラボによるファン x1.5
-		icon:icons[10,12]
-		cost:2000 subscribers
-		passive:multiply subscribers yield of collab by 1.5
-		passive:multiply fans yield of collab by 1.5
-		req:collabs>=10
+		*goldUpgrade2
+			name:株取引生活
+			desc:株取引でお金を増やします。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき10G、お金が増えます。
+			icon:icons[14,1]
+			cost:100000 subscriber
+			cost:1 gold
+			on tick:yield (gold:ps * 0.01) gold
+			on tick:yield 10 gold
+			req:10000 subscriber
+			req:10 gold
 
-	*buildingUpgrade22
-		name:いちゃいちゃコラボ
-		desc:友達以上恋人未満とコラボします。<//><b>効果:</b><.>コラボによる登録者 x1.5<.>コラボによるファン x1.5
-		icon:icons[11,12]
-		cost:4000 subscribers
-		passive:multiply subscribers yield of collab by 1.5
-		passive:multiply fans yield of collab by 1.5
-		req:collabs>=50
+		*goldUpgrade3
+			name:FX生活
+			desc:高レバレッジFXでお金を増やします。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき100G、お金が増えます。
+			icon:icons[13,1]
+			cost:1000000000 subscriber
+			cost:1 gold
+			on tick:yield (fan:ps * 0.01) gold
+			on tick:yield 100 gold
+			req:100000000 subscriber
+			req:100 gold
 
-	*buildingUpgrade23
-		name:ファンと配信
-		desc:ファンとコラボ配信をします。<//><b>効果:</b><.>1秒につき、ファンの数、登録者が増えます。<.>1秒につき、高評価が1減ります。
-		icon:icons[12,12]
-		cost:1000 subscribers
-		on tick:
-			yield fans subscribers
-			lose 1 likes
-		end
-		req:collabs>=10
+		*goldUpgrade4
+			name:動画の外注
+			desc:動画の制作を外注します。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき、お金÷高評価x10000人、登録者が増えます。
+			icon:icons[10,1]
+			cost:10000000000 subscriber
+			cost:10000 gold
+			on tick:yield (gold:ps * 0.01) gold
+			on tick:yield (gold / like * 10000) subscriber
+			req:1000000000 subscriber
+			req:1000 gold
 
-	*buildingUpgrade24
-		name:囲いと配信
-		desc:囲いとコラボ配信をします。<//><b>効果:</b><.>1秒につき、ファンの数、登録者が増えます。<.>1秒につき、高評価が10減ります。
-		icon:icons[13,12]
-		cost:5000 subscribers
-		on tick:
-			yield fans subscribers
-			lose 10 likes
-		end
-		req:collabs>=50
+		*goldUpgrade5
+			name:動画制作チーム
+			desc:動画制作チームを立ち上げます。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき、お金÷高評価x100000人、登録者が増えます。
+			icon:icons[11,1]
+			cost:100000000000 subscriber
+			cost:100000 gold
+			on tick:yield (gold:ps * 0.01) gold
+			on tick:yield (gold / like * 100000) subscriber
+			req:10000000000 subscriber
+			req:10000 gold
 
-	*buildingUpgrade25
-		name:親衛隊と配信
-		desc:親衛隊とコラボ配信をします。<//><b>効果:</b><.>1秒につき、ファンの数、登録者が増えます。<.>1秒につき、高評価が100減ります。
-		icon:icons[14,12]
-		cost:10000 subscribers
-		on tick:
-			yield fans subscribers
-			lose 100 likes
-		end
-		req:collabs>=100
+		*goldUpgrade6
+			name:動画制作会社
+			desc:動画制作会社を起業します。<//><b>効果:</b><.>お金の増加量が1%増えます。<.>1秒につき、お金÷高評価x1000000人、登録者が増えます。
+			icon:icons[12,1]
+			cost:10000000000000000 subscriber
+			cost:1000000 gold
+			on tick:yield (gold:ps * 0.01) gold
+			on tick:yield (gold / like * 1000000) subscriber
+			req:1000000000000000 subscriber
+			req:100000 gold
 
-	*buildingUpgrade26
-		name:信者と配信
-		desc:信者とコラボ配信をします。<//><b>効果:</b><.>1秒につき、ファンの数、登録者が増えます。<.>1秒につき、高評価が1000減ります。
-		icon:icons[15,12]
-		cost:50000 subscribers
-		on tick:
-			yield fans subscribers
-			lose 1000 likes
-		end
-		req:collabs>=500
+	//movieUpgrade
+		*movieUpgrade1
+			name:月刊投稿
+			desc:月刊で動画を投稿します。<//><b>効果:</b><.>動画による登録者が2倍になります。<.>動画による高評価が1.5倍になります。<.>クリックによる登録者が1.5倍になります。
+			icon:icons[2,3]
+			cost:100 subscriber
+			cost:10 like
+			passive:multiply subscriber yield of movie by 2
+			passive:multiply like yield of movie by 1.5
+			passive:multiply subscriber yield of subscribeButton by 1.5
+			req:1 movie
 
-	*buildingUpgrade27
-		name:平行世界召喚
-		desc:平行世界から登録者を召喚します。<//><b>効果:</b><.>召喚による登録者 x2
-		icon:icons[1,13]
-		cost:10000 subscribers
-		passive:multiply subscribers yield of divine by 2
-		req:divines>=1
+		*movieUpgrade2
+			name:日刊投稿
+			desc:日刊で動画を投稿します。<//><b>効果:</b><.>動画による登録者が2倍になります。<.>動画による高評価が1.5倍になります。<.>クリックによる登録者が1.5倍になります。
+			icon:icons[3,3]
+			cost:1000 subscriber
+			cost:100 like
+			passive:multiply subscriber yield of movie by 2
+			passive:multiply like yield of movie by 1.5
+			passive:multiply subscriber yield of subscribeButton by 1.5
+			req:10 movie
 
-	*buildingUpgrade28
-		name:異世界召喚
-		desc:異世界から登録者を召喚します。<//><b>効果:</b><.>召喚による登録者 x2
-		icon:icons[2,13]
-		cost:20000 subscribers
-		passive:multiply subscribers yield of divine by 2
-		req:movies>=10
+		*movieUpgrade3
+			name:秒刊投稿
+			desc:秒刊で動画を投稿します。<//><b>効果:</b><.>動画による登録者が2倍になります。<.>動画による高評価が1.5倍になります。<.>クリックによる登録者が1.5倍になります。
+			icon:icons[1,3]
+			cost:10000 subscriber
+			cost:1000 like
+			passive:multiply subscriber yield of movie by 2
+			passive:multiply like yield of movie by 1.5
+			passive:multiply subscriber yield of subscribeButton by 1.5
+			req:100 movie
 
-	*buildingUpgrade29
-		name:多元宇宙召喚
-		desc:多元宇宙から登録者を召喚します。<//><b>効果:</b><.>召喚による登録者 x2
-		icon:icons[3,13]
-		cost:40000 subscribers
-		passive:multiply subscribers yield of divine by 2
-		req:movies>=50
+		*movieUpgrade4
+			name:丁寧動画
+			desc:丁寧に編集した動画を投稿します。<//><b>効果:</b><.>動画による登録者が2倍になります。<.>動画による高評価が2倍になります。<.>1秒につき、お金が1減ります。
+			icon:icons[6,3]
+			cost:100 subscriber
+			cost:10 like
+			passive:multiply subscriber yield of movie by 2
+			passive:multiply like yield of movie by 2
+			on tick:lose 1 gold
+			req:1 movie
 
-	*buildingUpgrade30
-		name:アレフ宇宙召喚
-		desc:アレフ宇宙から登録者を召喚します。<//><b>効果:</b><.>召喚による登録者 x2
-		icon:icons[4,13]
-		cost:80000 subscribers
-		passive:multiply subscribers yield of divine by 2
-		req:movies>=100
+		*movieUpgrade5
+			name:綺麗な動画
+			desc:綺麗に編集した動画を投稿します。<//><b>効果:</b><.>動画による登録者が2倍になります。<.>動画による高評価が2倍になります。<.>1秒につき、お金が10減ります。
+			icon:icons[4,3]
+			cost:1000 subscriber
+			cost:100 like
+			passive:multiply subscriber yield of movie by 2
+			passive:multiply like yield of movie by 2
+			on tick:lose 10 gold
+			req:10 movie
 
-	*buildingUpgrade31
-		name:有性生殖
-		desc:ファン同士で生殖してもらいます。<//><b>効果:</b><.>生化学による登録者 x1.5<.>1秒につき、ファンの数の半分、登録者が増えます。
-		icon:icons[3,14]	
-		cost:1000000 subscribers
-		passive:multiply subscribers yield of biology by 1.5
-		on tick:
-			yield (fans*0.5) subscribers
-		end
-		req:biologies>=1
+		*movieUpgrade6
+			name:プロ並み動画
+			desc:プロ並みに編集した動画を投稿します。<//><b>効果:</b><.>動画による登録者が2倍になります。<.>動画による高評価が2倍になります。<.>1秒につき、お金が100減ります。
+			icon:icons[5,3]
+			cost:10000 subscriber
+			cost:1000 like
+			passive:multiply subscriber yield of movie by 2
+			passive:multiply like yield of movie by 2
+			on tick:lose 100 gold
+			req:100 movie
 
-	*buildingUpgrade32
-		name:単為生殖
-		desc:ファンに増殖してもらいます。<//><b>効果:</b><.>生化学による登録者 x1.5<.>1秒につき、ファンの数、登録者が増えます。
-		icon:icons[4,14]
-		cost:2000000 subscribers
-		passive:multiply subscribers yield of biology by 1.5
-		on tick:
-			yield fans subscribers
-		end
-		req:biologies>=10
+	//liveupgrade
+		*liveUpgrade1
+			name:30分生放送
+			desc:30分間生放送をします。<//><b>効果:</b><.>配信による登録者が2倍になります。<.>配信によるファンが1.5倍になります。<.>クリックによる登録者が1.5倍になります。
+			icon:icons[9,3]
+			cost:100 subscriber
+			cost:10 fan
+			passive:multiply subscriber yield of live by 2
+			passive:multiply fan yield of live by 1.5
+			passive:multiply subscriber yield of subscribeButton by 1.5
+			req:1 live
 
-	*buildingUpgrade33
-		name:強制生殖
-		desc:ファンをクローンします。<//><b>効果:</b><.>生化学による登録者 x1.5<.>1秒につき、ファンの数の2倍、登録者が増えます。
-		icon:icons[5,14]
-		cost:4000000 subscribers
-		passive:multiply subscribers yield of biology by 1.5
-		on tick:
-			yield (fans*2) subscribers
-		end
-		req:biologies>=50
+		*liveUpgrade2
+			name:1時間生放送
+			desc:1時間も生放送をします。<//><b>効果:</b><.>配信による登録者が2倍になります。<.>配信によるファンが1.5倍になります。<.>クリックによる登録者が1.5倍になります。
+			icon:icons[10,3]
+			cost:1000 subscriber
+			cost:100 fan
+			passive:multiply subscriber yield of live by 2
+			passive:multiply fan yield of live by 1.5
+			passive:multiply subscriber yield of subscribeButton by 1.5
+			req:10 live
 
-	*buildingUpgrade34
-		name:国立大学登録者培養科
-		desc:大学で登録者の増やし方を研究します。<//><b>効果:</b><.>生化学による登録者 x3<.>1秒につき、ファンの数、お金が減ります。
-		icon:icons[6,14]	
-		cost:1000000 subscribers
-		passive:multiply subscribers yield of biology by 2
-		on tick:
-			lose fans golds
-		end
-		req:biologies>=1
+		*liveUpgrade3
+			name:24時間生放送
+			desc:24時間ぶっつづけで生放送をします。<//><b>効果:</b><.>配信による登録者が2倍になります。<.>配信によるファンが1.5倍になります。<.>クリックによる登録者が1.5倍になります。
+			icon:icons[11,3]
+			cost:10000 subscriber
+			cost:1000 fan
+			passive:multiply subscriber yield of live by 2
+			passive:multiply fan yield of live by 1.5
+			passive:multiply subscriber yield of subscribeButton by 1.5
+			req:100 live
 
-	*buildingUpgrade35
-		name:国立登録者培養研究所
-		desc:研究所で登録者の増やし方を研究します。<//><b>効果:</b><.>生化学による登録者 x3<.>1秒につき、ファンの数、お金が減ります。
-		icon:icons[7,14]
-		cost:3000000 subscribers
-		passive:multiply subscribers yield of biology by 2
-		on tick:
-			lose fans golds
-		end
-		req:biologies>=15
+		*liveUpgrade4
+			name:雑談配信
+			desc:雑談している内容を配信します。<//><b>効果:</b><.>配信による登録者が2倍になります。<.>配信によるファンが2倍になります。<.>1秒につき1つ、高評価が減ります。
+			icon:icons[14,3]
+			cost:100 subscriber
+			cost:1 fan
+			passive:multiply subscriber yield of live by 2
+			passive:multiply fan yield of live by 2
+			on tick:lose 1 like
+			req:1 live
 
-	*buildingUpgrade36
-		name:産業革命
-		desc:蒸気機関で登録者を増やします。<//><b>効果:</b><.>工場による登録者 x2<.>工場によるお金 x2
-		icon:icons[6,8]	
-		cost:1000000 subscribers
-		passive:multiply subscribers yield of factory by 2
-		passive:multiply golds yield of factory by 2
-		req:factories>=1
+		*liveUpgrade5
+			name:ゲーム配信
+			desc:ゲームの実況を配信します。<//><b>効果:</b><.>配信による登録者が2倍になります。<.>配信によるファンが2倍になります。<.>1秒につき10個、高評価が減ります。
+			icon:icons[12,3]
+			cost:1000 subscriber
+			cost:10 fan
+			passive:multiply subscriber yield of live by 2
+			passive:multiply fan yield of live by 2
+			on tick:lose 10 like
+			req:10 live
 
-	*buildingUpgrade37
-		name:拡大生産
-		desc:登録者の生産数を増やします。<//><b>効果:</b><.>お金が1以上のあいだ、工場による登録者 x2
-		icon:icons[7,8]	
-		cost:1000000 subscribers
-		passive:
-			if (golds>=1)
-				multiply subscribers yield of factory by 2
+		*liveUpgrade6
+			name:企画配信
+			desc:企画をしている所を配信します。<//><b>効果:</b><.>配信による登録者が2倍になります。<.>配信によるファンが2倍になります。<.>1秒につき100個、高評価が減ります。
+			icon:icons[13,3]
+			cost:10000 subscriber
+			cost:100 fan
+			passive:multiply subscriber yield of live by 2
+			passive:multiply fan yield of live by 2
+			on tick:lose 100 like
+			req:100 live
+
+	//mineupgrade
+		*mineUpgrade1
+			name:人力採掘
+			desc:人力で登録者を採掘します。<//><b>効果:</b><.>採掘による登録者が2倍になります。<.>採掘によるお金が1.5倍になります。<.>クリックによる登録者が1.5倍になります。
+			icon:icons[5,4]
+			cost:100 subscriber
+			cost:10 gold
+			passive:multiply subscriber yield of mine by 2
+			passive:multiply gold yield of mine by 1.5
+			passive:multiply subscriber yield of subscribeButton by 1.5
+			req:1 mine
+
+		*mineUpgrade2
+			name:道具採掘
+			desc:道具を使って登録者を採掘します。<//><b>効果:</b><.>採掘による登録者が2倍になります。<.>採掘によるお金が1.5倍になります。<.>クリックによる登録者が1.5倍になります。
+			icon:icons[2,4]
+			cost:1000 subscriber
+			cost:100 gold
+			passive:multiply subscriber yield of mine by 2
+			passive:multiply gold yield of mine by 1.5
+			passive:multiply subscriber yield of subscribeButton by 1.5
+			req:10 mine
+
+		*mineUpgrade3
+			name:機械採掘
+			desc:最新機械で登録者を採掘します。<//><b>効果:</b><.>採掘による登録者が2倍になります。<.>採掘によるお金が1.5倍になります。<.>クリックによる登録者が1.5倍になります。
+			icon:icons[6,4]
+			cost:10000 subscriber
+			cost:1000 gold
+			passive:multiply subscriber yield of mine by 2
+			passive:multiply gold yield of mine by 1.5
+			passive:multiply subscriber yield of subscribeButton by 1.5
+			req:100 mine 
+
+		*mineUpgrade4
+			name:石炭投稿者
+			desc:石炭から投稿者を採掘します。<//><b>効果:</b><.>採掘による登録者が2倍になります。<.>採掘によるお金が2倍になります。<.>1秒につき10人、ファンが減ります。
+			icon:icons[1,4]
+			cost:100 subscriber
+			cost:1 gold
+			passive:multiply subscriber yield of mine by 2
+			passive:multiply gold yield of mine by 2
+			on tick:lose 1 fan
+			req:1 gold
+
+		*mineUpgrade5
+			name:鉄投稿者
+			desc:鉄鉱石から投稿者を採掘します。<//><b>効果:</b><.>採掘による登録者が2倍になります。<.>採掘によるお金が2倍になります。<.>1秒につき100人、ファンが減ります。
+			icon:icons[3,4]
+			cost:1000 subscriber
+			cost:10 gold
+			passive:multiply subscriber yield of mine by 2
+			passive:multiply gold yield of mine by 2
+			on tick:lose 10 fan
+			req:10 gold
+
+		*mineUpgrade6
+			name:金投稿者
+			desc:金鉱石から投稿者を採掘します。<//><b>効果:</b><.>採掘による登録者が2倍になります。<.>採掘によるお金が2倍になります。<.>1秒につき1人、ファンが減ります。
+			icon:icons[4,4]
+			cost:10000 subscriber
+			cost:100 gold
+			passive:multiply subscriber yield of mine by 2
+			passive:multiply gold yield of mine by 2
+			on tick:lose 100 fan
+			req:100 gold
+
+	//collabUpgrade
+		*collabUpgrade1
+			name:身内とコラボ
+			desc:身内の人とコラボをします。<//><b>効果:</b><.>コラボによる登録者が2倍になります。<.>クリックによる登録者が2倍になります。<//><b>購入時の効果:<.>高評価とファンの乗数、登録者が増えます。
+			icon:icons[8,4]
+			cost:10000 subscriber
+			cost:100 like
+			cost:100 fan
+			passive:multiply subscriber yield of collab by 2
+			passive:multiply subscriber yield of subscribeButton by 2
+			on earn:yield (like * fan) subscriber
+			req:1 collab
+
+		*collabUpgrade2
+			name:知り合いとコラボ
+			desc:知り合いとコラボをします。<//><b>効果:</b><.>コラボによる登録者が2倍になります。<.>クリックによる登録者が2倍になります。<//><b>購入時の効果:<.>高評価とファンの乗数、登録者が増えます。
+			icon:icons[9,4]
+			cost:100000 subscriber
+			cost:1000 like
+			cost:1000 fan
+			passive:multiply subscriber yield of collab by 2
+			passive:multiply subscriber yield of subscribeButton by 2
+			on earn:yield (like * fan) subscriber
+			req:10 collab
+
+		*collabUpgrade3
+			name:身内とコラボ
+			desc:身内の人とコラボをします。<//><b>効果:</b><.>コラボによる登録者が2倍になります。<.>クリックによる登録者が2倍になります。<//><b>購入時の効果:<.>高評価とファンの乗数、登録者が増えます。
+			icon:icons[10,4]
+			cost:1000000 subscriber
+			cost:10000 like
+			cost:10000 fan
+			passive:multiply subscriber yield of collab by 2
+			passive:multiply subscriber yield of subscribeButton by 2
+			on earn:yield (like * fan) subscriber
+			req:100 collab
+
+		*collabUpgrade4
+			name:事務的コラボ
+			desc:事務的な感じでコラボをします。<//><b>効果:</b><.>コラボによる登録者が2倍になります。<.>高評価が100以上のとき、1秒につき1人、高評価が減ります。<.>ファンが100以上のとき、1秒につき1人、ファンが減ります。<//><b>購入時の効果:<.>高評価とファンの数が2倍になります。
+			icon:icons[12,4]
+			cost:10000 subscriber
+			cost:100 like
+			cost:100 fan
+			passive:multiply subscriber yield of collab by 2
+			on tick:
+				if (like>100)
+					lose 1 like
+				end
 			end
-		end
-		req:factories>=1
-
-	*buildingUpgrade38
-		name:大量生産
-		desc:登録者の生産数を増やします。<//><b>効果:</b><.>お金が1以上のあいだ、工場による登録者 x2
-		icon:icons[8,8]	
-		cost:2000000 subscribers
-		passive:
-			if (golds>=1)
-				multiply subscribers yield of factory by 2
+			on tick:
+				if (fan>100)
+					lose 1 fan
+				end
 			end
-		end
-		req:factories>=10
+			on earn:like is (2 * like)
+			on earn:fan is (2 * fan)
+			req:1 collab
 
-	*buildingUpgrade39
-		name:無料ファンクラブ
-		desc:ファン同士が交流できる場を設けます。<//><b>効果:</b><.>1秒につき、ファンx高評価の数、登録者が増えます。
-		icon:icons[0,7]
-		cost:1000000 subscribers
-		passive:yield (fans*likes) subscribers
-		req:(movies>=10 and lives>=10)
-
-	*buildingUpgrade40
-		name:有料ファンクラブ
-		desc:ファン同士が交流できる場を設けます。<//><b>効果:</b><.>1秒につき、ファンx高評価の数、登録者とお金が増えます。
-		icon:icons[1,7]
-		cost:10000000 subscribers
-		passive:yield (fans*likes) subscribers
-		passive:yield (fans*likes) golds
-		req:(movies>=50 and lives>=50)
-
-	*buildingUpgrade41
-		name:一般相対性理論
-		desc:一般的な速さで登録者を増やします。<//><b>効果:</b><.>時間操作による登録者x2
-		icon:icons[6,4]
-		cost:10000000 subscribers
-		passive:multiply subscribers yield of time by 2
-		req:times>=1
-
-	*buildingUpgrade42
-		name:特殊相対性理論
-		desc:光の速さで登録者を増やします。<//><b>効果:</b><.>時間操作による登録者x2
-		icon:icons[7,4]
-		cost:20000000 subscribers
-		passive:multiply subscribers yield of time by 2
-		req:times>=5
-
-	*buildingUpgrade43
-		name:複利の力
-		desc:利息を貪る者は、悪魔にとりつかれて倒れたものがするような起き方しか出来ないであろう。<//><b>効果:</b><.>時間操作による登録者 x1.5<//><b>購入時の効果:</b><.>お金 x2
-		icon:icons[8,4]
-		cost:40000000 subscribers
-		passive:multiply subscribers yield of time by 1.5
-		on earn:
-			golds is (golds*2)
-		end
-		req:times>=10
-
-	*buildingUpgrade44
-		name:存在と時間
-		desc:あらゆる存在了解内容一般を可能にする地平として時間を学的に解釈する。<//><b>効果:</b><.>時間操作による登録者 x1.5<//><b>購入時の効果:</b><.>登録者 x2
-		icon:icons[9,4]
-		cost:800000000 subscribers
-		passive:multiply subscribers yield of time by 1.5
-		on earn:
-			subscribers is (subscribers*2)
-		end
-		req:times>=20
-
-	*buildingUpgrade45
-		name:魔術理論
-		desc:魔術を体系化して効率的に登録者を増やします。<//><b>効果:</b><.>魔法による登録者 x2
-		icon:icons[1,11]
-		cost:1000000000 subscribers
-		passive:multiply subscribers yield of magic by 2
-		req:magics>=1
-
-	*buildingUpgrade46
-		name:魔法魔術理論
-		desc:魔術と魔法をかけ合わせて効率的に登録者を増やします。<//><b>効果:</b><.>魔法による登録者 x2
-		icon:icons[2,11]
-		cost:2000000000 subscribers
-		passive:multiply subscribers yield of magic by 2
-		req:magics>=10
-
-	*buildingUpgrade47
-		name:魔術大系
-		desc:魔術を大系化して効率的に登録者を増やします。<//><b>効果:</b><.>魔法による登録者 x2
-		icon:icons[3,11]
-		cost:4000000000 subscribers
-		passive:multiply subscribers yield of magic by 2
-		req:magics>=50
-
-	*buildingUpgrade48
-		name:高評価の魔法
-		desc:魔法の力で動画のクオリティをアップします。<//><b>効果:</b><.>1秒につき、高評価が10000増えます。
-		icon:icons[4,11]
-		cost:10000000000 subscribers
-		on tick:yield 10000 likes
-		req:magics>=1
-
-	*buildingUpgrade49
-		name:ファンの魔法
-		desc:魔法の力でファンを増やします。<//><b>効果:</b><.>1秒につき、ファンが10000増えます。
-		icon:icons[5,11]
-		cost:10000000000 subscribers
-		on tick:yield 10000 fans
-		req:magics>=1
-
-	*buildingUpgrade50
-		name:お金の魔法
-		desc:魔法の力でお金を儲けます。<//><b>効果:</b><.>1秒につき、お金が10000増えます。
-		icon:icons[6,11]
-		cost:10000000000 subscribers
-		on tick:yield 10000 golds
-		req:magics>=1
-
-	*buildingUpgrade51
-		name:不思議な巻物
-		desc:不思議な巻物を使います。<//><b>購入時の効果:</b><.>高評価の数とファンの数を入れ替えます。
-		icon:icons[10,6]
-		cost:10000 subscribers
-		on earn:
-			$cnt = fans
-			fans is likes
-			likes is $cnt
-		end
-		req:(fans>=100 and likes>=100)
-
-	*buildingUpgrade52
-		name:不可解な巻物
-		desc:不可解な巻物を使います。<//><b>購入時の効果:</b><.>高評価の数とファンの数を入れ替えます。
-		icon:icons[11,6]
-		cost:100000 subscribers
-		on earn:
-			$cnt = fans
-			fans is likes
-			likes is $cnt
-		end
-		req:(fans>=1000 and likes>=1000)
-
-	*buildingUpgrade53
-		name:視聴者プレゼント
-		desc:視聴者にプレゼントを行います。<//><b>効果:</b><.>1秒につき、高評価とファンの数の低い方のぶん、登録者が増えます。
-		icon:icons[0,12]
-		cost:10000 subscribers
-		on tick:yield min(likes,fans) subscribers
-		req:100 subscribers:earned
-
-	*buildignUpgrade54
-		name:グッズ販売
-		desc:グッズ販売を行います。<//><b>効果:</b><.>1秒につき、高評価とファンの数の高い方のぶん、お金が増えます。
-		icon:icons[2,12]
-		cost:1000000 subscribers
-		on tick:yield max(likes,fans) golds
-		req:10000 subscribers:earned
-
-	*buildingUpgrade55
-		name:ファンレター
-		desc:ファンからの大切なお便りです。<//><b>効果:</b><.>高評価の数が100以上10000以下のとき、1秒につき、ファンの数の2乗、登録者が増えます。
-		icon:icons[7,6]
-		cost:1000000 subscribers
-		on tick:
-			if (likes>=100 and likes<=10000)
-				yield (likes*likes) subscribers
+		*collabUpgrade5
+			name:仲良しコラボ
+			desc:仲良しな感じでコラボをします。<//><b>効果:</b><.>コラボによる登録者が2倍になります。<.>高評価が1000以上のとき、1秒につき10人、高評価が減ります。<.>ファンが1000以上のとき、1秒につき10人、ファンが減ります。<//><b>購入時の効果:<.>高評価とファンの数が2倍になります。
+			icon:icons[13,4]
+			cost:100000 subscriber
+			cost:1000 like
+			cost:1000 fan
+			passive:multiply subscriber yield of collab by 2
+			on tick:
+				if (like>1000)
+					lose 10 like
+				end
 			end
-		end
-		req:likes>=100
-
-	*buildingUpgrade56
-		name:呪いの石
-		desc:恐ろしい呪いがあるという石です。<//><b>効果:</b><.>1秒につき、高評価が1増えます。<.>ファンと高評価が100以下のとき、1秒につき、登録者がファンと高評価とお金の乗数増えます。
-		icon:icons[11,1]
-		cost:1000000 subscribers
-		on tick:yield 1 likes
-		on tick:
-			if (likes<=100 and fans<=100)
-				yield (likes*fans*golds) subscribers
+			on tick:
+				if (fan>1000)
+					lose 10 fan
+				end
 			end
-		end
-		req:(likes>=100 and fans>=100)
+			on earn:like is (2 * like)
+			on earn:fan is (2 * fan)
+			req:10 collab
+
+		*collabUpgrade6
+			name:いちゃいちゃコラボ
+			desc:いちゃいちゃとコラボをします。<//><b>効果:</b><.>コラボによる登録者が2倍になります。<.>高評価が10000以上のとき、1秒につき100人、高評価が減ります。<.>ファンが10000以上のとき、1秒につき100人、ファンが減ります。<//><b>購入時の効果:<.>高評価とファンの数が2倍になります。
+			icon:icons[14,4]
+			cost:1000000 subscriber
+			cost:10000 like
+			cost:10000 fan
+			passive:multiply subscriber yield of collab by 2
+			on tick:
+				if (like>10000)
+					lose 100 like
+				end
+			end
+			on tick:
+				if (fan>10000)
+					lose 100 fan
+				end
+			end
+			on earn:like is (2 * like)
+			on earn:fan is (2 * fan)
+			req:100 collab
+
+	//divineUpgrade
+		*divineUpgrade1
+			name:妖精頼み
+			desc:登録者が増えるように妖精に頼みます。<//><b>効果:</b><.>神頼みによる登録者が2倍になります。<.>クリックによる登録者が2倍になります。
+			icon:icons[0,5]
+			cost:1000000 subscriber
+			passive:multiply subscriber yield of divine by 2
+			passive:multiply subscriber yield of subscribeButton by 2
+			req:1 divine
+
+		*divineUpgrade2
+			name:精霊頼み
+			desc:登録者が増えるように精霊に頼みます。<//><b>効果:</b><.>神頼みによる登録者が2倍になります。<.>クリックによる登録者が2倍になります。
+			icon:icons[1,5]
+			cost:10000000 subscriber
+			passive:multiply subscriber yield of divine by 2
+			passive:multiply subscriber yield of subscribeButton by 2
+			req:10 divine
+
+		*divineUpgrade3
+			name:神仏頼み
+			desc:登録者が増えるように頼みに頼みます。<//><b>効果:</b><.>神頼みによる登録者が2倍になります。<.>クリックによる登録者が2倍になります。
+			icon:icons[2,5]
+			cost:100000000 subscriber
+			passive:multiply subscriber yield of divine by 2
+			passive:multiply subscriber yield of subscribeButton by 2
+			req:100 divine
+
+		*divineUpgrade4
+			name:お賽銭5円
+			desc:ご縁がありますように。<//><b>効果:</b><.>神頼みによる登録者が2倍になります。<//><b>購入時の効果:</b><.>登録者が0.75~2倍になる。<.>1秒につき1G、お金が減ります。
+			icon:icons[3,5]
+			cost:1000000 subscriber
+			passive:multiply subscriber yield of divine by 2
+			on earn:
+				$cnt = subscriber * random(3,8) / 4
+				subscriber is $cnt
+			end
+			on tick:lose 1 gold
+			req:1 divine
+
+		*divineUpgrade5
+			name:お賽銭100円
+			desc:百倍ご縁がありますように。<//><b>効果:</b><.>神頼みによる登録者が2倍になります。<//><b>購入時の効果:</b><.>登録者が0.8~2.5倍になる。<.>1秒につき10G、お金が減ります。
+			icon:icons[5,5]
+			cost:10000000 subscriber
+			passive:multiply subscriber yield of divine by 2
+			on earn:
+				$cnt = subscriber * random(8,25) / 10
+				subscriber is $cnt
+			end
+			on tick:lose 10 gold
+			req:10 divine
+
+		*divineUpgrade6
+			name:お賽銭10000円
+			desc:金で神を買収。<//><b>効果:</b><.>神頼みによる登録者が2倍になります。<//><b>購入時の効果:</b><.>登録者が1~3倍になる。<.>1秒につき100G、お金が減ります。
+			icon:icons[6,5]
+			cost:100000000 subscriber
+			passive:multiply subscriber yield of divine by 2
+			on earn:
+				$cnt = subscriber * random(1,3)
+				subscriber is $cnt
+			end
+			on tick:lose 100 gold
+			req:100 divine
+
+	//timeUpgrade
+		*timeUpgrade1
+			name:一般相対性理論
+			desc:一般的な相対性理論で登録者を増やします。<//><b>効果:</b><.>時間操作による登録者が2倍になります。<.>1秒につき10個、高評価が増えます。
+			cost:100000000000 subscriber
+			cost:1000 like
+			icon:icons[9,6]
+			passive:multiply subscriber yield of time by 2
+			passive:yield 10 like
+			req:1 time
+
+		*timeUpgrade2
+			name:特殊相対性理論
+			desc:特殊な相対性理論で登録者を増やします。<//><b>効果:</b><.>時間操作による登録者が2倍になります。<.>1秒につき100個、高評価が増えます。
+			cost:1000000000000 subscriber
+			cost:10000 like
+			icon:icons[10,6]
+			passive:multiply subscriber yield of time by 2
+			passive:yield 100 like
+			req:10 time
+
+		*timeUpgrade3
+			name:宇宙紐理論
+			desc:宇宙紐でえいやっと登録者を捕まえます。<//><b>効果:</b><.>時間操作による登録者が2倍になります。<.>1秒につき1000個、高評価が増えます。
+			cost:10000000000000 subscriber
+			cost:100000 like
+			icon:icons[11,6]
+			passive:multiply subscriber yield of time by 2
+			passive:yield 1000 like
+			req:100 time
+
+		*timeUpgrade4
+			name:クロノス
+			desc:クロノスは連続した時間を司る神である。<//><b>効果:</b><.>時間操作による登録者が2倍になります。<.>高評価の増加量が1%増えます。<.>ファンの数が100人以上のとき、1秒につき、ファンの数が10%減ります。
+			cost:100000000000 subscriber
+			cost:1000 like
+			icon:icons[12,6]
+			passive:multiply subscriber yield of time by 2
+			on tick:yield (like:ps * 0.01) like
+			on tick:
+				if (fan>=100)
+					lose (fan*0.1) fan
+				end
+			end
+			req:1 time
+
+		*timeUpgrade5
+			name:時間と自由
+			desc:時間の理解は《空間化された時間》に過ぎない。―アンリ・ベルクソン<//><b>効果:</b><.>時間操作による登録者が2倍になります。<.>>高評価の増加量が1%増えます。<.>ファンの数が1000人以上のとき、1秒につき、ファンの数が25%減ります。
+			cost:1000000000000 subscriber
+			cost:10000 like
+			icon:icons[13,6]
+			passive:multiply subscriber yield of time by 2
+			on tick:yield (like:ps * 0.01) like
+			on tick:
+				if (fan>=1000)
+					lose (fan*0.25) fan
+				end
+			end
+			req:10 time
+
+		*timeUpgrade6
+			name:存在と時間
+			desc:あらゆる存在了解内容一般を可能にする地平として時間を学的に解釈する。―マルティン・ハイデッガー<//><b>効果:</b><.>時間操作による登録者が2倍になります。<.>>高評価の増加量が1%増えます。<.>ファンの数が10000人以上のとき、1秒につき、ファンの数が50%減ります。
+			cost:10000000000000 subscriber
+			cost:100000 like
+			icon:icons[14,6]
+			passive:multiply subscriber yield of time by 2
+			on tick:yield (like:ps * 0.01) like
+			on tick:
+				if (fan>=10000)
+					lose (fan*0.5) fan
+				end
+			end
+			req:100 time
+
+	//biologyUpgrade
+		*biologyUpgrade1
+			name:無性生殖
+			desc:ファンに頑張って自己複製を行ってもらいます。<//><b>効果:</b><.>複製によるファンが2倍になります。<.>1秒につき10人、ファンが増えます。
+			cost:100000000000 subscriber
+			cost:1000 fan
+			icon:icons[9,5]
+			passive:multiply subscriber yield of biology by 2
+			on tick:yield 10 fan
+			req:1 biology
+
+		*biologyUpgrade2
+			name:有性生殖
+			desc:ファン同士で生殖を行ってもらいます。<//><b>効果:</b><.>複製によるファンが2倍になります。<.>1秒につき100人、ファンが増えます。
+			cost:1000000000000 subscriber
+			cost:10000 fan
+			icon:icons[10,5]
+			passive:multiply subscriber yield of biology by 2
+			on tick:yield 100 fan
+			req:10 biology
+
+		*biologyUpgrade3
+			name:強制生殖
+			desc:ファン同士で強制的に生殖をしてもらいます。<//><b>効果:</b><.>複製によるファンが2倍になります。<.>1秒につき1000人、ファンが増えます。
+			cost:10000000000000 subscriber
+			cost:100000 fan
+			icon:icons[11,5]
+			passive:multiply subscriber yield of biology by 2
+			on tick:yield 1000 fan
+			req:100 biology
+
+		*biologyUpgrade4
+			name:ペニシリン
+			desc:「20世紀における偉大な発見」の中でも特筆すべき1つ。<//><b>効果:</b><.>複製によるファンが2倍になります。<.>ファンの増加量が1%増えます。<.>1秒につき、ファンの数の10%、お金が減ります。
+			cost:100000000000 subscriber
+			cost:1000 fan
+			icon:icons[12,5]
+			passive:multiply subscriber yield of biology by 2
+			on tick:yield (fan:ps * 0.01) fan
+			on tick:lose (fan*0.1) gold
+			req:1 biology
+
+		*biologyUpgrade5
+			name:進化的に安定な戦略
+			desc:生物の母集団のとる、「侵略されない戦略」の概念を基礎としている。<//><b>効果:</b><.>複製によるファンが2倍になります。<.>ファンの増加量が1%増えます。<.>1秒につき、ファンの数の25%、お金が減ります。
+			cost:1000000000000 subscriber
+			cost:10000 fan
+			icon:icons[13,5]
+			passive:multiply subscriber yield of biology by 2
+			on tick:yield (fan:ps * 0.01) fan
+			on tick:lose (fan*0.25) gold
+			req:10 biology
+
+		*biologyUpgrade6
+			name:ヒトゲノム計画
+			desc:1953年のDNAの二重らせん構造の発見から50周年となる2003年に完了した。<//><b>効果:</b><.>複製によるファンが2倍になります。<.>ファンの増加量が1%増えます。<.>1秒につき、ファンの数の50%、お金が減ります。
+			cost:10000000000000 subscriber
+			cost:100000 fan
+			icon:icons[14,5]
+			passive:multiply subscriber yield of biology by 2
+			on tick:yield (fan:ps * 0.01) fan
+			on tick:lose (fan*0.5) like
+			req:100 biology
+
+	//factoryUpgrade
+		*factoryUpgrade1
+			name:手工業生産
+			desc:手作業で登録者を作り出します。<//><b>効果:</b><.>工業によるファンが2倍になります。<.>1秒につき10G、お金が増えます。
+			cost:100000000000 subscriber
+			cost:1000 gold
+			icon:icons[5,6]
+			passive:multiply subscriber yield of factory by 2
+			on tick:yield 10 gold
+			req:1 factory
+
+		*factoryUpgrade2
+			name:重工業生産
+			desc:重工業で登録者を作り出します。<//><b>効果:</b><.>工業によるファンが2倍になります。<.>1秒につき100G、お金が増えます。
+			cost:1000000000000 subscriber
+			cost:10000 gold
+			icon:icons[3,6]
+			passive:multiply subscriber yield of factory by 2
+			on tick:yield 100 gold
+			req:10 factory
+
+		*factoryUpgrade3
+			name:重化学生産
+			desc:重化学工業で登録者を作り出します。<//><b>効果:</b><.>工業によるファンが2倍になります。<.>1秒につき1000G、お金が増えます。
+			cost:10000000000000 subscriber
+			cost:100000 gold
+			icon:icons[4,6]
+			passive:multiply subscriber yield of factory by 2
+			on tick:yield 1000 gold
+			req:100 factory
+
+		*factoryUpgrade4
+			name:蒸気機関
+			desc:蒸気機関の発明が科学のおかげである以上に科学は蒸気機関の恩恵を受けている」―ローレンス・ヘンダーソン<//><b>効果:</b><.>工業によるファンが3倍になります。<.>1秒につき20個、高評価が減ります。<.>1秒につき、20人、ファンが減ります。
+			cost:100000000000 subscriber
+			cost:1000 gold
+			icon:icons[2,6]
+			passive:multiply subscriber yield of factory by 3
+			on tick:lose 20 like
+			on tick:lose 20 fan
+			req:1 factory
+
+		*factoryUpgrade5
+			name:レーザー
+			desc:「神が『光あれ』と仰せられたときに生まれた光は、完全なコヒーレント光だったに違いない」―チャールズ・タウンズ<//><b>効果:</b><.>工業によるファンが3倍になります。<.>1秒につき200個、高評価が減ります。<.>1秒につき、200人、ファンが減ります。
+			cost:1000000000000 subscriber
+			cost:10000 gold
+			icon:icons[1,6]
+			passive:multiply subscriber yield of factory by 3
+			on tick:lose 200 like
+			on tick:lose 200 fan
+			req:10 factory
+
+		*factoryUpgrade6
+			name:ロボット工学
+			desc:「「I'll be back.」―シュワちゃん<//><b>効果:</b><.>工業によるファンが3倍になります。<.>1秒につき2000個、高評価が減ります。<.>1秒につき、2000人、ファンが減ります。
+			cost:10000000000000 subscriber
+			cost:100000 gold
+			icon:icons[6,6]
+			passive:multiply subscriber yield of factory by 3
+			on tick:lose 2000 like
+			on tick:lose 2000 fan
+			req:100 factory
+
+	//magicUpgrade
+		*magicUpgrade1
+			name:魔術体系
+			desc:魔術を体系化して登録者増やしを効率化します。<//><b>効果:</b><.>魔法による登録者が2倍になります。<.>魔法によるMPが2倍になります。
+			cost:100000000000000000 subscriber
+			icon:icons[1,7]
+			passive:multiply subscriber yield of magic by 2
+			passive:multiply magicpower yield of magic by 2
+			req:1 magic
+
+		*magicUpgrade2
+			name:魔法魔術学校
+			desc:魔術学校を作って登録者増やしの呪文を教えます。<//><b>効果:</b><.>魔法による登録者が2倍になります。<.>魔法によるMPが2倍になります。
+			cost:1000000000000000000 subscriber
+			icon:icons[2,7]
+			passive:multiply subscriber yield of magic by 2
+			passive:multiply magicpower yield of magic by 2
+			req:10 magic
+
+		*magicUpgrade3
+			name:大魔法峠
+			desc:峠で大魔法を使って登録者にサブミッションを決めます。<//><b>効果:</b><.>魔法による登録者が2倍になります。<.>魔法によるMPが2倍になります。
+			cost:10000000000000000000 subscriber
+			icon:icons[3,7]
+			passive:multiply subscriber yield of magic by 2
+			passive:multiply magicpower yield of magic by 2
+			req:100 magic
+
+		*magicUpgrade4
+			name:固有時制御
+			desc:固有結界の中の時間を早めます。<//><b>効果:</b><.>魔法による登録者が2倍になります。<.>時間操作による生産が10倍になります。<.>クリックによる登録者が1000倍になります。
+			cost:1000000000000000000 subscriber
+			icon:icons[4,7]
+			passive:multiply subscriber yield of magic by 2
+			passive:multiply yield of time by 10
+			passive:multiply subscriber yield of subscribeButton by 1000
+			req:10 magic
+
+		*magicUpgrade5
+			name:ホムンクルス
+			desc:魔法で人工生命を作り出します。<//><b>効果:</b><.>魔法による登録者が2倍になります。<.>複製による生産が10倍になります。<.>クリックによる登録者が1000倍になります。
+			cost:1000000000000000000 subscriber
+			icon:icons[5,7]
+			passive:multiply subscriber yield of magic by 2
+			passive:multiply yield of biology by 10
+			passive:multiply subscriber yield of subscribeButton by 1000
+			req:10 magic
+
+		*magicUpgrade6
+			name:魔術工業
+			desc:魔術modと工業化modを同時に入れます。<//><b>効果:</b><.>魔法による登録者が2倍になります。<.>時間操作による生産が10倍になります。<.>クリックによる登録者が1000倍になります。
+			cost:1000000000000000000 subscriber
+			icon:icons[6,7]
+			passive:multiply subscriber yield of magic by 2
+			passive:multiply yield of factory by 10
+			passive:multiply subscriber yield of subscribeButton by 1000
+			req:10 magic
+
+	//catUpgrade
+		*catUpgrade1
+			name:ダブル猫
+			desc:猫を2匹、動画に出します。<//><b>効果:</b><.>猫による登録者が2倍になります。
+			cost:100000000000000000000 subscriber
+			icon:icons[9,7]
+			passive:multiply subscriber yield of cat by 2
+			req:1 cat
+
+		*catUpgrade2
+			name:クアドラプル猫
+			desc:猫を4匹、動画に出します。<//><b>効果:</b><.>猫による登録者が4倍になります。
+			cost:1000000000000000000000 subscriber
+			icon:icons[10,7]
+			passive:multiply subscriber yield of cat by 4
+			req:10 cat
+
+		*catUpgrade3
+			name:オクタプル猫
+			desc:猫を8匹、動画に出します。<//><b>効果:</b><.>猫による登録者が8倍になります。
+			cost:1000000000000000000000 subscriber
+			icon:icons[11,7]
+			passive:multiply subscriber yield of cat by 8
+			req:100 cat
+
+		*catUpgrade4
+			name:動画猫
+			desc:動画に出る猫だにゃ。<//><b>効果:</b><.>猫による登録者が2倍になります。<.>動画による生産が10倍になります。<.>登録者の増加量が1%増えます。
+			cost:1000000000000000000000 subscriber
+			icon:icons[12,7]
+			passive:multiply subscriber yield of cat by 2
+			passive:multiply yield of movie by 10
+			on tick:yield (subscriber:ps * 0.01) subscriber
+			req:10 cat
+
+		*catUpgrade5
+			name:配信猫
+			desc:配信に出る猫です。こんにちはー。<//><b>効果:</b><.>猫による登録者が2倍になります。<.>配信による生産が10倍になります。<.>登録者の増加量が1%増えます。
+			cost:1000000000000000000000 subscriber
+			icon:icons[13,7]
+			passive:multiply subscriber yield of cat by 2
+			passive:multiply yield of live by 10
+			on tick:yield (subscriber:ps * 0.01) subscriber
+			req:10 cat
+
+		*catUpgrade6
+			name:現場猫
+			desc:現場に出る猫です。ヨシ！<//><b>効果:</b><.>猫による登録者が2倍になります。<.>採掘による生産が10倍になります。<.>登録者の増加量が1%増えます。
+			cost:1000000000000000000000 subscriber
+			icon:icons[14,7]
+			passive:multiply subscriber yield of cat by 2
+			passive:multiply yield of mine by 10
+			on tick:yield (subscriber:ps * 0.01) subscriber
+			req:10 cat
+
+	//cheatUpgrade
+		*cheatUpgrade1
+			name:トウロクシャ2バイ
+			desc:17E87F M392AB<//><b>効果:</b><.>チートによる登録者が2倍になります。<.>クリックによる登録者が1000倍になります。<//><b>購入時の効果:</b><.>登録者の数が2倍になります。
+			cost:10000000000000000000000000 subscriber
+			icon:icons[1,8]
+			passive:multiply subscriber yield of cheat by 2
+			passive:multiply subscriber yield of subscribeButton by 1000
+			on earn:subscriber is (subscriber * 2)
+			req:1 cheat
+
+		*cheatUpgrade2
+			name:トウロクシャ4バイ
+			desc:AC763E F8A930<//><b>効果:</b><.>チートによる登録者が2倍になります。<.>クリックによる登録者が1000倍になります。<//><b>購入時の効果:</b><.>登録者の数が4倍になります。
+			cost:100000000000000000000000000 subscriber
+			icon:icons[2,8]
+			passive:multiply subscriber yield of cheat by 2
+			passive:multiply subscriber yield of subscribeButton by 1000
+			on earn:subscriber is (subscriber * 4)
+			req:10 cheat
+
+		*cheatUpgrade3
+			name:トウロクシャ8バイ
+			desc:BA730D CECFFF<//><b>効果:</b><.>チートによる登録者が2倍になります。<.>クリックによる登録者が1000倍になります。<//><b>購入時の効果:</b><.>登録者の数が8倍になります。
+			cost:1000000000000000000000000000 subscriber
+			icon:icons[3,8]
+			passive:multiply subscriber yield of cheat by 2
+			passive:multiply subscriber yield of subscribeButton by 1000
+			on earn:subscriber is (subscriber * 8)
+			req:100 cheat
+
+		*cheatUpgrade4
+			name:コウヒョウカ999999999
+			desc:CC6783 A67EFE<//><b>効果:</b><.>チートによる登録者が2倍になります。<.>1秒につき500個、高評価が増えます<//><b>購入時の効果:</b><.>高評価の数が999999999になります。
+			cost:100000000000000000000000000 subscriber
+			cost:100000000 magicpower
+			icon:icons[4,8]
+			passive:multiply subscriber yield of cheat by 2
+			on tick:yield 500 like
+			on earn:like is 999999999
+			req:10 cheat
+
+		*cheatUpgrade5
+			name:ファン999999999
+			desc:768ABC DE54C2<//><b>効果:</b><.>チートによる登録者が2倍になります。<.>1秒につき500人、ファンが増えます<//><b>購入時の効果:</b><.>ファンの数が999999999人になります。
+			cost:100000000000000000000000000 subscriber
+			cost:100000000 magicpower
+			icon:icons[5,8]
+			passive:multiply subscriber yield of cheat by 2
+			on tick:yield 500 fan
+			on earn:fan is 999999999
+			req:10 cheat
+
+		*cheatUpgrade6
+			name:オカネ999999999
+			desc:D87293 65DECA<//><b>効果:</b><.>チートによる登録者が2倍になります。<.>1秒につき500G、お金が増えます<//><b>購入時の効果:</b><.>お金が999999999Gになります。
+			cost:100000000000000000000000000 subscriber
+			cost:100000000 magicpower
+			icon:icons[6,8]
+			passive:multiply subscriber yield of cheat by 2
+			on tick:yield 500 gold
+			on earn:gold is 999999999
+			req:10 cheat
+
+	//magicpowerupgrade
+		*magicpowerUpgrade1
+			name:楽して人気者になる魔法
+			desc:楽して人気者になる魔法を唱えます<//><b>効果:</b><.>登録者の増加量が5%増えます。
+			icon:icons[9,10]
+			cost:10000 magicpower
+			on tick:yield (subscriber:ps * 0.05) subscriber
+			req:1000 magicpower
+
+		*magicpowerUpgrade2
+			name:楽して人に好かれる魔法
+			desc:楽して人に好かれる魔法を唱えます<//><b>効果:</b><.>高評価の増加量が2.5%増えます。<.>ファンの増加量が2.5%増えます。
+			icon:icons[10,10]
+			cost:10000 magicpower
+			on tick:yield (like:ps * 0.025) like
+			on tick:yield (fan:ps * 0.025) fan
+			req:1000 magicpower
+
+		*magicpowerUpgrade3
+			name:楽してお金持ちになる魔法
+			desc:楽してお金持ちになる魔法を唱えます<//><b>効果:</b><.>お金の増加量が5%増えます。<.>クリックによる登録者が1000000倍になります。
+			icon:icons[11,10]
+			cost:10000 magicpower
+			on tick:yield (gold:ps * 0.05) gold
+			passive:multiply subscriber yield of subscribeButton by 1000000
+			req:1000 magicpower
+
+	//specialUpgrade1
+		*specialUpgrade11
+			name:ファンプレゼント
+			desc:ファンにプレゼントをバラ撒きます。<//><b>効果:</b><.>1秒につき、ファンとお金の乗数の1%、登録者が増えます。<.>クリックによる高評価が2倍になります。
+			icon:icons[0,9]
+			cost:10000 subscriber
+			cost:100 fan
+			cost:100 gold
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (fan * gold * 0.01) subscriber
+			req:(fan>=10 and gold>=10)
+
+		*specialUpgrade12
+			name:ファン交流会
+			desc:ファンと交流会を行います。<//><b>効果:</b><.>1秒につき、ファンとお金の乗数の1%、登録者が増えます。<.>クリックによる高評価が2倍になります。
+			icon:icons[1,9]
+			cost:100000 subscriber
+			cost:1000 fan
+			cost:1000 gold
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (fan * gold * 0.01) subscriber
+			req:(fan>=100 and gold>=100)
+
+		*specialUpgrade13
+			name:ファンツアー
+			desc:ファンとツアー旅行を行います。<//><b>効果:</b><.>1秒につき、ファンとお金の乗数の1%、登録者が増えます。<.>クリックによる高評価が2倍になります。
+			icon:icons[2,9]
+			cost:1000000 subscriber
+			cost:10000 fan
+			cost:10000 gold
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (fan * gold * 0.01) subscriber
+			req:(fan>=1000 and gold>=1000)
+
+	//specialUpgrade2
+		*specialUpgrade21
+			name:番外動画
+			desc:動画の番外編を出します。<//><b>効果:</b><.>1秒につき、高評価とお金の乗数の1%、登録者が増えます。<.>クリックによる高評価が2倍になります。
+			icon:icons[4,9]
+			cost:10000 subscriber
+			cost:100 like
+			cost:100 gold
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (like * gold * 0.01) subscriber
+			req:(like>=10 and gold>=10)
+
+		*specialUpgrade22
+			name:特集動画
+			desc:動画で特集を行います。<//><b>効果:</b><.>1秒につき、高評価とお金の乗数の1%、登録者が増えます。<.>クリックによる高評価が2倍になります。
+			icon:icons[5,9]
+			cost:100000 subscriber
+			cost:1000 like
+			cost:1000 gold
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (like * gold * 0.01) subscriber
+			req:(like>=100 and gold>=100)
+
+		*specialUpgrade23
+			name:旅行動画
+			desc:旅行をしている動画を出します。<//><b>効果:</b><.>1秒につき、高評価とお金の乗数の1%、登録者が増えます。<.>クリックによる高評価が2倍になります。
+			icon:icons[6,9]
+			cost:1000000 subscriber
+			cost:10000 like
+			cost:10000 gold
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (like * gold * 0.01) subscriber
+			req:(like>=1000 and gold>=1000)
+
+	//specialUpgrade3
+		*specialUpgrade31
+			name:登録者鉱脈
+			desc:みんなで登録者鉱脈を掘り返します。<//><b>効果:</b><.>1秒につき、高評価とファンの乗数の1%、登録者が増えます。<.>クリックによる高評価が2倍になります。
+			icon:icons[8,9]
+			cost:10000 subscriber
+			cost:100 like
+			cost:100 fan
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (like * fan * 0.01) subscriber
+			req:(like>=10 and fan>=10)
+
+		*specialUpgrade32
+			name:特集動画
+			desc:動画で特集を行います。<//><b>効果:</b><.>1秒につき、高評価とお金の乗数の1%、登録者が増えます。<.>クリックによる高評価が2倍になります。
+			icon:icons[9,9]
+			cost:100000 subscriber
+			cost:1000 like
+			cost:1000 fan
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (like * fan * 0.01) subscriber
+			req:(like>=100 and fan>=100)
+
+		*specialUpgrade33
+			name:旅行動画
+			desc:旅行をしている動画を出します。<//><b>効果:</b><.>1秒につき、高評価とお金の乗数の1%、登録者が増えます。<.>クリックによる高評価が2倍になります。
+			icon:icons[10,9]
+			cost:1000000 subscriber
+			cost:10000 like
+			cost:10000 fan
+			passive:multiply subscriber yield of subscribeButton by 2
+			on tick:yield (like * fan * 0.01) subscriber
+			req:(like>=1000 and fan>=1000)
+
+	//specialupgrade4
+		*specialUpgrade41
+			name:高評価のへそくり箱
+			desc:高評価が足りなくなったとき、へそくりから出します。<//><b>効果:</b><.>高評価が100以下のとき、高評価を100にします。
+			icon:icons[12,9]
+			cost:100000000000 subscriber
+			cost:100 like
+			on tick:
+				if (like<=100)
+					like is 100
+				end
+			end
+			req:100 like
+			req:10000000000 subscriber
+
+		*specialUpgrade42
+			name:高評価のへそくり箱
+			desc:ファンが足りなくなったとき、へそくりから出します。<//><b>効果:</b><.>ファンが100以下のとき、ファンを100にします。
+			icon:icons[13,9]
+			cost:100000000000 subscriber
+			cost:100 fan
+			on tick:
+				if (fan<=100)
+					fan is 100
+				end
+			end
+			req:100 fan
+			req:10000000000 subscriber
+
+		*specialUpgrade43
+			name:お金のへそくり箱
+			desc:お金が足りなくなったとき、へそくりから出します。<//><b>効果:</b><.>お金が100G以下のとき、お金を100Gにします。
+			icon:icons[14,9]
+			cost:100000000000 subscriber
+			cost:100 gold
+			on tick:
+				if (gold<=100)
+					gold is 100
+				end
+			end
+			req:100 gold
+			req:10000000000 subscriber
+
+	//specialUpgrade5
+		*specialUpgrade51
+			name:高評価の魔法
+			desc:魔法を使って高評価を作り出します。<//><b>効果:</b><.>高評価が2倍になります。少ない場合は1000増えます。
+			icon:icons[4,10]
+			cost:1000 magicpower
+			on earn:
+				if (like>=1000)
+					like is (like * 2)
+				else
+					like is (like + 1000)
+				end
+			end
+			req:100 magicpower
+
+		*specialUpgrade52
+			name:ファンの魔法
+			desc:魔法を使ってファンを作り出します。<//><b>効果:</b><.>ファンが2倍になります。少ない場合は1000増えます。
+			icon:icons[5,10]
+			cost:1000 magicpower
+			on earn:
+				if (fan>=1000)
+					fan is (fan * 2)
+				else
+					fan is (fan + 1000)
+				end
+			end
+			req:100 magicpower
+
+		*specialUpgrade53
+			name:お金の魔法
+			desc:魔法を使ってお金を作り出します。<//><b>効果:</b><.>お金が2倍になります。少ない場合は1000増えます。
+			icon:icons[4,10]
+			cost:1000 magicpower
+			on earn:
+				if (gold>=1000)
+					gold is (gold * 2)
+				else
+					gold is (gold + 1000)
+				end
+			end
+			req:100 magicpower
+
+	//specialUpgrade6
+		*specialUpgrade61
+			name:質問箱
+			desc:質問箱に来たお便りに答えます。<//><b>効果:</b><.>高評価が10以上のとき、登録者の増加量が2%増えます。
+			icon:icons[8,11]
+			cost:10000000000000000000 subscriber
+			on tick:
+				if (like>=10)
+					yield (subscriber:ps * 0.02) subscriber
+				end
+			end
+			req:10000 like
+
+		*specialUpgrade62
+			name:リプライ
+			desc:twitterに来たお便りに答えます。<//><b>効果:</b><.>高評価が100以上のとき、登録者の増加量が2%増えます。
+			icon:icons[9,11]
+			cost:10000000000000000000 subscriber
+			on tick:
+				if (like>=100)
+					yield (subscriber:ps * 0.02) subscriber
+				end
+			end
+			req:100000 like
+
+		*specialUpgrade63
+			name:ファンレター
+			desc:実際に届いたお便りに答えます。<//><b>効果:</b><.>高評価が1000以上のとき、登録者の増加量が2%増えます。
+			icon:icons[10,11]
+			cost:10000000000000000000 subscriber
+			on tick:
+				if (like>=1000)
+					yield (subscriber:ps * 0.02) subscriber
+				end
+			end
+			req:1000000 like
+
+	//specialUpgrade7
+		*specialUpgrade71
+			name:ファンクラブ
+			desc:ファン同士の交流の場を作ります。<//><b>効果:</b><.>ファンが10人以上のとき、登録者の増加量が2%増えます。
+			icon:icons[0,10]
+			cost:10000000000000000000 subscriber
+			on tick:
+				if (fan>=10)
+					yield (subscriber:ps * 0.02) subscriber
+				end
+			end
+			req:10000 fan
+
+		*specialUpgrade72
+			name:有料ファンクラブ
+			desc:一部のファン同士の交流の場を作ります。<//><b>効果:</b><.>ファンが100人以上のとき、登録者の増加量が2%増えます。
+			icon:icons[1,10]
+			cost:10000000000000000000 subscriber
+			on tick:
+				if (fan>=100)
+					yield (subscriber:ps * 0.02) subscriber
+				end
+			end
+			req:100000 fan
+
+		*specialUpgrade73
+			name:バックステージパス
+			desc:コアなファン同士の交流の場をつくります。<//><b>効果:</b><.>ファンが1000人以上のとき、登録者の増加量が2%増えます。
+			icon:icons[2,10]
+			cost:10000000000000000000 subscriber
+			on tick:
+				if (fan>=1000)
+					yield (subscriber:ps * 0.02) subscriber
+				end
+			end
+			req:1000000 fan
+
+	//specialUpgrade8
+		*specialUpgrade81
+			name:ちいさなネジ
+			desc:ネジ1本から登録者を作り出します。<//><b>効果:</b><.>お金が10G以上のとき、登録者の増加量が2%増えます。
+			icon:icons[12,10]
+			cost:10000000000000000000 subscriber
+			on tick:
+				if (gold>=10)
+					yield (subscriber:ps * 0.02) subscriber
+				end
+			end
+			req:10000 gold
+
+		*specialUpgrade82
+			name:ちいさな歯車
+			desc:歯車でどんどん登録者を作り出します。<//><b>効果:</b><.>お金が100G以上のとき、登録者の増加量が2%増えます。
+			icon:icons[13,10]
+			cost:10000000000000000000 subscriber
+			on tick:
+				if (gold>=100)
+					yield (subscriber:ps * 0.02) subscriber
+				end
+			end
+			req:100000 gold
+
+		*specialUpgrade83
+			name:おおきな歯車
+			desc:歯車でがしがし登録者を作り出します。<//><b>効果:</b><.>お金が1000G以上のとき、登録者の増加量が2%増えます。
+			icon:icons[14,10]
+			cost:10000000000000000000 subscriber
+			on tick:
+				if (gold>=1000)
+					yield (subscriber:ps * 0.02) subscriber
+				end
+			end
+			req:1000000 gold
+
+	//specialUpgrade9
+		*specialUpgrade91
+			name:不自然な魔法
+			desc:なにやら不自然な魔法を唱えます。<//><b>購入時の効果:</b><.>高評価の数とファンの数を入れ替えます。
+			icon:icons[4,11]
+			cost:10000 magicpower
+			on earn:
+				$cnt = like
+				like is fan
+				fan is $cnt
+			end
+			req:1000 magicpower
+
+		*specialUpgrade92
+			name:不可解な魔法
+			desc:なにやら不可解な魔法を唱えます。<//><b>購入時の効果:</b><.>ファンの数とお金の数を入れ替えます。
+			icon:icons[5,11]
+			cost:10000 magicpower
+			on earn:
+				$cnt = fan
+				fan is gold
+				gold is $cnt
+			end
+			req:1000 magicpower
+
+		*specialUpgrade93
+			name:奇天烈な魔法
+			desc:なにやら奇天烈な魔法を唱えます。<//><b>購入時の効果:</b><.>お金の数と高評価の数を入れ替えます。
+			icon:icons[6,11]
+			cost:10000 magicpower
+			on earn:
+				$cnt = gold
+				gold is like
+				like is $cnt
+			end
+			req:1000 magicpower
+
+	//specialUpgrade10
+		*specialUpgrade101
+			name:わるいスライム
+			desc:ぼくわるいスライムじゃないよう。<//><b>効果</b><.>登録者の増加量が10%減少する。<.>1秒につき10、MPが増えます。
+			icon:icons[12,11]
+			cost:10000 subscriber
+			on tick:lose (subscriber:ps * 0.1) subscriber
+			on tick:yield 10 magicpower
+			req:1000 subscriber
+
+		*specialUpgrade102
+			name:呪いの石
+			desc:不吉な感じのする石だ。<//><b>効果</b><.>登録者の増加量が10%減少する。<.>高評価、ファン、お金のどれかが10以下のとき、1秒につきそれらの乗数ぶん、登録者が増えます。
+			icon:icons[13,11]
+			cost:1000000 subscriber
+			on tick:lose (subscriber:ps * 0.1) subscriber
+			on tick:
+				if (like<=10 or fan<=10 or gold <=10)
+					yield (like*fan*gold) subscriber
+				end
+			end
+			req:10 like
+			req:10 fan
+			req:10 gold
+			req:100000 subscriber
+
+		*specialUpgrade103
+			name:幸運の葉
+			desc:持ってるだけでご利益があるらしい葉っぱ。<//><b>効果</b><.>登録者の増加量が10%減少する。<.>不明
+			icon:icons[14,11]
+			cost:100000000 subscriber
+			on earn:multiply frequency of luckymovie by 0.5
+			req:10000000 subscriber
 
 Achievements
 	*TEMPLATE
 		on click:anim glow
 
-	*subscriberAchiev1
-		name:期待の新星
-		desc:登録者1人を達成する。
-		req:1 subscribers
-		icon:icons[0,5]
+	//subscriberAchiev
+		*subscriberAchiev1
+			name:期待の新星
+			desc:登録者1人を達成する。
+			req:1 subscriber
+			icon:icons[0,0] icons[0,2] 
+		*subscriberAchiev2
+			name:底辺配信者
+			desc:登録者10人を達成する。
+			req:10 subscriber
+			icon:icons[4,2] icons[0,0] icons[0,2] 
+		*subscriberAchiev3
+			name:知る人ぞ知る配信者
+			desc:登録者100人を達成する。
+			req:100 subscriber
+			icon:icons[5,2] icons[0,0] icons[0,2]
+		*subscriberAchiev4
+			name:中堅配信者
+			desc:登録者1000人を達成する。
+			req:1000 subscriber
+			icon:icons[6,2] icons[0,0] icons[0,2]
+		*subscriberAchiev5
+			name:大物配信者
+			desc:登録者1000000人を達成する。
+			req:1000000 subscriber
+			icon:icons[7,2] icons[0,0] icons[1,2]
+		*subscriberAchiev6
+			name:有名配信者
+			desc:登録者1000000000人を達成する。
+			req:1000000000 subscriber
+			icon:icons[8,2] icons[0,0] icons[1,2]
+		*subscriberAchiev7
+			name:世界配信者
+			desc:登録者1000000000000人を達成する。
+			req:1000000000000 subscriber
+			icon:icons[9,2] icons[0,0] icons[1,2]
+		*subscriberAchiev8
+			name:宇宙配信者
+			desc:登録者1000000000000000人を達成する。
+			req:1000000000000000 subscriber
+			icon:icons[10,2] icons[0,0] icons[1,2]
+		*subscriberAchiev9
+			name:時空配信者
+			desc:登録者1000000000000000000人を達成する。
+			req:1000000000000000000 subscriber
+			icon:icons[11,2] icons[0,0] icons[2,2]
+		*subscriberAchiev10
+			name:多元宇宙配信者
+			desc:登録者1000000000000000000000人を達成する。
+			req:1000000000000000000000 subscriber
+			icon:icons[12,2] icons[0,0] icons[2,2]
+		*subscriberAchiev11
+			name:概念的配信者
+			desc:登録者1000000000000000000000000人を達成する。
+			req:1000000000000000000000000 subscriber
+			icon:icons[13,2] icons[0,0] icons[2,2]
+		*subscriberAchiev12
+			name:巨大数的配信者
+			desc:登録者1000000000000000000000000000人を達成する。
+			req:1000000000000000000000000000 subscriber
+			icon:icons[14,2] icons[0,0] icons[2,2]
+		*subscriberAchiev13
+			name:THE 配信者
+			desc:登録者1000000000000000000000000000000人を達成する。
+			req:1000000000000000000000000000000 subscriber
+			icon:icons[15,2] icons[0,0] icons[3,2]
 
-	*subscriberAchiev2
-		name:新米配信者
-		desc:登録者100人を達成する。
-		req:100 subscribers
-		icon:icons[1,5]
+	//likeAchiev
+		*likeAchiev1
+			name:はじめてのお気にいり
+			desc:高評価1つを達成する。
+			req:1 like
+			icon:icons[8,0] icons[0,2]
+		*likeAchiev2
+			name:ロー・クオリティ
+			desc:高評価10個を達成する。
+			req:10 like
+			icon:icons[4,2] icons[8,0] icons[0,2]
+		*likeAchiev3
+			name:ハイ・クオリティ
+			desc:高評価100個を達成する。
+			req:100 like
+			icon:icons[5,2] icons[8,0] icons[1,2]
+		*likeAchiev4
+			name:スーパー・クオリティ
+			desc:高評価1000個を達成する。
+			req:1000 like
+			icon:icons[6,2] icons[8,0] icons[2,2]
+		*likeAchiev5
+			name:オーバーパワード・クオリティ
+			desc:高評価1000000個を達成する。
+			req:1000000 like
+			icon:icons[7,2] icons[8,0] icons[3,2]
 
-	*subscriberAchiev3
-		name:中堅配信者
-		desc:登録者10000人を達成する。
-		req:10000 subscribers
-		icon:icons[2,5]
+	//fanAchiev
+		*fanAchiev1
+			name:はじめての好きな人
+			desc:ファン1人を達成する。
+			req:1 fan
+			icon:icons[0,1] icons[0,2]
+		*fanAchiev2
+			name:クラスの人気者
+			desc:ファン10人を達成する。
+			req:10 fan
+			icon:icons[4,2] icons[0,1] icons[0,2]
+		*fanAchiev3
+			name:学年の人気者
+			desc:ファン100人を達成する。
+			req:100 fan
+			icon:icons[5,2] icons[0,1] icons[1,2]
+		*fanAchiev4
+			name:地域の人気者
+			desc:ファン1000人を達成する。
+			req:1000 fan
+			icon:icons[6,2] icons[0,1] icons[2,2]
+		*fanAchiev5
+			name:世界の人気者
+			desc:ファン1000000を達成する。
+			req:1000000 fan
+			icon:icons[7,2] icons[0,1] icons[3,2]
 
-	*subscriberAchiev4
-		name:大物配信者
-		desc:登録者1000000人を達成する。
-		req:1000000 subscribers
-		icon:icons[3,5]
+	//goldAchiev
+		*goldAchiev1
+			name:お小遣い
+			desc:1Gを達成する。
+			req:1 gold
+			icon:icons[8,1] icons[0,2]
+		*goldAchiev2
+			name:お年玉
+			desc:10Gを達成する。
+			req:10 gold
+			icon:icons[4,2] icons[8,1] icons[0,2]
+		*goldAchiev3
+			name:初任給
+			desc:100Gを達成する。
+			req:100 gold
+			icon:icons[5,2] icons[8,1] icons[1,2]
+		*goldAchiev4
+			name:貯金
+			desc:1000Gを達成する。
+			req:1000 gold
+			icon:icons[6,2] icons[8,1] icons[2,2]
+		*goldAchiev5
+			name:国庫
+			desc:1000000Gを達成する。
+			req:1000000 gold
+			icon:icons[7,2] icons[8,1] icons[3,2]
 
-	*subscriberAchiev5
-		name:世界的配信者
-		desc:登録者100000000人を達成する。
-		req:100000000 subscribers
-		icon:icons[2,10]
+	//magicpowerAchiev
+		*magicpowerAchiev1
+			name:魔法の事始め
+			desc:1MPを達成する。
+			req:1 magicpower
+			icon:icons[8,10] icons[0,2]
+		*magicpowerAchiev2
+			name:ウィンガーディアム・レビオーサ
+			desc:10MPを達成する。
+			req:10 magicpower
+			icon:icons[4,2] icons[8,10] icons[0,2]
+		*magicpowerAchiev3
+			name:対人宝具
+			desc:100MPを達成する。
+			req:100 magicpower
+			icon:icons[5,2] icons[8,10] icons[1,2]
+		*magicpowerAchiev4
+			name:対軍宝具
+			desc:1000MPを達成する。
+			req:1000 magicpower
+			icon:icons[6,2] icons[8,10] icons[2,2]
+		*magicpowerAchiev5
+			name:対界宝具
+			desc:1000000MPを達成する。
+			req:1000000 magicpower
+			icon:icons[7,2] icons[8,10] icons[3,2]
 
-	*subscriberAchiev6
-		name:宇宙的配信者
-		desc:登録者10000000000人を達成する。
-		req:10000000000 subscribers
-		icon:icons[0,10]
+	//movieAchiev
+		*movieAchiev1
+			name:初投稿です
+			desc:動画を1つ投稿する。
+			req:1 movie
+			icon:icons[0,3] icons[0,2]
+		*movieAchiev2
+			name:シリーズ動画
+			desc:動画を10個投稿する。
+			req:10 movie
+			icon:icons[4,2] icons[0,3] icons[1,2]
+		*movieAchiev3
+			name:定番動画
+			desc:動画を100個投稿する。
+			req:100 movie
+			icon:icons[5,2] icons[0,3] icons[2,2]
 
-	*subscriberAchiev7
-		name:THE 配信者
-		desc:登録者1000000000000人を達成する。
-		req:1000000000000 subscribers
-		icon:icons[1,10]
+	//liveAchiev
+		*liveAchiev1
+			name:放送テスト
+			desc:生放送を1回配信する。
+			req:1 live
+			icon:icons[8,3] icons[0,2]
+		*liveAchiev2
+			name:不定期配信
+			desc:生放送を10回配信する。
+			req:10 live
+			icon:icons[4,2] icons[8,3] icons[1,2]
+		*liveAchiev3
+			name:いつもの配信
+			desc:生放送を100回配信する。
+			req:100 live
+			icon:icons[5,2] icons[8,3] icons[2,2]
 
-	*likeAchiev1
-		name:ハイクオリティ
-		desc:高評価100を達成する。
-		req:100 likes
-		icon:icons[5,3]
+	//mineAchiev
+		*mineAchiev1
+			name:スペランカー
+			desc:採掘を1回行う。
+			req:1 mine
+			icon:icons[0,4] icons[0,2]
+		*mineAchiev2
+			name:アドベンチャラー
+			desc:採掘を10回行う。
+			req:10 mine
+			icon:icons[4,2] icons[0,4] icons[1,2]
+		*mineAchiev3
+			name:マインクラフター
+			desc:採掘を100回行う。
+			req:100 mine
+			icon:icons[5,2] icons[0,4] icons[2,2]
 
-	*fanAchiev1
-		name:人気者
-		desc:ファン100人を達成する。
-		req:100 fans
-		icon:icons[11,11]
+	//collabAchiev
+		*collabAchiev1
+			name:友だち1人
+			desc:コラボを1回行う。
+			req:1 collab
+			icon:icons[11,4] icons[0,2]
+		*collabAchiev2
+			name:顔が広い人
+			desc:コラボを10回行う。
+			req:10 collab
+			icon:icons[4,2] icons[11,4] icons[1,2]
+		*collabAchiev3
+			name:インフルエンサー
+			desc:コラボを100回行う。
+			req:100 collab
+			icon:icons[5,2] icons[11,4] icons[2,2]
 
-	*goldAchiev1
-		name:副業
-		desc:100ゴールドを達成する。
-		req:100 golds
-		icon:icons[5,4]
+	//divineAchiev
+		*divineAchiev1
+			name:神様仏様
+			desc:神頼みを1回行う。
+			req:1 divine
+			icon:icons[3,5] icons[0,2]
+		*divineAchiev2
+			name:神は死んだ
+			desc:神頼みを10回行う。
+			req:10 divine
+			icon:icons[4,2] icons[3,5] icons[1,2]
+		*divineAchiev3
+			name:私が神だ
+			desc:神頼みを100回行う。
+			req:100 divine
+			icon:icons[5,2] icons[3,5] icons[2,2]
 
-	*factoryAchiev1
-		name:文明開化
-		desc:工場を1つ購入する。
-		req:1 factories
-		icon:icons[9,8]
+	//timeAchiev
+		*timeAchiev1
+			name:相対時間
+			desc:時間操作を1回行う。
+			req:1 time
+			icon:icons[8,6] icons[0,2]
+		*timeAchiev2
+			name:絶対時間
+			desc:時間操作を10回行う。
+			req:10 time
+			icon:icons[4,2] icons[8,6] icons[1,2]
+		*timeAchiev3
+			name:概念時間
+			desc:時間操作を100回行う。
+			req:100 time
+			icon:icons[5,2] icons[8,6] icons[2,2]
 
-	*catAchiev1
-		name:にゃんにゃん
-		desc:猫を動画にだす。プレイ感謝！
-		req:1 cats
-		icon:icons[13,11]
+	//biologyAchiev
+		*biologyAchiev1
+			name:生命倫理
+			desc:複製を1回行う。
+			req:1 biology
+			icon:icons[8,5] icons[0,2]
+		*biologyAchiev2
+			name:生命と科学
+			desc:複製を10回行う。
+			req:10 biology
+			icon:icons[4,2] icons[8,5] icons[1,2]
+		*biologyAchiev3
+			name:サイバネティック
+			desc:複製を100回行う。
+			req:100 biology
+			icon:icons[5,2] icons[8,5] icons[2,2]
+
+	//factoryAchiev
+		*factoryAchiev1
+			name:インダストリアル
+			desc:工業を1個購入する。
+			req:1 factory
+			icon:icons[0,6] icons[0,2]
+		*factoryAchiev2
+			name:ファクトリオ
+			desc:工業を10個購入する。
+			req:10 factory
+			icon:icons[4,2] icons[0,6] icons[1,2]
+		*factoryAchiev3
+			name:グレッグテック
+			desc:工業を100個購入する。
+			req:100 factory
+			icon:icons[5,2] icons[0,6] icons[2,2]
+
+	//magicAchiev
+		*magicAchiev1
+			name:見習い魔術師
+			desc:魔法を1回行う。
+			req:1 magic
+			icon:icons[0,7] icons[0,2]
+		*magicAchiev2
+			name:魔法使い
+			desc:魔法を10回行う。
+			req:10 magic
+			icon:icons[4,2] icons[0,7] icons[1,2]
+		*magicAchiev3
+			name:大魔道士
+			desc:魔法を100回行う。
+			req:100 magic
+			icon:icons[5,2] icons[0,7] icons[2,2]
+
+	//catAchiev
+		*catAchiev1
+			name:猫との接触
+			desc:猫を1回動画に出す。
+			req:1 cat
+			icon:icons[8,7] icons[0,2]
+		*catAchiev2
+			name:多めの猫
+			desc:猫を10回動画に出す。
+			req:10 cat
+			icon:icons[4,2] icons[8,7] icons[1,2]
+		*catAchiev3
+			name:猫まみれ
+			desc:猫を100回動画に出す。
+			req:100 cat
+			icon:icons[5,2] icons[8,7] icons[2,2]
+
+	//cheatAchiev
+		*cheatAchiev1
+			name:チーター
+			desc:チートを1回行う。
+			req:1 cheat
+			icon:icons[0,8] icons[0,2]
+		*cheatAchiev2
+			name:プログラマ
+			desc:チートを10回行う。
+			req:10 cheat
+			icon:icons[4,2] icons[0,8] icons[1,2]
+		*cheatAchiev3
+			name:フルスタックエンジニア
+			desc:チートを100回行う。
+			req:100 cheat
+			icon:icons[5,2] icons[0,8] icons[2,2]
+
+	//upgradeAchiev
+		*upgradeAchiev1
+			name:金の盾
+			desc:登録者に関するアップグレードを全て購入する。
+			req:subscriberUpgrade1
+			req:subscriberUpgrade2
+			req:subscriberUpgrade3
+			req:subscriberUpgrade4
+			req:subscriberUpgrade5
+			req:subscriberUpgrade6
+			icon:icons[6,0] icons[3,2]
+
+		*upgradeAchiev2
+			name:中毒性
+			desc:高評価に関するアップグレードを全て購入する。
+			req:likeUpgrade1
+			req:likeUpgrade2
+			req:likeUpgrade3
+			req:likeUpgrade4
+			req:likeUpgrade5
+			req:likeUpgrade6
+			icon:icons[12,0] icons[3,2]
+
+		*upgradeAchiev3
+			name:信者
+			desc:ファンに関するアップグレードを全て購入する。
+			req:fanUpgrade1
+			req:fanUpgrade2
+			req:fanUpgrade3
+			req:fanUpgrade4
+			req:fanUpgrade5
+			req:fanUpgrade6
+			icon:icons[5,1] icons[3,2]
+
+		*upgradeAchiev4
+			name:金の亡者
+			desc:お金に関するアップグレードを全て購入する。
+			req:goldUpgrade1
+			req:goldUpgrade2
+			req:goldUpgrade3
+			req:goldUpgrade4
+			req:goldUpgrade5
+			req:goldUpgrade6
+			icon:icons[12,1] icons[3,2]
+
+		*upgradeAchiev5
+			name:無限の魔力
+			desc:MPに関するアップグレードを全て購入する。
+			req:magicpowerUpgrade1
+			req:magicpowerUpgrade2
+			req:magicpowerUpgrade3
+			icon:icons[11,10] icons[3,2]
+
+		*upgradeAchiev6
+			name:動画サイトの顔
+			desc:動画に関するアップグレードを全て購入する。
+			req:movieUpgrade1
+			req:movieUpgrade2
+			req:movieUpgrade3
+			req:movieUpgrade4
+			req:movieUpgrade5
+			req:movieUpgrade6
+			icon:icons[5,3] icons[3,2]
+
+		*upgradeAchiev7
+			name:こいついつも配信してんな
+			desc:配信に関するアップグレードを全て購入する。
+			req:liveUpgrade1
+			req:liveUpgrade2
+			req:liveUpgrade3
+			req:liveUpgrade4
+			req:liveUpgrade5
+			req:liveUpgrade6
+			icon:icons[13,3] icons[3,2]
+
+		*upgradeAchiev8
+			name:ミスタードリラー
+			desc:鉱山に関するアップグレードを全て購入する。
+			req:mineUpgrade1
+			req:mineUpgrade2
+			req:mineUpgrade3
+			req:mineUpgrade4
+			req:mineUpgrade5
+			req:mineUpgrade6
+			icon:icons[4,4] icons[3,2]
+
+		*upgradeAchiev9
+			name:コラボのまとめ役
+			desc:コラボに関するアップグレードを全て購入する。
+			req:collabUpgrade1
+			req:collabUpgrade2
+			req:collabUpgrade3
+			req:collabUpgrade4
+			req:collabUpgrade5
+			req:collabUpgrade6
+			icon:icons[14,4] icons[3,2]
+
+		*upgradeAchiev10
+			name:神主
+			desc:神頼みに関するアップグレードを全て購入する。
+			req:divineUpgrade1
+			req:divineUpgrade2
+			req:divineUpgrade3
+			req:divineUpgrade4
+			req:divineUpgrade5
+			req:divineUpgrade6
+			icon:icons[6,5] icons[3,2]
+
+		*upgradeAchiev11
+			name:時械神
+			desc:時間操作に関するアップグレードを全て購入する。
+			req:timeUpgrade1
+			req:timeUpgrade2
+			req:timeUpgrade3
+			req:timeUpgrade4
+			req:timeUpgrade5
+			req:timeUpgrade6
+			icon:icons[14,6] icons[3,2]
+
+		*upgradeAchiev12
+			name:ブラックジャック
+			desc:複製に関するアップグレードを全て購入する。
+			req:biologyUpgrade1
+			req:biologyUpgrade2
+			req:biologyUpgrade3
+			req:biologyUpgrade4
+			req:biologyUpgrade5
+			req:biologyUpgrade6
+			icon:icons[14,5] icons[3,2]
+
+		*upgradeAchiev13
+			name:イルミナティ
+			desc:工場に関するアップグレードを全て購入する。
+			req:factoryUpgrade1
+			req:factoryUpgrade2
+			req:factoryUpgrade3
+			req:factoryUpgrade4
+			req:factoryUpgrade5
+			req:factoryUpgrade6
+			icon:icons[6,6] icons[3,2]
+
+		*upgradeAchiev14
+			name:グリンデンバルド
+			desc:魔法に関するアップグレードを全て購入する。
+			req:magicUpgrade1
+			req:magicUpgrade2
+			req:magicUpgrade3
+			req:magicUpgrade4
+			req:magicUpgrade5
+			req:magicUpgrade6
+			icon:icons[6,7] icons[3,2]
+
+		*upgradeAchiev15
+			name:にゃんにゃん
+			desc:猫に関するアップグレードを全て購入する。
+			req:catUpgrade1
+			req:catUpgrade2
+			req:catUpgrade3
+			req:catUpgrade4
+			req:catUpgrade5
+			req:catUpgrade6
+			icon:icons[13,7] icons[3,2]
+
+		*upgradeAchiev16
+			name:プロアクションリプレイ
+			desc:チートに関するアップグレードを全て購入する。
+			req:cheatUpgrade1
+			req:cheatUpgrade2
+			req:cheatUpgrade3
+			req:cheatUpgrade4
+			req:cheatUpgrade5
+			req:cheatUpgrade6
+			icon:icons[6,8] icons[3,2]
+
+		*upgradeAchiev17
+			name:がらくた屋
+			desc:その他のアップグレードを全て購入する。
+			req:specialUpgrade11
+			req:specialUpgrade12
+			req:specialUpgrade13
+			req:specialUpgrade21
+			req:specialUpgrade22
+			req:specialUpgrade23
+			req:specialUpgrade31
+			req:specialUpgrade32
+			req:specialUpgrade33
+			req:specialUpgrade41
+			req:specialUpgrade42
+			req:specialUpgrade43
+			req:specialUpgrade51
+			req:specialUpgrade52
+			req:specialUpgrade53
+			req:specialUpgrade61
+			req:specialUpgrade62
+			req:specialUpgrade63
+			req:specialUpgrade71
+			req:specialUpgrade72
+			req:specialUpgrade73
+			req:specialUpgrade81
+			req:specialUpgrade82
+			req:specialUpgrade83
+			req:specialUpgrade91
+			req:specialUpgrade92
+			req:specialUpgrade93
+			req:specialUpgrade101
+			req:specialUpgrade102
+			req:specialUpgrade103
+			icon:icons[13,11] icons[3,2]
+
+	*specialAchiev1
+		name:プレイしてくれてありがとう！
+		desc:全ての称号を獲得する。
+		req:subscriberAchiev13
+		req:likeAchiev5
+		req:fanAchiev5
+		req:goldAchiev5
+		req:magicpowerAchiev5
+		req:movieAchiev3
+		req:liveAchiev3
+		req:mineAchiev3
+		req:collabAchiev3
+		req:divineAchiev3
+		req:timeAchiev3
+		req:biologyAchiev3
+		req:factoryAchiev3
+		req:magicAchiev3
+		req:catAchiev3
+		req:cheatAchiev3
+		req:upgradeAchiev1
+		req:upgradeAchiev2
+		req:upgradeAchiev3
+		req:upgradeAchiev4
+		req:upgradeAchiev5
+		req:upgradeAchiev6
+		req:upgradeAchiev7
+		req:upgradeAchiev8
+		req:upgradeAchiev9
+		req:upgradeAchiev10
+		req:upgradeAchiev11
+		req:upgradeAchiev12
+		req:upgradeAchiev13
+		req:upgradeAchiev14
+		req:upgradeAchiev15
+		req:upgradeAchiev16
+		req:upgradeAchiev17
+		icon:icons[15,0] icons[3,2]
