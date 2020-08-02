@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Adjacent Letters — Keep Talking and Nobody Explodes Module</title>
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src='js/ktane-utils.js'></script>
+
+    <style>
+        table.adjacent-letters {
+            width: 100%;
+            border: none;
+        }
+
+            table.adjacent-letters td {
+                text-align: center;
+            }
+
+                table.adjacent-letters td.no-border {
+                    border: none;
+                }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-04">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Adjacent Letters</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Component/Adjacent Letters.svg" class="diagram">
+                <h2>モジュール詳細：Adjacent Letters</h2>
+                <p class="flavour-text">上、下、左、右、上、下、左、右...!</p>
+
+                <ul>
+                    <li>全てのボタンはその上に異なる文字を持っている。
+                    <li>表を参照して押すべきボタンを決定する。
+                    <li>「文字」列にある全ての文字のうち、キーパッド上でそのすぐ左あるいは右に、「左/右」列の文字列の中の文字を持つ場合、そのボタンを押す。
+                    <li>「文字」列にある全ての文字のうち、キーパッド上でそのすぐ上あるいは下に、「上/下」列の文字列の中の文字を持つ場合、そのボタンを押す。
+                    <li>答えを送信するために「Submit」ボタンを押す。<strong>注意:</strong>複数のボタンを押すことができ、その順序は<strong>順不同</strong>である。
+                </ul>
+
+                <table class='adjacent-letters'>
+                    <tr>
+                        <th>文字
+                        <th>左/右
+                        <th>上/下
+                        <td class='no-border' rowspan='14'></td>
+                        <th>文字
+                        <th>左/右
+                        <th>上/下
+                    </tr>
+
+                    <tr><th>A<td>GJMOY<td>HKPRW<th>N<td>PQRSV<td>AFGHL</tr>
+                    <tr><th>B<td>IKLRT<td>CDFYZ<th>O<td>HJLUZ<td>IQSTX</tr>
+                    <tr><th>C<td>BHIJW<td>DEMTU<th>P<td>DMNOX<td>CFHKR</tr>
+                    <tr><th>D<td>IKOPQ<td>CJTUW<th>Q<td>CEOPV<td>BDIKN</tr>
+                    <tr><th>E<td>ACGIJ<td>KSUWZ<th>R<td>AEGSU<td>BNOXY</tr>
+                    <tr><th>F<td>CERVY<td>AGJPQ<th>S<td>ABEKQ<td>GMVYZ</tr>
+                    <tr><th>G<td>ACFNS<td>HOQYZ<th>T<td>GVXYZ<td>CJLSU</tr>
+                    <tr><th>H<td>LRTUX<td>DKMPS<th>U<td>FMVXZ<td>BILNY</tr>
+                    <tr><th>I<td>DLOWZ<td>EFNUV<th>V<td>DHMNW<td>AEJQX</tr>
+                    <tr><th>J<td>BQTUW<td>EHIOS<th>W<td>DFHMN<td>GLQRT</tr>
+                    <tr><th>K<td>AFPXY<td>DIORZ<th>X<td>BDFKW<td>AJNOV</tr>
+                    <tr><th>L<td>GKPTZ<td>ABRVX<th>Y<td>BCHSU<td>EGMTW</tr>
+                    <tr><th>M<td>EILQT<td>BFPWX<th>Z<td>JNRSY<td>CLMPV</tr>
+                </table>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+    </div>
+</body>
+</html>
