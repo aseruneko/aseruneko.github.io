@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>Adventure Game — Keep Talking and Nobody Explodes Module</title>
+    <meta content="initial-scale=1" name="viewport">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src='js/ktane-utils.js'></script>
+    <style>
+        li { margin-bottom: .5em; }
+        ul { margin-bottom: 3em; }
+        table { margin-bottom: 1em; }
+        table.enemies { float: left; width: 47%; margin-right: 2em; }
+        table.weapons { float: left; width: 45%; }
+        td, th { padding: .18em .6em 0; }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-03">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Adventure Game</span>
+            </div>
+            <div class="page-content">
+                <img class="diagram" src="img/Component/Adventure Game.svg">
+                <h2>モジュール詳細：Aventure Games</h2>
+
+                <p class="flavour-text">
+                    古いテキストアドベンチャーゲームの風変わりなインターフェイスに見える。君を煩わせる持ち物管理のパズルに次第と慣れ親しむが、それは物語には関係ない。
+                </p>
+
+                <ul>
+                    <li>3つの画面は相対している敵と、君のキャラクターと世界のステータスの一覧、そして君のインベントリの持ち物の一覧を示している。</li>
+                    <li>インベントリには3つの武器と、5つのアイテムが含まれている。</li>
+                    <li>君は戦闘に備えて使用するアイテム、次に使用する武器を決定しなければならない。</li>
+                    <li>ステータスとインベントリをスクロールするには左と右の矢印を使用する。</li>
+                    <li>アイテムや武器を使用するには、それがインベントリに表示されている時に「USE」を押す。</li>
+                    <li>下のアイテム表を参照して、それぞれのアイテムを使用するかどうかを決定する。</li>
+                    <li>アイテムは順不同で使用できるが、全ての適切なアイテムが敵との戦闘で用いる武器の前に使用しなければならない。</li>
+                    <li>武器表と敵ステータス表を参照して、どの武器を敵との戦闘で用いるか決定する。</li>
+                    <li>それぞれの武器について、プレイヤーの関係するステータス(STR,DEX,INT)と敵の同じステータスと比較するときにいくらかのボーナスを与える。</li>
+                    <li>敵を効率的に倒すために、最も高いステータスのアドバンテージ（あるいは、最も低いディスアドバンテージ）を持つ武器を使用する。</li>
+                    <li>2つの武器が同じステータスのアドバンテージを持つ場合、いずれも使用できる。</li>
+                </ul>
+
+                <table>
+                    <tr>
+                        <th>ステータス</th>
+                        <th>説明</th>
+                    </tr>
+                    <tr>
+                        <td>5 STR</td>
+                        <td>戦闘で使用される、プレイヤーの力</td>
+                    </tr>
+                    <tr>
+                        <td>5 DEX</td>
+                        <td>戦闘で使用される、プレイヤーの敏捷性</td>
+                    </tr>
+                    <tr>
+                        <td>5 INT</td>
+                        <td>戦闘で使用される、プレイヤーの知能</td>
+                    </tr>
+                    <tr>
+                        <td>5’ 5”</td>
+                        <td>フィートとインチで示されるプレイヤーの身長</td>
+                    </tr>
+                    <tr>
+                        <td>15°C</td>
+                        <td>セルシウス度で表される気温</td>
+                    </tr>
+                    <tr>
+                        <td>9.8 m/s²</td>
+                        <td>メートル毎秒毎秒で示される重力加速度</td>
+                    </tr>
+                    <tr>
+                        <td>101 kPa</td>
+                        <td>キロパスカルで示される気圧</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 2</div>
+        </div>
+        <div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Adventure Game</span>
+            </div>
+            <div class="page-content">
+
+                <table>
+                    <tr>
+                        <th>アイテム</th>
+                        <th>以下の条件で使用する</th>
+                    </tr>
+                    <tr>
+                        <td>Balloon</td>
+                        <td>重力が9.3 m/s²より低く、気圧が110 kPaより高く、Eagleと戦闘していない。</td>
+                    </tr>
+                    <tr>
+                        <td>Battery</td>
+                        <td>爆弾にバッテリーが高々1つ付いており、GolemとWizard以外の敵と戦闘している。</td>
+                    </tr>
+                    <tr>
+                        <td>Bellows</td>
+                        <td>DragonかEagleと戦闘していて、気圧が105 kPaより高い。他の敵と戦闘していて、気圧が95 kPaより低い。</td>
+                    </tr>
+                    <tr>
+                        <td>Cheat code</td>
+                        <td>チーターは決して栄えない！これを使用してはならない。</td>
+                    </tr>
+                    <tr>
+                        <td>Crystal ball</td>
+                        <td>INTがシリアルナンバーの最後の数字より高く、Wizardと戦闘していない。</td>
+                    </tr>
+                    <tr>
+                        <td>Feather</td>
+                        <td>DEXがSTRとINTのどちらかより高い。</td>
+                    </tr>
+                    <tr>
+                        <td>Hard drive</td>
+                        <td>爆弾に2つ以上の同じポートが付いている。</td>
+                    </tr>
+                    <tr>
+                        <td>Lamp</td>
+                        <td>気温が12°Cより低く、Lizardと戦闘していない。</td>
+                    </tr>
+                    <tr>
+                        <td>Moonstone</td>
+                        <td>爆弾に少なくとも2つの消灯したインジケーターが付いている。</td>
+                    </tr>
+                    <tr>
+                        <td>Potion</td>
+                        <td>常に使用するが、STRとDEXとINTが変化することがある。</td>
+                    </tr>
+                    <tr>
+                        <td>Small dog</td>
+                        <td>DemonかDragonかTroll以外の敵と戦闘している。</td>
+                    </tr>
+                    <tr>
+                        <td>Stepladder</td>
+                        <td>プレイヤーが4フィートより低く、GoblinかLizard以外の敵と戦闘している。</td>
+                    </tr>
+                    <tr>
+                        <td>Sunstone</td>
+                        <td>爆弾に少なくとも2つの点灯したインジケーターが付いている。</td>
+                    </tr>
+                    <tr>
+                        <td>Symbol</td>
+                        <td>DemonかGolemと戦っている、あるいは気温が31°Cより高い。</td>
+                    </tr>
+                    <tr>
+                        <td>Ticket</td>
+                        <td>プレイヤーが4フィート6インチ以上で、重力加速度が少なくとも9.2 m/s²で多くとも10.4 m/s²である。</td>
+                    </tr>
+                    <tr>
+                        <td>Trophy</td>
+                        <td>STRがシリアルナンバーの最初の数字の桁より大きいか、Trollと戦闘している。</td>
+                    </tr>
+                </table>
+
+                <table class='enemies'>
+                    <tr><th>敵</th>       <th>STR</th>     <th>DEX</th>     <th>INT</th> </tr>
+                    <tr><td>Demon</td>       <td>50</td>      <td>50</td>      <td>50</td>  </tr>
+                    <tr><td>Dragon</td>      <td>10</td>      <td>11</td>      <td>13</td>  </tr>
+                    <tr><td>Eagle</td>       <td>4</td>       <td>7</td>       <td>3</td>   </tr>
+                    <tr><td>Goblin</td>      <td>3</td>       <td>6</td>       <td>5</td>   </tr>
+                    <tr><td>Golem</td>       <td>9</td>       <td>4</td>       <td>7</td>   </tr>
+                    <tr><td>Troll</td>       <td>8</td>       <td>5</td>       <td>4</td>   </tr>
+                    <tr><td>Lizard</td>      <td>4</td>       <td>6</td>       <td>3</td>   </tr>
+                    <tr><td>Wizard</td>      <td>4</td>       <td>3</td>       <td>8</td>   </tr>
+                </table>
+
+                <table class='weapons'>
+                    <tr><th>武器</th>          <th>使用するステータス</th> <th>ボーナス</th> </tr>
+                    <tr><td>Broadsword</td>      <td>STR</td>     <td>+0</td>    </tr>
+                    <tr><td>Caber</td>           <td>STR</td>     <td>+2</td>    </tr>
+                    <tr><td>Nasty Knife</td>     <td>DEX</td>     <td>+0</td>    </tr>
+                    <tr><td>Longbow</td>         <td>DEX</td>     <td>+2</td>    </tr>
+                    <tr><td>Magic orb</td>       <td>INT</td>     <td>+0</td>    </tr>
+                    <tr><td>Grimoire</td>        <td>INT</td>     <td>+2</td>    </tr>
+                </table>
+            </div>
+            <div class="page-footer relative-footer">Page 2 of 2</div>
+        </div>
+    </div>
+</body>
+</html>
+
