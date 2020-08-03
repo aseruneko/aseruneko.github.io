@@ -259,27 +259,27 @@
             </div>
             <div class="page-content">
                 <img class="diagram" src="img/Component/Bitmaps.svg">
-                <h2>On the Subject of Bitmaps</h2>
-                <p class="flavour-text">Over 18 quintillion combinations, only some of them actually matter.</p>
+                <h2>モジュール詳細：Bitmaps</h2>
+                <p class="flavour-text">18京を超える組み合わせの中で、幾つかだけが本当に重要だ。</p>
                 <ul>
-                    <li>The module displays a bitmap of 64 pixels divided into four “quadrants”. Each pixel is bright (which we call “white” although it may be colored) or dark (“black”).</li>
-                    <li>There are 4 buttons underneath, labeled 1, 2, 3, and 4.</li>
-                    <li>In the following table, start at the rule whose number equals <span id='start-rule'>the last digit of the serial number</span><span id='start-rule-modulo'> (add/subtract&nbsp;10&nbsp;to&nbsp;bring&nbsp;into&nbsp;the&nbsp;range&nbsp;0–9)</span>.</li>
-                    <li>Keep going through the rules (wrapping around if necessary) until you encounter a condition that applies.</li>
-                    <li>Calculate the answer for the applicable rule. Repeatedly add or subtract 4 until the answer is between 1 and 4 and press the corresponding button to disarm the module.</li>
+                    <li>モジュールは4象限に分かれた64ピクセルのビットマップを表示する。それぞれのピクセルは明るい(色が付いていることから「白」とも呼ぶ)か暗い(「黒」)かである。</li>
+                    <li>下部には4つのボタンがあり、1、2、3、4のラベルが振られている。.</li>
+                    <li>下記の表の中で、 <span id='start-rule'>シリアルナンバーの最後の数字</span><span id='start-rule-modulo'> (add/subtract&nbsp;10&nbsp;to&nbsp;bring&nbsp;into&nbsp;the&nbsp;range&nbsp;0–9)</span>に等しい番号のルールからスタートする。</li>
+                    <li>それに適合する状態になるまで、ルールに従っていく(最後のルールの次は最初に戻る)。</li>
+                    <li>適合したルールによって答えを計算する。答えが1から4の間に収まるまで4を繰り返し加算あるいは減算し、対応するボタンを押してモジュールを解除する。</li>
                 </ul>
                 <table>
-                    <tr><th>#</th><th>Rule</th></tr>
-                    <tr><th>0</th><td class="rule">If exactly one quadrant has 5 or fewer white pixels, the answer is the number of white pixels in the other 3 quadrants.</td></tr>
-                    <tr><th>1</th><td class="rule">If there are exactly as many mostly-white quadrants as there are lit indicators, the answer is the number of batteries.</td></tr>
-                    <tr><th>2</th><td class="rule">If exactly one row or column is completely white or completely black, the answer is its x-/y-coordinate (starting from 1 in the top/left).</td></tr>
-                    <tr><th>3</th><td class="rule">If there are fewer mostly-white quadrants than mostly-black quadrants, the answer is the number of mostly-black quadrants.</td></tr>
-                    <tr><th>4</th><td class="rule">If the entire bitmap has 36 or more white pixels, the answer is the total number of white pixels.</td></tr>
-                    <tr><th>5</th><td class="rule">If there are more mostly-white quadrants than mostly-black quadrants, the answer is the smallest number of black pixels in any quadrant.</td></tr>
-                    <tr><th>6</th><td class="rule">If exactly one quadrant has 5 or fewer black pixels, the answer is the number of black pixels in the other 3 quadrants.</td></tr>
-                    <tr><th>7</th><td class="rule">If there are exactly as many mostly-black quadrants as there are unlit indicators, the answer is the number of ports.</td></tr>
-                    <tr><th>8</th><td class="rule">If there is a 3×3 square that is completely white or completely black, the answer is the x-coordinate (starting from 1) of the center of the first such square in reading order.</td></tr>
-                    <tr><th>9</th><td class="rule">If there are exactly as many mostly-white quadrants as mostly-black quadrants, the answer is the first numeric digit of the serial number.</td></tr>
+                    <tr><th>#</th><th>ルール</th></tr>
+                    <tr><th>0</th><td class="rule">ただ1つの象限が5以下の白いピクセルを持つとき、答えは他の3つの象限の白いピクセルの数である。</td></tr>
+                    <tr><th>1</th><td class="rule">大半が白の象限の数が点灯するインジケーターの数に等しいとき、答えはバッテリーの数である。</td></tr>
+                    <tr><th>2</th><td class="rule">ただ1つの行あるいは列が完全に白あるいは完全に黒であるとき、答えはそのx座標あるいはy座標である(上あるいは左から1と数える)。</td></tr>
+                    <tr><th>3</th><td class="rule">大半が白の象限が大半が黒の象限より少ないとき、答えは大半が黒の象限の数である。</td></tr>
+                    <tr><th>4</th><td class="rule">ビットマップ全体が36以上の白いピクセルを持つとき、答えは白のピクセルの総数である。</td></tr>
+                    <tr><th>5</th><td class="rule">大半が白の象限が大半が黒の象限より多いとき、答えは各象限の黒いピクセルの数のうち最も少ないものである。</td></tr>
+                    <tr><th>6</th><td class="rule">ただ1つの象限が5以下の黒いピクセルを持つとき、答えは他の3つの象限の黒いピクセルの数である。</td></tr>
+                    <tr><th>7</th><td class="rule">大半が黒の象限の数が消灯するインジケーターの数に等しいとき、答えはポートの数である。</td></tr>
+                    <tr><th>8</th><td class="rule">全てが白あるいは黒の3x3の正方形が存在するとき、その答えはそのような四角形の中心のx座標(1から数える)のうち最も初めのものである。</td></tr>
+                    <tr><th>9</th><td class="rule">大半が白の象限が大半が黒の象限と同じとき、答えはシリアルナンバーの最初の数字の桁である。</td></tr>
                 </table>
             </div>
             <div class="page-footer relative-footer">Page 1 of 1</div>
