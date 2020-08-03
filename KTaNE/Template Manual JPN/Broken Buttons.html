@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Broken Buttons — Keep Talking and Nobody Explodes Mod</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src='js/ktane-utils.js'></script>
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Broken Buttons</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Component/Broken Buttons.svg" class="diagram">
+                <h2>モジュール詳細：Broken Buttons</h2>
+                <p class="flavour-text">こういう風に動く見えないインクをどうやって手に入れたんだ？</p>
+                <ul>
+                    <li>Broken Buttonsモジュールは上部に2つのSUBMITボタンと、その下に12個のボタンを持つ。</li>
+                    <li>12個のボタンに応じて、それに適合する最初のルールに従う。</li>
+                    <li>モジュールを解除できる正しいSUBMITボタンが決定するまでルールを繰り返す。</li>
+                    <li>ボタンが正しく押された場合、ボタンのテキストは変化する。</li>
+                    <li>処理担当者が正しくないボタンを押した場合、ミスが与えられる。</li>
+                    <li>標準では、正しいSUBMITボタンは左のものである。</li>
+                    <li>5つの正しいボタンを押したあと、正しいSUBMITボタンを押す。</li>
+                </ul>
+                <h3><u><b>ルール:</b></u></h3>
+                <div>処理担当者に<i>sea</i>というボタンが見える場合、<i>sea</i>というラベルのボタンを押す。</div>
+                <div>そうでない場合、3番目あるいは1番目の行のいずれかのボタンがTの文字で始まるなら、それを押す。</div>
+                <div>そうでない場合、<i>one</i>あるいは<i>submit</i>のボタンがあるなら、正しいSUBMITボタンは最初のものであり、oneと書かれたボタンを押す。</div>
+                <div>そうでない場合、ボタンがblankであるなら、そのボタンを押す。</div>
+                <div>そうでない場合、<i>other</i>のボタンがあるなら、正しいSUBMITボタンは他のものに変更され、<i>other</i>と書かれたボタンを押す。</div>
+                <div>そうでない場合、複数の同じ単語のボタンがあるなら、その単語のラベルのボタンのうち1つを押す。</div>
+                <div>そうでない場合、ポートの名前と<i>port</i>あるいは<i>module</i>のボタンがあるなら、ポートの名前のラベルのボタンを押す。</div>
+                <div>そうでない場合、あるボタンの上に3文字より少ない文字をもつなら、そのボタンを押す。</div>
+                <div>そうでない場合、<i>bomb</i>と<i>boom</i>のボタンが存在するなら、boomというラベルのボタンを押す。</div>
+                <div>そうでない場合、<i>submit</i>と<i>button</i>のボタンがあるなら、上部の正しいSUBMITボタンを押す。</div>
+                <div>そうでない場合、<i>column</i>と、<i>seven</i>か<i>two</i>のいずれかのボタンがあるなら、<i>column</i>というラベルのボタンと同じ行のいずれかのボタンを押す。</div>
+                <div>そうでない場合、あるボタンがまだ正しく押されていないなら、2番目の行の3番目のボタンを押す。</div>
+                <div>そうでない場合、最初に押したボタンが単語の中にEの文字を持っていたなら、右のSUBMITが本当に正しい。</div>
+                <div>最後に、正しいSUBMITボタンを押す。</div>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+    </div>
+</body>
+</html>
