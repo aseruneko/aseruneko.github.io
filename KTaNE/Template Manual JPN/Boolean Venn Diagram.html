@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Boolean Venn Diagram — Keep Talking and Nobody Explodes Module</title>
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src='js/ktane-utils.js'></script>
+    <style>
+        td {
+            width:25%;
+            text-align:center;
+            font-weight:bold;
+            font-size:125%;
+            line-height:120%;
+        }
+        span.symbol {
+            font-size: 200%;
+        }
+        span.isymbol {
+            font-size: 125%;
+        }
+    </style>
+</head>
+<body>
+<div class="section">
+    <div class="page page-bg-01">
+        <div class="page-header">
+            <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+            <span class="page-header-section-title">Boolean Venn Diagram</span>
+        </div>
+        <div class="page-content">
+            <img src="img/Component/Boolean Venn Diagram.svg" class="diagram">
+            <h2>モジュール詳細：Boolean Venn Diagrams</h2>
+            <p class="flavour-text">
+                どうしてここに大きなベン図が？どうしてここに奇妙なシンボルが？あぁ...
+
+            <ul>
+                <li>
+                    このモジュールには、ベン図の各領域に囲まれたものと、図のどの領域にも囲まれていない領域を表すものの、8つのボタンがある。
+                <li>
+                    3つの円は「A」(上)、「B」(左下)、「C」(右下)を表している。
+                <li>
+                    それぞれの領域について、ベン図の上に表示されるブール論理表現を使用し、その領域が「真」か「偽」かを以下のルールに従い決定する。
+                    <ul>
+                        <li> ある領域が円に囲まれている場合、その変数に関してその値は「真」であるとする。そうでなければ、「偽」とする。<br>
+                             <i>例：中央の領域は3つ全ての円に囲まれているため、その領域を評価するとき、「A」「B」「C」全てについて「真」である必要がある。</i>
+                        <li> 括弧の内側の演算子は、括弧の外側の演算子より先に評価する。
+                        <li> それぞれの演算子が表すイメージについては以下の通り(灰色の領域が「真」を表す)。
+                        <li> ある領域が「真」であると評価される場合、対応するボタンを押す。その領域は緑色になる。
+                    </ul>
+                <li> モジュールを解除するには、全ての「真」の領域に対応するボタンを押す必要がある。
+                <li> 注意: 正しくないボタンが押されるとミスになり、領域が赤色になる。
+            </ul>
+            <!-- Note that this table may be replaced with a harder version -->
+            <table style="width:100%">
+                <tr><td>X <span class='isymbol'>&#x2227;</span> Y<br>AND<td>X <span class='isymbol'>&#x2228;</span> Y<br>OR<td>X <span class='isymbol'>&#x22BB;</span> Y<br>XOR<td>X <span class='symbol'>&#x2192;</span> Y<br>IMPLIES</tr>
+                <tr><td><img src="img/Boolean Venn Diagram/TAND.svg"><td><img src="img/Boolean Venn Diagram/TOR.svg"><td><img src="img/Boolean Venn Diagram/TXOR.svg"><td><img src="img/Boolean Venn Diagram/TLIMP.svg"></tr>
+                <tr style="height:20px"></tr>
+                <tr><td>X | Y<br>NAND<td>X <span class='symbol'>&#x2193;</span> Y<br>NOR<td>X <span class='symbol'>&#x2194;'</span> Y<br>XNOR<td>X <span class='symbol'>&#x2190;</span> Y<br>IMPLIED BY</tr>
+                <tr><td><img src="img/Boolean Venn Diagram/TNAND.svg"><td><img src="img/Boolean Venn Diagram/TNOR.svg"><td><img src="img/Boolean Venn Diagram/TXNOR.svg"><td><img src="img/Boolean Venn Diagram/TRIMP.svg"></tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
