@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>Blind Alley — Keep Talking and Nobody Explodes Module</title>
+    <meta content="initial-scale=1" name="viewport">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src='js/ktane-utils.js'></script>
+    <script src='js/ruleseed.js'></script>
+    <style>
+        table.regions {
+            border: none;
+            margin: 0 2em 1em 0;
+            clear: both;
+        }
+
+        table.regions col { width: 33%; }
+
+        td.corner {
+            border: none;
+        }
+
+        ul {
+            padding-left: 1.5em;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        var conditions = [
+            "点灯した「IND」というインジケーターがある。",
+            "DVI-Dポートがある。",
+            "RJ-45ポートがある。",
+            "バッテリーホルダーの数が偶数。",
+            "消灯した「FRQ」というインジケーターがある。",
+            "点灯した「CAR」というインジケーターがある。",
+            "点灯した「SND」というインジケーターがある。",
+            "消灯した「CLR」というインジケーターがある。",
+            "点灯した「TRN」というインジケーターがある。",
+            "パラレルポートがある。",
+            "バッテリーの数が偶数。",
+            "ステレオRCAポートがある。",
+            "シリアルポートがある。",
+            "消灯した「TRN」というインジケーターがある。",
+            "PS/2ポートがある。",
+            "消灯した「FRK」というインジケーターがある。",
+            "点灯した「BOB」というインジケーターがある。",
+            "点灯した「NSA」というインジケーターがある。",
+            "点灯した「SIG」というインジケーターがある。",
+            "点灯した「MSA」というインジケーターがある。",
+            "シリアルナンバーに偶数の桁が含まれている。",
+            "点灯した「FRK」というインジケーターがある。",
+            "消灯した「CAR」というインジケーターがある。",
+            "消灯した「NSA」というインジケーターがある。",
+            "消灯した「BOB」というインジケーターがある。",
+            "シリアルナンバーに母音が含まれている。",
+            "消灯した「SND」というインジケーターがある。",
+            "点灯した「CLR」というインジケーターがある。",
+            "消灯した「MSA」というインジケーターがある。",
+            "消灯した「IND」というインジケーターがある。",
+            "消灯した「SIG」というインジケーターがある。",
+            "点灯した「FRQ」というインジケーターがある。"
+        ];
+        function setDefaultRules(rnd) { setRules(rnd); }
+        function setRules(rnd)
+        {
+            var list = conditions.slice(0);
+            rnd.shuffleFisherYates(list);
+            var lis = document.getElementsByClassName('condition');
+            for (var i = 0; i < lis.length; i++)
+                lis[i].innerText = list[i];
+        }
+    </script>
+</head>
+<body>
+    <div class="section">
+        <div class="page">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Blind Alley</span>
+            </div>
+            <div class="page-content">
+                <img class="diagram" src="img/Component/Component.svg">
+                <h2>モジュール詳細：Blind Alley</h2>
+
+                <p class="flavour-text">何？どこ？
+
+                <p>
+                    モジュールは空白のように見えるが、以下の表に対応した場所に8つのタッチ式の領域が存在する。任意の順番で、適した条件の最も多い領域をタッチする。
+
+                <table class='regions'>
+                    <col><col><col>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li class='condition'>消灯した「BOB」というインジケーターがある。
+                                <li class='condition'>点灯した「CAR」というインジケーターがある。
+                                <li class='condition'>点灯した「IND」というインジケーターがある。
+                                <li class='condition'>バッテリーホルダーの数が偶数。
+                            </ul>
+                        <td>
+                            <ul>
+                                <li class='condition'>消灯した「CAR」というインジケーターがある。
+                                <li class='condition'>消灯した「NSA」というインジケーターがある。
+                                <li class='condition'>点灯した「FRK」というインジケーターがある。
+                                <li class='condition'>RJ-45ポートがある。
+                            </ul>
+                        <td class='corner'>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li class='condition'>消灯した「FRQ」というインジケーターがある。
+                                <li class='condition'>消灯した「IND」というインジケーターがある。
+                                <li class='condition'>消灯した「TRN」というインジケーターがある。
+                                <li class='condition'>DVI-Dポートがある。
+                            </ul>
+                        <td>
+                            <ul>
+                                <li class='condition'>消灯した「SIG」というインジケーターがある。
+                                <li class='condition'>消灯した「SND」というインジケーターがある。
+                                <li class='condition'>点灯した「NSA」というインジケーターがある。
+                                <li class='condition'>バッテリーの数が偶数。
+                            </ul>
+                        <td>
+                            <ul>
+                                <li class='condition'>点灯した「BOB」というインジケーターがある。
+                                <li class='condition'>点灯した「CLR」というインジケーターがある。
+                                <li class='condition'>PS/2ポートがある。
+                                <li class='condition'>シリアルポートがある。
+                            </ul>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li class='condition'>点灯した「FRQ」というインジケーターがある。
+                                <li class='condition'>点灯した「SIG」というインジケーターがある。
+                                <li class='condition'>点灯した「TRN」というインジケーターがある。
+                                <li class='condition'>シリアルナンバーに偶数の桁が含まれている。
+                            </ul>
+                        <td>
+                            <ul>
+                                <li class='condition'>消灯した「FRK」というインジケーターがある。
+                                <li class='condition'>点灯した「MSA」というインジケーターがある。
+                                <li class='condition'>パラレルポートがある。
+                                <li class='condition'>シリアルナンバーに母音が含まれている。
+                            </ul>
+                        <td>
+                            <ul>
+                                <li class='condition'>消灯した「CLR」というインジケーターがある。
+                                <li class='condition'>消灯した「MSA」というインジケーターがある。
+                                <li class='condition'>点灯した「SND」というインジケーターがある。
+                                <li class='condition'>ステレオRCAポートがある。
+                            </ul>
+                    </tr>
+                </table>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+    </div>
+</body>
+</html>
