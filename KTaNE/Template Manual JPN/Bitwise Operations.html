@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Bitwise Operations — Keep Talking and Nobody Explodes Module</title>
+    <meta name="viewport" content="initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src='js/ktane-utils.js'></script>
+    <style>
+        table.bitwise td.second {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">Bitwise Operations</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Component/Bitwise Operations.svg" class="diagram">
+                <h2>モジュール詳細：Bitwise Operations</h2>
+                <p class="flavour-text">
+                    誰も好きではない数学の分野。ところで、そもそも数学が好きなやつって？
+                </p>
+
+                <ul>
+                    <li>モジュールには2つの画面がある：
+                        <ol>
+                            <li>ビット演算子(AND, OR, XOR, NOT)</li>
+                            <li>計算結果</li>
+                        </ol>
+                    </li>
+                    <li>下記の表から得られる2つのバイトと、1番目のディスプレーから得られる演算子を使用して、解答を決定する。以下の表において、MSBは最上位ビットを示し、LSBは最下位ビットを示す。</li>
+                </ul>
+
+                <table class='bitwise'>
+                    <tr><th class='first'>バイト1                                               </th><th>ビット</th><th class='second'>バイト2                            </th></tr>
+                    <tr><td class='first'>単3電池がない                                      </td><td>MSB</td><td class='second'>単1電池が1本以上               </td></tr>
+                    <tr><td class='first'>パラレルポート                                        </td><td>   </td><td class='second'>ポートが3つ以上                   </td></tr>
+                    <tr><td class='first'>「NSA」というインジケーターが点灯している                                    </td><td>   </td><td class='second'>バッテリーホルダーが2つ以上         </td></tr>
+                    <tr><td class='first'>(開始時の)制限時間の「分」よりモジュールが多い</td><td>   </td><td class='second'>「BOB」というインジケーターが点灯している                 </td></tr>
+                    <tr><td class='first'>点灯したインジケーターが1つより多い                          </td><td>   </td><td class='second'>消灯したインジケーターが1つより多い     </td></tr>
+                    <tr><td class='first'>モジュールの数が3で割り切れる                     </td><td>   </td><td class='second'>シリアルナンバーの最後の数字が奇数</td></tr>
+                    <tr><td class='first'>単1電池が2つより少ない                              </td><td>   </td><td class='second'>モジュールの数が偶数            </td></tr>
+                    <tr><td class='first'>ポートが4つより少ない                                    </td><td>LSB</td><td class='second'>バッテリーが2本以上               </td></tr>
+                </table>
+
+                <p>各ビット演算子の説明表は以下の通り：</p>
+                <table>
+                    <tr>
+                        <th>情報</th>
+                        <th>AND</th>
+                        <th>OR</th>
+                        <th>XOR</th>
+                        <th>NOT</th>
+                    </tr>
+                    <tr>
+                        <td>手順</td>
+                        <td>各ビットにつき、両方のビットが1であれば、戻りビットは1である。そうでなければ、戻りビットは0である。</td>
+                        <td>各ビットにつき、いずれか(あるいは両方)のビットが1であれば、戻りビットは1である。そうでなければ、戻りビットは0である。</td>
+                        <td>各ビットにつき、いずれか片方のビットが1であれば、戻りビットは1である。そうでなければ、戻りビットは0である。</td>
+                        <td>2つ目の項を無視する。各ビットにつき、戻りビットはその逆である。</td>
+                    </tr>
+                    <tr>
+                        <td>数式</td>
+                        <td>ビット1 &amp;&amp; ビット2</td>
+                        <td>ビット1 || ビット2</td>
+                        <td>(ビット1 &amp;&amp; !ビット2) || (!ビット1 &amp;&amp; ビット2)</td>
+                        <td>!ビット1</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="page-footer relative-footer">Page 1 of 1</div>
+        </div>
+    </div>
+</body>
+</html>
