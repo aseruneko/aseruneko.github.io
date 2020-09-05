@@ -870,7 +870,7 @@ function tohoSettingCheckbox(){
 
 function mtgSettingCheckbox(){
     if(document.getElementById("mtg-setting").checked){
-        document.getElementById("mtg-setting").checked = false;
+        document.getElementById("toho-setting").checked = false;
         questions = mtg_questions;
     }else{
         questions = basic_questions;
