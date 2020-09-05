@@ -535,6 +535,8 @@ function questionInputButton(){
     for(var i = 0; i < questionOptionMax; i++){
         var li = document.createElement("li");
         li.innerText = selectedQuestion[i];
+        li.id = "option" + i;
+        li.style.color = "black";
         target.appendChild(li);
     }
 }
@@ -546,6 +548,8 @@ function questionRandomButton(){
     for(var i = 0; i < questionOptionMax; i++){
         var li = document.createElement("li");
         li.innerText = selectedQuestion[i];
+        li.id = "option" + i;
+        li.style.color = "black";
         target.appendChild(li);
     }
     var selectedQuestionIndex = [];
@@ -670,6 +674,16 @@ function tohoSettingCheckbox(){
         questions = basic_questions;
     }
     questionRandomButton();
+}
+
+function makeThis(){
+    var correct = Math.floor(Math.random() * questionOptionMax);
+    for(var i = 0; i < questionOptionMax; i ++){
+        var target = "option" + i;
+        document.getElementById(target).style.color = "black";
+    }
+    var target = "option" + correct;
+    document.getElementById(target).style.color = "red";
 }
 
 questions = basic_questions;
