@@ -1,0 +1,69 @@
+<head>
+    <title>勇者アゲアゲ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="title">勇者アゲアゲ</h1>
+        <p class="title-label"><a href="https://omocoro.jp/rensai/242001/">「勇者ぬるぽこ」とは関係ない</a></p>
+    </header>
+    <article>
+        <h1 class="question">お題 - 入力/出力</h1>
+        <form id="question-form">
+            <div class="question-input">
+                <input id="question-input-textarea" type="textarea"></input>
+                <input id="question-input-button" type="button" value="数値から生成" onclick="questionInputButton()"></input>
+                <input id="question-random-button" type="button" value="ランダムに生成" onclick="questionRandomButton()"></input>
+            </div>
+            <div class="question-option">
+                <ul id="question-option-list">
+                </ul>
+            </div>    
+        </form>
+        <h1 class="card">手札 - 入力/出力</h1>
+        <form id="card-form">
+            <div class="card-input">
+                <input id="card-input-textarea" type="textarea"></input>
+                <input id="card-input-button" type="button" value="数値から生成" onclick="cardInputButton()"></input>
+                <input id="card-random-button" type="button" value="ランダムに生成" onclick="cardRandomButton()"></input>
+            </div>
+            <div class="card-option">
+                <ul id="card-option-list">
+                </ul>
+            </div>    
+        </form>
+        <h1 class="setting">設定</h1>
+        <form id="setting-form">
+            <dl class="setting-list">
+                <dt>お題の数</dt>
+                <dd>
+                    <form id="question-max-setting">
+                        <input id="question-max-setting-textarea" type="textarea" value="4"></input>
+                        <input id="question-max-setting-button" type="button" onclick="questionMaxSettingButton()" value="適用"></input>
+                    </form>
+                </dd>
+                <dt>手札の数</dt>
+                <dd>
+                    <form id="card-max-setting">
+                        <input id="card-max-setting-textarea" type="textarea" value="5"></input>
+                        <input id="card-max-setting-button" type="button" onclick="questionMaxSettingButton()" value="適用"></input>
+                    </form>
+                </dd>
+                <form id="additional-setting">
+                    <dt>「っ」を手札に含める</dt>
+                    <input id="include-littletsu-setting" type="checkbox" onchange="includeLittletsuSettingCheckbox()"></input>
+                    <dt>「ー」を手札に含める</dt>
+                    <input id="include-nobashibo-setting" type="checkbox" onchange="includeNobashiboSettingCheckbox()"></input>
+                    <dt>拡張された手札</dt>
+                    <input id="extend-card-setting" type="checkbox" onchange="extendCardSettingCheckbox()"></input>
+                    <dt>東方モード</dt>
+                    <input id="toho-setting" type="checkbox" onchange="tohoSettingCheckbox()"></input>
+                </form>
+            </dl>
+        </form>
+    </article>
+    <footer>
+        <p class="author">@aseruneko</p>
+    </footer>
+    <script type="text/javascript" src="script.js"></script>
+</body>
