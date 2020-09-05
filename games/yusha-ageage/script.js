@@ -869,8 +869,8 @@ function tohoSettingCheckbox(){
 }
 
 function mtgSettingCheckbox(){
-    if(document.getElementById("toho-setting").checked){
-        document.getElementById("toho-setting").checked = false;
+    if(document.getElementById("mtg-setting").checked){
+        document.getElementById("mtg-setting").checked = false;
         questions = mtg_questions;
     }else{
         questions = basic_questions;
