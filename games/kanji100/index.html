@@ -1,0 +1,50 @@
+<head>
+    <title>漢字100マス</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>kanji100</h1>
+        <p>漢字100マス</p>
+        <p>ver 0.0.1</p>
+    </header>
+    <article>
+        <div>
+            <form id="controller">
+                <p>
+                    <input id="textarea" type="textarea"></input>
+                    <input id="generate-btn" type="button" onClick="generate();" value="数値から表を生成"></input>
+                </p>
+                    <input id="random-btn" type="button" onClick="randomize();" value="ランダム生成"></input>
+            </form>
+        </div>
+        <div>
+            <table id="main-table">
+            </table>
+        </div>
+        <div>
+            <h1>設定</h1>
+            <p>
+                <span>行数：</span>
+                <input type="button" value="◀" onClick="changeRowMax(-1);"></input>
+                <span id="row-size">10</span>
+                <input type="button" value="▶" onClick="changeRowMax(1);"></input>
+            </p>
+            <p>
+                <span>列数：</span>
+                <input type="button" value="◀" onClick="changeColumnMax(-1);"></input>
+                <span id="column-size">10</span>
+                <input type="button" value="▶" onClick="changeColumnMax(1);"></input>
+            </p>
+            <p>
+                <span>部首：</span>
+                <input type="button" value="全て" onClick="changeRadical('all');"></input>
+                <input type="button" value="基本" onClick="changeRadical('basic')"></input>
+            </p>
+        </div>
+    </article>
+    <footer>
+        <p>@aseruneko</p>
+    </footer>
+    <script type="text/javascript" src="script.js"></script>
+</body>
