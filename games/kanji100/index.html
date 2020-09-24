@@ -42,6 +42,20 @@
                 <input type="button" value="基本" onClick="changeRadical('basic')"></input>
             </p>
         </div>
+        <div>
+            <h1>漢字検索</h1>
+            <p>
+                <span>部首：</span>
+                <span id="search-select"></span>
+                <span>画数：</span>
+                <input id="search-textarea" type="textarea" value="0"></input>
+                <input type="button" value="検索" onClick="kanjiSearch();"></input>
+            </p>
+            <p>
+                <span>結果：</span>
+                <span id="search-result">-</span>
+            </p>
+        </div>
     </article>
     <footer>
         <p>@aseruneko</p>

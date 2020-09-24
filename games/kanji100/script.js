@@ -127,6 +127,45 @@ function changeRadical(mode){
     randomize();
 }
 
+function makeSearchSelect(){
+    var target = document.getElementById("search-select");
+    var select = document.createElement("select");
+    select.id = "search-select-id";
+    select.name = "search-select";
+    for(var i = 0; i < ALL_RADICAL.length; i ++){
+        var option = document.createElement("option");
+        option.value = i + 1;
+        option.innerText = ALL_RADICAL[i];
+        select.appendChild(option);
+    }
+    target.appendChild(select);
+}
+
+function kanjiSearch(){
+    var result = "該当なし";
+    var request = new XMLHttpRequest();
+    var selectedRadical = document.getElementById("search-select-id").value;
+    console.log(selectedRadical);
+    var kakusu = parseInt(document.getElementById("search-textarea").value);
+    console.log(kakusu);
+    var urlBase = "https://mojikiban.ipa.go.jp/mji/q?部首=";
+    var url = urlBase + selectedRadical + "." + kakusu;
+    request.open('GET', url, true);
+    request.onload = function(){
+        var obj = this.response;
+        var data = JSON.parse(obj);
+        result = "";
+        for(var i = 0; i < data.results.length; i++){
+            var s = "" + data.results[i].IPAmj明朝フォント実装.実装したUCS;
+            s = s.substring(2);
+            s = parseInt(s,16);
+            result += String.fromCodePoint(s);
+        }
+        document.getElementById("search-result").innerText = result;
+    }
+    request.send();
+}
+
 function randomize(){
     makeRowHead();
     makeColumnHead();
@@ -158,5 +197,8 @@ function chooseAtRandom(array, count) {
     return result;
 }
 
+
+
 radical = BASIC_RADICAL;
+makeSearchSelect();
 randomize();

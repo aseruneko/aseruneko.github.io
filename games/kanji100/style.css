@@ -18,3 +18,12 @@ table{
     font-size: 40px;
     text-align: center;
 }
+#search-select select{
+    height: 30px;
+    font-size: 20px;
+}
+#search-textarea{
+    height: 30px;
+    width: 60px;
+    font-size: 20px;
+}
