@@ -63,6 +63,20 @@ body {
 .work-description p {
     width: 400px;
 }
+.credit-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #D0D5D6;
+    font-size: 12px;
+    margin-top: 21px;
+    margin-bottom: 21px;
+    flex-direction: column;
+    align-items: center;
+}
+.credit-area p {
+    width: 400px;
+}
 #seed-description {
     width: 100%;
     display: flex;
