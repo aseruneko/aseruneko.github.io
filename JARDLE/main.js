@@ -1,9 +1,20 @@
 console.log("here");
 
 var correctAnswer = "きりたんぽ";
+var answers = ["ほうりつか", "あすとらる", "おやこどん", "はいたっち", "あおりんご", "かためがね", "おりえんと", "ゆーらしあ", "さどがしま", "ゆりかもめ", "ものれーる", "どうきょう", "もすきーと", "えとぴりか", "さつじんき", "ひらいしん", "しょうぐん"];
 var submittedCharacters = [];
 var gojuon = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょぁぃぅぇぉー"
 makeGojuon();
+
+function seedSubmit() {
+    var seedInput = document.getElementById("seed-text-box").value;
+    correctAnswer = answers[parseInt(seedInput) * 6 % answers.length];
+    submittedCharacters = [];
+    makeGojuon();
+    var displayArea = document.getElementById("display-area");
+    var displayClone = displayArea.cloneNode( false );
+    displayArea.parentNode.replaceChild( displayClone , displayArea );
+}
 
 function submit() {
     var input = document.getElementById("text-box").value;
