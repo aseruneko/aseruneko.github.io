@@ -129,7 +129,7 @@ function isBlow(character) {
 }
 
 function copyRecord() {
-    var copyText = "wordle ja \r\n" + "seed: " + seed + "\r\nline: " + attempt + "\r\n";
+    var copyText = "WORDLEja \r\n" + "seed: " + seed + "\r\nline: " + attempt + "\r\n";
     for(var i = 0; i < submittedCharacters.length; i ++){
         if ((i - 1) % 5 == 4) {
             copyText += "\r\n";
