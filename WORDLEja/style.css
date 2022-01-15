@@ -1,25 +1,134 @@
+body {
+    background-color: #131212;    
+}
+#display-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: #D0D5D6;
+}
+.gojuon-area-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.gojuon-area-wrapper span {
+    background-color: #818284;
+    color: #D7DBDD;
+    font-size: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+}
+.display-area-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.display-area-wrapper span {
+    background-color: #818284;
+    color: #D7DBDD;
+    font-size: 28px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    margin: 4px;
+}
+.display-area-wrapper p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #D0D5D6;
+}
+.work-description {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #D0D5D6;
+    font-size: 12px;
+    margin-top: 21px;
+    margin-bottom: 21px;
+}
+.work-description p {
+    width: 400px;
+}
+#seed-description {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #D0D5D6;
+}
+.seed-input {
+    color: #D0D5D6;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    margin-top: 21px;
+    margin-bottom: 21px;
+}
+.seed-input-area {
+    background-color: #131212;
+    border: #3A3B3D 2px solid;
+    height: 30px;
+    margin-left: 4px;
+    font-size: 24px;
+    color: #D0D5D6;
+}
+.seed-input-button {
+    background-color: #131212;
+    border: #3A3B3D 2px solid;
+    color: #D0D5D6;
+    height: 36px;
+    margin-left: 4px;
+}
+.answer-input {
+    color: #D0D5D6;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    margin-top: 21px;
+    margin-bottom: 21px;
+}
+.answer-input-area {
+    background-color: #131212;
+    border: #3A3B3D 2px solid;
+    height: 30px;
+    margin-left: 4px;
+    font-size: 24px;
+    color: #D0D5D6;
+}
+.answer-input-button {
+    background-color: #131212;
+    border: #3A3B3D 2px solid;
+    color: #D0D5D6;
+    height: 36px;
+    margin-left: 4px;
+}
 .green {
-    background-color: green;
-    color: white;
-    font-size: 36px;
+    background-color: #538D4E !important;
 }
 .yellow {
-    background-color: yellow;
-    color: #CCC;
-    font-size: 36px;
+    background-color: #B59F3B !important;
 }
 .gray {
-    background-color: gray;
-    color: #CCC;
-    font-size: 36px;
+    background-color: #818284 !important;
 }
 .used {
-    background-color: #333;
-    color: #999;
-    font-size: 36px;
+    background-color: #333 !important;
 }
 .not-used {
-    background-color: #999;
-    color: #333;
-    font-size: 36px;
+    background-color: #999 !important;
 }

@@ -1,6 +1,6 @@
 console.log("here");
 
-var correctAnswer = "きりたんぽ";
+var correctAnswer = "";
 var answers = ["たいしょう",
 "ぶっしょう",
 "しょぎょう",
@@ -19790,6 +19790,8 @@ var answers = ["たいしょう",
 var submittedCharacters = [];
 var gojuon = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょぁぃぅぇぉっー"
 makeGojuon();
+var today = new Date();
+document.getElementById("seed-text-box").value = "" + today.getFullYear() + (today.getUTCMonth() + 1) + today.getUTCDate();
 
 function seedSubmit() {
     var seedInput = document.getElementById("seed-text-box").value;
@@ -19799,16 +19801,23 @@ function seedSubmit() {
     var displayArea = document.getElementById("display-area");
     var displayClone = displayArea.cloneNode( false );
     displayArea.parentNode.replaceChild( displayClone , displayArea );
+    document.getElementById("seed-description").innerText="シード値から答えが生成されました！";
 }
 
 function submit() {
-    var input = document.getElementById("text-box").value;
-    renderAnswer(input);
+    if(correctAnswer.length == 0) {
+        document.getElementById("display-area").innerText="シード値を入力して「始める」を押してください";
+    } else {
+        var input = document.getElementById("text-box").value;
+        renderAnswer(input);
+    }
 }
 
 function renderAnswer(input) {
     var textArea = document.getElementById("display-area");
     textArea.appendChild(makeAnswerDisplayNodes(input));
+    var br =document.createElement("br");
+    textArea.appendChild(br);
     makeGojuon();
 }
 
