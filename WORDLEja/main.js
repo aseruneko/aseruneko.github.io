@@ -19794,12 +19794,19 @@ makeGojuon();
 var today = new Date();
 var month = today.getUTCMonth() + 1;
 var monthString = "";
+var day =  today.getUTCDate();
+var dayString = "";
 if (month < 10) {
     monthString = "0" + month.toString(); 
 } else {
     monthString = month.toString();
 }
-document.getElementById("seed-text-box").value = "" + today.getFullYear() + monthString + today.getUTCDate();
+if (day < 10) {
+    dayString = "0" + day.toString(); 
+} else {
+    dayString = day.toString();
+}
+document.getElementById("seed-text-box").value = "" + today.getFullYear() + monthString + dayString;
 
 function seedSubmit() {
     var seedInput = document.getElementById("seed-text-box").value;
