@@ -40,10 +40,10 @@ function seedSubmit() {
 
 function submit() {
     if(correctAnswer.length == 0) {
-        document.getElementById("display-area").innerText="シード値を入力して「始める」を押してください";
+        document.getElementById("display-area").innerText="シード値を入力して「はじめる」を押してください";
     } else if (endgame == true) {
         var p = document.createElement("p");
-        p.innerText = "シード値を入力して「始める」を押してください";
+        p.innerText = "シード値を入力して「はじめる」を押してください";
         document.getElementById("display-area").appendChild(p);
     } else {
         attempt += 1;
