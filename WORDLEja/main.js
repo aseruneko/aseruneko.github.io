@@ -19792,7 +19792,14 @@ var submittedCharacters = [];
 var gojuon = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょぁぃぅぇぉっー"
 makeGojuon();
 var today = new Date();
-document.getElementById("seed-text-box").value = "" + today.getFullYear() + (today.getUTCMonth() + 1) + today.getUTCDate();
+var month = today.getUTCMonth() + 1;
+var monthString = "";
+if (month < 10) {
+    monthString = "0" + month.toString(); 
+} else {
+    monthString = month.toString();
+}
+document.getElementById("seed-text-box").value = "" + today.getFullYear() + monthString + today.getUTCDate();
 
 function seedSubmit() {
     var seedInput = document.getElementById("seed-text-box").value;
