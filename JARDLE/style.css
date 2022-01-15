@@ -13,3 +13,13 @@
     color: #CCC;
     font-size: 36px;
 }
+.used {
+    background-color: #333;
+    color: #999;
+    font-size: 36px;
+}
+.not-used {
+    background-color: #999;
+    color: #333;
+    font-size: 36px;
+}
