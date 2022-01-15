@@ -21,6 +21,7 @@ if (day < 10) {
 } else {
     dayString = day.toString();
 }
+var seed = "";
 document.getElementById("seed-text-box").value = "" + today.getFullYear() + monthString + dayString;
 
 function seedSubmit() {
@@ -34,6 +35,7 @@ function seedSubmit() {
     document.getElementById("seed-description").innerText="シード値から答えが生成されました！";
     attempt = 0;
     endgame = false;
+    seed = seedInput;
 }
 
 function submit() {
@@ -127,7 +129,7 @@ function isBlow(character) {
 }
 
 function copyRecord() {
-    var copyText = "";
+    var copyText = "wordle ja \r\n" + "seed: " + seed + "\r\nline: " + attempt + "\r\n";
     for(var i = 0; i < submittedCharacters.length; i ++){
         if ((i - 1) % 5 == 4) {
             copyText += "\r\n";
