@@ -17,7 +17,7 @@
         </div>
         <div class="seed-input">
             <p>シード値: </p>
-            <input class="seed-input-area" type="text" id="seed-text-box"/>
+            <input class="seed-input-area" type="text" id="seed-text-box" onkeydown="enterSeed()"/>
             <button class="seed-input-button" onclick="seedSubmit()">
                 はじめる
             </button>
@@ -27,13 +27,19 @@
         </div>
         <div class="answer-input">
             <p>回答: </p>
-            <input class="answer-input-area" type="text" id="text-box" placeholder="ひらがな5文字"/>
+            <input class="answer-input-area" type="text" id="text-box" onkeydown="enterSubmit()" placeholder="ひらがな5文字"/>
             <button class="answer-input-button" onclick="submit()">
                 送信
             </button>
         </div>
         <div class="display-area-wrapper">
             <div id="display-area"></div>
+        </div>
+        <div class="copy-record">
+            <p id="copy-record-description">シェアー用に棋譜をコピーできます</p>
+            <button class="copy-record-button" onclick="copyRecord()">
+                棋譜をコピーする
+            </button>
         </div>
         <div class="credit-area">
             <p>

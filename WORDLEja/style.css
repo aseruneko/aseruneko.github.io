@@ -107,6 +107,24 @@ body {
     height: 36px;
     margin-left: 4px;
 }
+.copy-record {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #D0D5D6;
+}
+#copy-record-description {
+    font-size: 12px;
+}
+.copy-record-button {
+    background-color: #131212;
+    border: #3A3B3D 2px solid;
+    color: #D0D5D6;
+    height: 36px;
+    margin-left: 4px;
+}
 .answer-input {
     color: #D0D5D6;
     align-items: center;
@@ -120,6 +138,7 @@ body {
     background-color: #131212;
     border: #3A3B3D 2px solid;
     height: 30px;
+    width: 170px;
     margin-left: 4px;
     font-size: 24px;
     color: #D0D5D6;

@@ -1,6 +1,7 @@
-console.log("here");
-
 var correctAnswer = "";
+var attempt = 0;
+var correctLetter = 0;
+var endgame = false;
 var answers = ["たいしょう",
 "ぶっしょう",
 "しょぎょう",
@@ -19802,12 +19803,19 @@ function seedSubmit() {
     var displayClone = displayArea.cloneNode( false );
     displayArea.parentNode.replaceChild( displayClone , displayArea );
     document.getElementById("seed-description").innerText="シード値から答えが生成されました！";
+    attempt = 0;
+    endgame = false;
 }
 
 function submit() {
     if(correctAnswer.length == 0) {
         document.getElementById("display-area").innerText="シード値を入力して「始める」を押してください";
+    } else if (endgame == true) {
+        var p = document.createElement("p");
+        p.innerText = "シード値を入力して「始める」を押してください";
+        document.getElementById("display-area").appendChild(p);
     } else {
+        attempt += 1;
         var input = document.getElementById("text-box").value;
         renderAnswer(input);
     }
@@ -19815,10 +19823,18 @@ function submit() {
 
 function renderAnswer(input) {
     var textArea = document.getElementById("display-area");
+    correctLetter = 0;
     textArea.appendChild(makeAnswerDisplayNodes(input));
     var br =document.createElement("br");
     textArea.appendChild(br);
     makeGojuon();
+    if(correctLetter == 5) {
+        var p = document.createElement("p");
+        p.classList.add("correct");
+        p.innerText = "正解！ 試行回数: " + attempt;
+        textArea.appendChild(p);
+        endgame = true;
+    }
 }
 
 function makeGojuon() {
@@ -19856,6 +19872,7 @@ function makeAnswerDisplayNodes(input) {
             var div = document.createElement("span");
             div.classList.add("green");
             div.innerText = inputs[i];
+            correctLetter += 1;
             p.append(div);
         } else if (isBlow(inputs[i])) {
             var div = document.createElement("span");
@@ -19878,4 +19895,32 @@ function isHit(character, i) {
 
 function isBlow(character) {
     return correctAnswer.split("").includes(character);
+}
+
+function copyRecord() {
+    var copyText = "";
+    for(var i = 0; i < submittedCharacters.length; i ++){
+        if ((i - 1) % 5 == 4) {
+            copyText += "\r\n";
+        }
+        if (isHit(submittedCharacters[i], i%5)) {
+            copyText += "🟩";
+        } else if (isBlow(submittedCharacters[i])) {
+            copyText += "🟨";
+        } else {
+            copyText += "⬜";
+        }
+    }
+    navigator.clipboard.writeText(copyText);
+    document.getElementById("copy-record-description").innerText = "棋譜をコピーしました！";
+}
+function enterSubmit(){
+    if( window.event.keyCode == 13 ){
+      submit();
+    }
+}
+function enterSeed(){
+    if( window.event.keyCode == 13 ){
+      seedSubmit();
+    }
 }
