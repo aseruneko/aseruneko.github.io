@@ -65,6 +65,47 @@ body {
 .work-description p {
     width: 400px;
 }
+.newest-display {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #D0D5D6;
+    font-size: 12px;
+    margin-top: 16px;
+    margin-bottom: 12px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.newest-display-label {
+    margin-bottom: 16px !important;
+}
+.newest-display p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.newest-display span {
+    background-color: #818284;
+    color: #D7DBDD;
+    font-size: 28px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    margin: 4px;
+}
+.display-description {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #D0D5D6;
+    font-size: 12px;
+    margin-top: 16px;
+    margin-bottom: 18px;
+    flex-direction: column;
+    align-items: center;
+}
 .credit-area {
     width: 100%;
     display: flex;
@@ -92,7 +133,7 @@ body {
     width: 100%;
     display: flex;
     margin-top: 21px;
-    margin-bottom: 21px;
+    margin-bottom: 4px;
 }
 .seed-input-area {
     background-color: #131212;
@@ -108,6 +149,22 @@ body {
     color: #D0D5D6;
     height: 36px;
     margin-left: 4px;
+}
+.seed-random-input-button {
+    background-color: #131212;
+    border: #3A3B3D 2px solid;
+    color: #D0D5D6;
+    height: 36px;
+    margin-left: 4px;
+}
+.seed-warn-text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #D0D5D6;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 21px;
 }
 .copy-record {
     width: 100%;
@@ -133,8 +190,17 @@ body {
     justify-content: center;
     width: 100%;
     display: flex;
-    margin-top: 21px;
-    margin-bottom: 21px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+#caution-area {
+    color: #993333;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 .answer-input-area {
     background-color: #131212;

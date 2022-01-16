@@ -7,8 +7,6 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <!--
-        
-        ver 0.1 - 2022/01/16 - リリース
 
         あなたがコードを見ているとき、コードもあなたを見ている。
         もちろん、このページは、もっとカッコよく出来るはずです。
@@ -48,7 +46,7 @@
             </p>
             <p>
                 あそびかた：<br/>
-                シード値を入力して、「はじめる」を押すと、ランダムで日本語の言葉のうち、ひらがな5文字のものが選ばれますので、それを当てるゲームです。下の「回答」に答えを入力して、送信を押してください。答えの中にその文字が含まれていれば黄色、更に場所もあっていれば緑色になります。本家wordleと違い、回答として送信する単語は辞書に記載のないものも有効です。
+                シード値を入力して、「はじめる」を押すと、ランダムで日本語の言葉のうち、ひらがな5文字のものが選ばれますので、それを当てるゲームです。下の「回答」に答えを入力して、送信を押してください。答えの中にその <span style="color: #B59F3B"> 文字が含まれていれば黄色</span>、更に <span style="color: #538D4E"> 場所もあっていれば緑色 </span> になります。本家wordleと違い、回答として送信する単語は辞書に記載のないものも有効です。
             </p>
         </div>
         <div id="seed-description">
@@ -60,9 +58,19 @@
             <button class="seed-input-button" onclick="seedSubmit()">
                 はじめる
             </button>
+            <button class="seed-random-input-button" onclick="seedRandomSubmit()">
+                ランダムではじめる
+            </button>
+        </div>
+        <div class="seed-warn-text">
+            ※シード値は整数のみ受け付けています
         </div>
         <div class="gojuon-area-wrapper">
             <div id="gojuon-area"></div>
+        </div>
+        <div class="newest-display">
+            <p class="newest-display-label">[直近の回答]</p>
+            <div id="newest-area"></div>
         </div>
         <div class="answer-input">
             <p>回答: </p>
@@ -70,6 +78,10 @@
             <button class="answer-input-button" onclick="submit()">
                 送信
             </button>
+        </div>
+        <div id="caution-area"></div>
+        <div class="display-description">
+            [回答履歴]
         </div>
         <div class="display-area-wrapper">
             <div id="display-area"></div>
@@ -81,6 +93,10 @@
             </button>
         </div>
         <div class="credit-area">
+            <p>
+                ver 0.1 - 2022/01/15 - リリース<br/>
+                ver 0.1.1 - 2022/01/16 - 「ランダム」「直近の回答」を追加 / 幾つかの難しい単語を差し替え<br/>
+            </p>
             <p>
                 辞書データは以下を使用させていただいています。二次配布は禁止されているため、本スクリプトをリバースエンジニアリングするのはおやめください。また、当該辞書データは非商用・研究・教育目的に限定されていますが、教育によいゲームということで、一つ、お許しいただけると幸いです（当然、本スクリプトは非商用です）。
             </p>
