@@ -180,7 +180,6 @@ function renderNewestAnswer(){
     var p = document.createElement("p");
     var inputs =  newestAnswer.split("");
     for(var i = 0; i < inputs.length; i ++) {
-        submittedCharacters.push(inputs[i]);
         if (isHit(inputs[i], i)) {
             var div = document.createElement("span");
             div.classList.add("green");
