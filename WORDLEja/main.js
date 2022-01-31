@@ -117,7 +117,7 @@ function makeAnswerDisplayNodes(input) {
             div.innerText = inputs[i];
             correctLetter += 1;
             p.append(div);
-        } else if (isBlow(inputs[i])) {
+        } else if (isBlow(inputs[i], i, inputs)) {
             var div = document.createElement("span");
             div.classList.add("yellow");
             div.innerText = inputs[i];
@@ -136,8 +136,10 @@ function isHit(character, i) {
     return correctAnswer.split("")[i] == character
 }
 
-function isBlow(character) {
-    return correctAnswer.split("").includes(character);
+function isBlow(character, i, inputs) {
+    const countOfBlowAndHit = inputs.slice(0, i).filter(c => c === character).length + inputs.slice(i).filter((c, j) => isHit(c, i + j)).length;
+    const countOfIncludedInCorrectAnswer = correctAnswer.split("").filter(c => c === character).length;
+    return countOfBlowAndHit < countOfIncludedInCorrectAnswer && correctAnswer.split("").includes(character);
 }
 
 function copyRecord() {
@@ -148,7 +150,7 @@ function copyRecord() {
         }
         if (isHit(submittedCharacters[i], i%5)) {
             copyText += "🟩";
-        } else if (isBlow(submittedCharacters[i])) {
+        } else if (isBlow(submittedCharacters[i], i%5, submittedCharacters)) {
             copyText += "🟨";
         } else {
             copyText += "⬜";
@@ -185,7 +187,7 @@ function renderNewestAnswer(){
             div.classList.add("green");
             div.innerText = inputs[i];
             p.append(div);
-        } else if (isBlow(inputs[i])) {
+        } else if (isBlow(inputs[i], i, inputs)) {
             var div = document.createElement("span");
             div.classList.add("yellow");
             div.innerText = inputs[i];
