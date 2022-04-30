@@ -17,6 +17,12 @@ header h1 {
     margin: 32px;
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+    margin: 32px;
+}
+
 body {
     font-size: 14px;
     font-family: "Yu Mincho", "游明朝", YuMincho, "游明朝体", "メイリオ", serif;
