@@ -29,5 +29,54 @@
             <h1>値を受け取る (標準入力)</h1>
             <p>・文字列Sのn番目の文字はS[n]で取得できる</p>
         </section>
+        <section>
+            <h1>複数の入力を受け取る</h1>
+            <p>・もろもろ面倒になってきたので、zshに関数cpprを作成。以下の用な感じ</p>
+            <pre><code>
+                function cppr () {
+                    gpp $1 && ./a.out
+                }
+            </code></pre>
+            <p>・ついでに上記のコード展開CSSも追加しておいた。</p>
+            <p>・文字列入力を学ぶ、というか思い出す。 <a href="https://qiita.com/MasahiroBW/items/3f56b22a079cd3272cd3">https://qiita.com/MasahiroBW/items/3f56b22a079cd3272cd3</a></p>
+        </section>
+        <section>
+            <h1>たくさんの入力を受け取る</h1>
+            <p>・ややこしくなってきた。ラムダ式と畳み込みは以下の通り</p>
+            <pre><code>
+                accumulate(A.begin(), A.end(), 0, [](int a, int b){return (a + b);})
+            </code></pre>
+            <p>・だるくてやってられないので、snippetを追加</p>
+            <pre><code>
+                {
+                    "Template": {
+                        "prefix": "s-template",
+                        "body": "#include &lt;bits/stdc++.h&gt; \nusing namespace std;\n\nint main() { \n    $1 \n}"
+                    },
+                    "Intake": {
+                        "prefix": "s-intake",
+                        "body": "int N;\ncin >> N;\nvector&lt;int&gt; A(N);\nfor(int i = 0; i &lt; N; i ++) {\n    cin >> A[i];\n}\n"
+                    }
+                }
+            </code></pre>
+            <p>・我の強すぎるコード</p>
+            <pre><code>
+                #include &lt;bits/stdc++.h> 
+                using namespace std;
+
+                int main() { 
+                    int N;
+                    cin >> N;
+                    vector&lt;int> A(N);
+                    for(int i = 0; i &lt; N; i ++) {
+                        cin >> A[i];
+                    }
+                    string emp = "";
+                    cout &lt;&lt; accumulate(A.begin(), A.end(), emp, 
+                    [](string a, int b) -> string { return a + to_string(b % 10) + "\n";}) &lt;&lt; endl;
+                }
+            </code></pre>
+            <p>・自分の環境とINFINITYの挙動が違ったため敗北</p>
+        </section>
     </body>
 </html>
