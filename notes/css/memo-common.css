@@ -1,0 +1,47 @@
+/*
+
+    scss使うの面倒なので、相当に保守が必要にならない限り、生cssで記す。 @aseruneko
+
+    [タイトル用font-family]
+    font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+
+    [本文用font-family]
+    font-family: "Yu Mincho", "游明朝", YuMincho, "游明朝体", "メイリオ", serif;
+*/
+
+header h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 48px;
+    font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    margin: 32px;
+}
+
+body {
+    font-size: 14px;
+    font-family: "Yu Mincho", "游明朝", YuMincho, "游明朝体", "メイリオ", serif;
+}
+
+section {
+    border-radius: 3px;
+    border: solid 1px #888888;
+    box-shadow: 3px 3px #999999;
+    margin: 32px;
+    padding: 16px;
+    padding-bottom: 18px;
+}
+
+section h1 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 8px;
+    border-bottom: solid 1px  #999;
+}
+
+section p {
+    padding: 0;
+    margin: 0;
+    background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 99%, #999 95%);
+    background-size: 100% 32px;
+    line-height: 32px;
+}

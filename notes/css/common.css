@@ -14,7 +14,7 @@ body {
     font-family: "Yu Mincho", "游明朝", YuMincho, "游明朝体", "メイリオ", serif;
 }
 
-title {
+header h1 {
     display: flex;
     justify-content: center;
     font-size: 48px;
