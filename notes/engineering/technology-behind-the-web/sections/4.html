@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>第4章 URIの仕様</title>
+        <meta name="author" content="aseruneko">
+        <link rel="stylesheet" href="../../../css/memo-common.css">
+    </head>
+    <body>
+        <header>
+            <h1>第4章 URIの仕様</h1>
+        </header>
+        <section>
+            <h1>URIの重要性</h1>
+            <p>URI (Uniform Resource Identifier): リソースを統一的に識別するID</p>
+        </section>
+        <section>
+            <h1>URIの構文</h1>
+            <pre><code>[URIスキーム]://[ユーザ情報]@[ホスト名]:[ポート番号]/[パス]/?[クエリパラメータ]#[URIフラグメント]</code></pre>
+        </section>
+        <section>
+            <h1>絶対URIと相対URI</h1>
+            <p>・相対URIを絶対URIに変換するにはベースURIが必要である</p>
+            <p>・ベースURIの与え方には二種類ある。リソースのURIをベースURIとするか、明示的に指定するか</p>
+            <p>明示的に指定する場合は、以下のような感じ</p>
+            <pre><code>
+    &lt;html xmlns="http:///www.w3.org/1999/xhtml">
+            &lt;head>
+                &lt;title>test web page&lt;/title>
+                &lt;!-- このHTML文書内のベースURIはhttp://example.jp/になる -->
+                &lt;base href="http://example.jp/"/>
+                ... 
+            &lt;/head>
+            ... 
+        &lt;html>
+                </code></pre>
+        </section>
+        <section>
+            <h1>URIと文字</h1>
+            <p>・URIのパスにはASCII文字が使用可能である</p>
+            <p>・それ以外の文字をURIに入れるには%エンコーディングを利用する</p>
+            <p>・%エンコーディングは使用している文字コードによって結果が異なるが、だいたいUTF-8である</p>
+            <p>・長さに制限はないが、Internet Explorerの2,038バイトまでという制限に倣う事実上の制限がある</p>
+        </section>
+        <section>
+            <h1>さまざまなスキーム</h1>
+            <p class="katsuai">(割愛)</p>
+        </section>
+        <section>
+            <h1>URIの実装で気をつけること</h1>
+            <p>・相対URIの解決と%エンコーディングの扱い（絶対URIとUTF-8を使え）</p>
+            <table>
+                <tr>
+                    <th colspan="2">URIはURLとURNを含んだ名称</th>
+                </tr>
+                <tr>
+                    <td>URI</td>
+                    <td>Identifier: リソースを識別するもの</td>
+                </tr>
+                <tr>
+                    <td>URL</td>
+                    <td>Locater: リソースの場所を示すもの</td>
+                </tr>
+                <tr>
+                    <td>URN</td>
+                    <td>Name: リソースの名前を示すもの -> Universalに一意ではない</td>
+                </tr>
+            </table>
+        </section>
+        <footer>
+            <a href="../../index.html">戻る</a>
+        </footer>
+    </body>
+</html>

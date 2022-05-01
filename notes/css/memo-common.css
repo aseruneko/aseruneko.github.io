@@ -55,6 +55,7 @@ section p {
 pre {
     margin-left: 16px;
     margin-right: 16px;
+    padding: 8px;
     background-color: black;
     color: white;
 }

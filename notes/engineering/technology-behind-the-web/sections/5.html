@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>第5章 URIの設計</title>
+        <meta name="author" content="aseruneko">
+        <link rel="stylesheet" href="../../../css/memo-common.css">
+    </head>
+    <body>
+        <header>
+            <h1>第5章 URIの設計</h1>
+        </header>
+        <section>
+            <h1>クールなURIは変わらない</h1>
+            <p class="quote">良いURIやきれいなURIのことを「クールURI」 (Cool URI) と呼ぶのですが。この言葉の起源ははっきりしています。Webの発明者Tim Berners-Leeが1998年に発表した「Cool URIs don't change」 (クールなURIは変わらない) というWebページが発症です。 (p.120)</p>
+        </section>
+        <section>
+            <h1>URIを変わりにくくするためには</h1>
+            <p>・URIにプログラミング言語依存の拡張子を利用しない (.pl, .rb, .do, .jsp など)</p>
+            <p>・URIに実装依存のパス名を利用しない (cgi-bin, servlet など)</p>
+            <p>・URIにプログラミング言語のメソッド名を利用しない</p>
+            <p>・URIにセッションIDを含めない</p>
+            <p>・URIはリソースを表現する名詞にする</p>
+        </section>
+        <section>
+            <h1>URIのユーザビリティ</h1>
+            <p class="katsuai">(割愛)</p>
+        </section>
+        <section>
+            <h1>URIを変更したいとき</h1>
+            <p>・リダイレクトせよ</p>
+        </section>
+        <section>
+            <h1>URI設計のテクニック</h1>
+            <p>コンテントネゴシエーション (Content Negotiation): HTTPの仕組み。Accept-Languageヘッダを用いて、OSの言語によって返すリソースを変更できる</p>
+            <p class="quote">1つのリソースが複数の表現を持つとき、個々のリソース表現を示すURIに.jaのような拡張子を使うことは悪いことではありません。 (p.132)</p>
+            <p class="quote">複数パラメータの組み合わせで表現するリソースにはマトリクスURI (Matrix URI) を使います。マトリクスURIでは、階層構造を表現するスラッシュの代わりに、複数の軸のパラメータをそれぞれセミコロン (;) で区切ってリソースを表現します。 (p.133)</p>
+            <p>緯度 (Lat) と経度 (Lng) を使用するマトリクスURIの例</p>
+            <pre><code>http://example.jp/map/lat=35.705471;lng=139.751898</code></pre>
+            <table>
+                <tr><th colspan="2">マトリクスURIに用いられる記号</th></tr>
+                <tr><td>セミコロン (;)</td><td>順序が意味を持たない</td></tr>
+                <tr><td>カンマ (,)</td><td>順序が意味を持つ</td></tr>
+            </table>
+        </section>
+        <section>
+            <h1>URIの不透明性</h1>
+            <p>URIは不透明 (Opaque) である: ex. フランス語版のページが存在するかはアクセスするまでわからない</p>
+        </section>
+        <section>
+            <h1>URIを強く意識する</h1>
+            <p class="katsuai">(割愛)</p>
+        </section>
+        <footer>
+            <a href="../../index.html">戻る</a>
+        </footer>
+    </body>
+</html>
