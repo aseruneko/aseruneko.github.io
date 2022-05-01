@@ -9,6 +9,8 @@
     font-family: "Yu Mincho", "游明朝", YuMincho, "游明朝体", "メイリオ", serif;
 */
 
+/* 汎用 */
+
 header h1 {
     display: flex;
     justify-content: center;
@@ -52,6 +54,14 @@ section p {
     line-height: 32px;
 }
 
+/* 画像 */
+
+section img {
+    width: 256px;
+}
+
+/* コード */
+
 pre {
     margin-left: 16px;
     margin-right: 16px;
@@ -60,19 +70,21 @@ pre {
     color: white;
 }
 
+/* 引用 */
+
 .quote {
     border-left: solid #AAAAAA 4px;
     padding-left: 4px;
     color: #777777;
 }
 
-section img {
-    width: 256px;
-}
+/* 割愛 */
 
 .katsuai {
     color: #999999;
 }
+
+/* テーブル */
 
 table {
     border-collapse: collapse;
