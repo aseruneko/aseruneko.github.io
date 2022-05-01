@@ -84,6 +84,14 @@ pre {
     color: #999999;
 }
 
+/* アラート */
+
+.alert {
+    background-color: red;
+    padding-left: 4px;
+    color: white;
+}
+
 /* テーブル */
 
 table {
