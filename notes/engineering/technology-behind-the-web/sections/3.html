@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>第3章 REST - Webのアーキテクチャスタイル</title>
+        <meta name="author" content="aseruneko">
+        <link rel="stylesheet" href="../../../css/memo-common.css">
+    </head>
+    <body>
+        <header>
+            <h1>第3章 REST - Webのアーキテクチャスタイル</h1>
+        </header>
+        <section>
+            <h1>アーキテクチャスタイルの重要性</h1>
+            <p class="quote">RESTはWebのアーキテクチャスタイルです。 (p.75)</p>
+            <p class="quote">アーキテクチャスタイルは別名「(マクロ)アーキテクチャパターン」とも言い、複数のアーキテクチャに共通する性質、様式、作法あるいは流儀を指す言葉です。(p.75)</p>
+            <p>・アーキテクチャスタイルの例: MVC (Model-View-Controller), Pipe and Filter, Event System</p>
+        </section>
+        <section>
+            <h1>アーキテクチャスタイルとしてのREST</h1>
+            <table>
+                <tr>
+                    <th>抽象化レベル</th>
+                    <th>Webでの例</th>
+                </tr>
+                <tr>
+                    <td>アーキテクチャスタイル</td>
+                    <td>REST</td>
+                </tr>
+                <tr>
+                    <td>アーキテクチャ</td>
+                    <td>ブラウザ、サーバ、プロキシ、HTTP、URI、HTML</td>
+                </tr>
+                <tr>
+                    <td>実装</td>
+                    <td>Apache、Firefox、Internet Exploerer</td>
+                </tr>
+            </table>
+        </section>
+        <section>
+            <h1>リソース</h1>
+            <p>リソース: Web上に存在する、名前 (URI) を持ったありとあらゆる情報</p>
+            <p>アドレス可能性 (Addressability): URIが備える、リソースをかんたんに指し示せる性質のこと</p>
+            <p>・1つのリソースは複数のURIを持つことができる</p>
+            <p>リソースの表現 (Resource Representation): サーバとクライアントの間でやりとりするデータ</p>
+        </section>
+        <section>
+            <h1>スタイルを組み合わせてRESTを構成する</h1>
+            <p>RESTは以下のアーキテクチャスタイルをクライアント／サーバに追加したものである</p>
+            <p>・ステートレスサーバ (Stateless Server): クライアントのアプリケーション状態をサーバで管理しない</p>
+            <p>(※ Cookieを使ったセッション管理はステートフルな例外である)</p>
+            <p>・キャッシュ (Cache): 一度取得したリソースをクライアント側で鮮度に基づき使い回す</p>
+            <p>・統一インタフェース (Uniform Interface): リソースに対する操作を、統一した限定的なインタフェースで行う (ex. GETやPOSTなどの操作のこと)</p>
+            <p>・階層化システム (Layered System): システムをいくつかの階層に分離する (ex. ロードバランサ)</p>
+            <p>・コードオンデマンド (Code on Demand): プログラムコードをサーバからダウンロードし、クライアント側でそれを実行する。もともとはOptionalなスタイル</p>
+            <table>
+                <tr>
+                    <th colspan="2">REST = ULCODC$SS</th>
+                </tr>
+                <tr>
+                    <td>クライアント／サーバ</td>
+                    <td>ユーザインタフェースと処理を分離する</td>
+                </tr>
+                <tr>
+                    <td>ステートレスサーバ</td>
+                    <td>サーバ側でアプリケーション状態を持たない</td>
+                </tr>
+                <tr>
+                    <td>キャッシュ</td>
+                    <td>クライアントとサーバの通信回数と量を減らす</td>
+                </tr>
+                <tr>
+                    <td>統一インタフェース</td>
+                    <td>インタフェースを固定する</td>
+                </tr>
+                <tr>
+                    <td>階層化システム</td>
+                    <td>システムを階層に分離する</td>
+                </tr>
+                <tr>
+                    <td>コードオンデマンド</td>
+                    <td>プログラムをクライアントにダウンロードして実行する</td>
+                </tr>
+            </table>
+            <p class="quote">たとえばP2P (Peer to Peer) は代表的なREST以外のアーキテクチャスタイルです。 (p.92)</p>
+        </section>
+        <section>
+            <h1>RESTの2つの側面</h1>
+            <p>・接続性 (Connectedness): リソースをリンクで接続することで1つのアプリケーションを構成するという考え方</p>
+            <p>・粗粒度 (Coarse-Grained): インターフェースの粒度が粗いため性能劣化を起こしにくい</p>
+        </section>
+        <section>
+            <h1>RESTの意義</h1>
+            <p class="katsuai">(割愛)</p>
+        </section>
+        <footer>
+            <a href="../../index.html">戻る</a>
+        </footer>
+    </body>
+</html>

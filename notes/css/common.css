@@ -34,3 +34,8 @@ h2 {
     font-size: 18px;
     font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
 }
+
+.alert {
+    background-color: red;
+    color: white;
+}

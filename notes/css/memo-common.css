@@ -58,3 +58,38 @@ pre {
     background-color: black;
     color: white;
 }
+
+.quote {
+    border-left: solid #AAAAAA 4px;
+    padding-left: 4px;
+    color: #777777;
+}
+
+section img {
+    width: 256px;
+}
+
+.katsuai {
+    color: #999999;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 16px 8px 16px 8px;
+}
+
+tr:nth-child(odd) {
+    background-color: #CCCCCC;
+}
+
+th {
+    text-align: left;
+    background-color: #555555;
+    color: white;
+}
+
+td, th {
+    border: 1px solid #333;
+    padding-left: 4px;
+    padding-right: 4px;
+}

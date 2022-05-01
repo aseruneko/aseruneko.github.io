@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>第2章 Webの歴史</title>
+        <meta name="author" content="aseruneko">
+        <link rel="stylesheet" href="../../../css/memo-common.css">
+    </head>
+    <body>
+        <header>
+            <h1>第2章 Webの歴史</h1>
+        </header>
+        <section>
+            <h1>Web以前のインターネット</h1>
+            <p class="katsuai">(割愛)</p>
+        </section>
+        <section>
+            <h1>Web以前のハイパーメディア</h1>
+            <p>ハイパーメディアの歴史 = Memex -> Xanadu -> HyperCard -> Web</p>
+            <p class="quote">これまでに最も普及したハイパーメディアの実装はWebです。 (p.51)</p>
+            <p class="quote">Webの成功の一因は、必要最低限のリンク機能だけを備えていたことです。逆にWeb以前のハイパーメディアの最大の問題点は、その複雑さにあったと言えるでしょう。 (p.52)</p>
+        </section>
+        <section>
+            <h1>Web以前の分散システム</h1>
+            <p>分散システムの歴史 = RPC (Remote Procedure Call) -> 分散オブジェクト (Distributed Object)</p>
+            <p>・RPCの例: sunRPC, DCE (Distributed Computing Environment)</p>
+            <p>・分散オブジェクトの例: CORBA (Common Object Request Broker Architecture), DCOM (Distributed Component Object Model)</p>
+            <p>Webは世界中に配置されたサーバに世界中のシステムがアクセスする分散システムです</p>
+            <p class="quote">RPCは現在でもNFS (Network File System) などの分散システムの実装に使われています。しかし、RPCが現実的に動作するのは通信相手がある程度決まっているイントラネット環境までで、より大規模な異種分散環境ではスケールしません。これは、次の問題がそれぞれのRPCシステムに共通であるからです。 (p.54)</p>
+            <p>・性能劣化の問題: NW越しに何回も関数を呼び出すのは重たい</p>
+            <p>・データ型変換の問題</p>
+            <p>・インタフェースバージョンアップ時の互換性の問題</p>
+            <p>・負荷分散の問題</p>
+        </section>
+        <section>
+            <h1>Webの誕生</h1>
+            <img src="../../../img/atarashiitanjoiwai.jpg">
+            <p>・WebはCERNのTim Berners-Leeによって1990年のクリスマスに提案〜誕生。</p>
+            <p class="quote">Webはインターネットを使ったハイパーメディアとして設計されました。Web以前のハイパーメディアとの一番の違いはここです。 (p.60)</p>
+            <p class="quote">オープンで不特定多数を相手にするシステムがWebです。 (略) これは、クライアントとサーバの間のインタフェースをHTTPというシンプルなプロトコルで固定したことで実現できています。 (p.60)</p>
+        </section>
+        <section>
+            <h1>Webの標準化</h1>
+            <p calss="quote">Web以前のインターネット標準はすべてIETF (Internet Engineering Task Force) のRFC (Request for Comments) として定められてきました。 (p.63)</p>
+            <p>・1994年に Berners-Leeを中心にW3C (World Wide Web Consortium) の設立</p>
+            <p>・2000年に Roy FieldingがWebのアーキテクチャスタイルをREST (Representational State Transfer) として名付けて博士論文として提出。</p>
+            <p class="quote">初期のWebではHTMLが唯一のハイパーメディアフォーマットでした。しかしWebの普及に伴ってHTMLでは対応できない様々な要望が生まれ、新しいハイパーメディアフォーマットが誕生していきました。 (p.65)</p>
+            <p>・RSS (RDF Site Summary)が誕生 -> 乱立 -> Atomが標準化 -> 冗長なのでJSONがデファクトスタンダードに</p>
+        </section>
+        <section>
+            <h1>Web APIをめぐる議論</h1>
+            <p>・SOAPというHTTPをトランスポートプロトコルとして扱うプロトコルの誕生 -> 周辺仕様としてWS-*が提案されるも、乱立。</p>
+            <p>・それに対してFieldingはRESTを推進。Amazon Web APIが決め手となり普及 (2002年頃)</p>
+        </section>
+        <section>
+            <h1>すべてがWebへ</h1>
+            <p>Ajax (Asynchronous JavaScript and XML) やCometなどの技術発展に伴い、メールやニュース、地図アプリなど、インターネットの大きな部分をWebが飲み込み始める。</p>
+        </section>
+        <footer>
+            <a href="../../index.html">戻る</a>
+        </footer>
+    </body>
+</html>
