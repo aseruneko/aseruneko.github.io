@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>第1章 手続きによる抽象の構築</title>
+        <meta name="author" content="aseruneko">
+        <link rel="stylesheet" href="../../../css/memo-common.css">
+    </head>
+    <body>
+        <header>
+            <h1>第1章 手続きによる抽象の構築</h1>
+        </header>
+        <section>
+            <p class="quote">Lispが主流の言語でないなら、なぜわれわれはそれをプログラムの議論の土台として使うのだろうか。それはLispが主要なプログラムの構成やデータの構造を学び、それを言語の基礎となる言語核的機能に関係づけるのに優れた媒体とする独自の特徴を持っているからである。 (p.2)</p>
+        </section>
+        <section>
+            <h1>1.1 プログラムの要素</h1>
+            <p>計算式は前置記法 (prefix notation) を取る。</p>
+            <pre><code>(+ 21 35 12 7)</code></pre>
+            <p>読み込み - 評価 - 印字ループ (read-eval-print loop): 端末から式を読み込み、その式を評価し、結果を印字する基本動作の繰り返し</p>
+            <pre><code>(define 名前 値)</code></pre>
+            <p>・defineで解釈系は名前と値の対を環境 (environment) 正確には大域環境 (global environment) に記憶する</p>
+            <p>特殊形式 (special forms): 評価規則の例外。例えば、defineは再帰的に処理する値ではない。</p>
+            <p>・合成手続きもdefineで書ける</p>
+            <pre><code>(define (名前 仮パラメタ) 本体)</code></pre>
+            <p>・評価は直感的には「展開して置き換え」の繰り返し = 正規順序の評価 (normal-order evaluation) と理解されるが、Lispの解釈系は実際にそうしておらず、「引数を評価し、作用させる」の繰り返し = 作用的順序の評価 (applicative-order evaluation) を使用している。これは、同じ内容の式を2回評価したり、複雑な評価を避けるためである。</p>
+            <p>・フロー制御には以下のようなものがあります</p>
+            <pre><code>
+                (cond (条件 本体) (条件 本体) (条件 本体) (else 本体))
+                (if 条件 真の時 偽の時)
+            </code></pre>
+            <p>・真偽式の演算には以下のようなものがあります</p>
+            <pre><code>
+                (and 式 式)
+                (or 式 式)
+                (not 式)
+            </code></pre>
+            <p code="quote">andとorは、部分式が必ずしもすべて評価されるものではないから、手続きではなく、特殊形式である。notは通常の手続きである。 (p.10)</p>
+            <p>・ifは特殊形式なので、condと違い、条件式を先に評価するため、無限ループに陥らず再起が書ける</p>
+            <p>・名前空間の節約としてブロック構造 (block structure) を使用できる。</p>
+            <pre><code>
+                (define (sqrt x)
+                    (define (good-enough? guess x)
+                        (&lt; (abs (- (square guess) x)) 0.001))
+                    (define (improve guess x)
+                        (average guess (/ x guess)))
+                    (define (sqrt-iter guess x)
+                        (if (good-enough? guess x)
+                            guess
+                            (sqrt-iter (improve guess x) x)))
+                    (sqrt-iter 1.0 x))
+            </code></pre>
+            <p>・上のコードはxを内部定義で自由変数にすることで改善できる。これを静的有効範囲 (lexical scoping) と呼ぶ。</p>
+            <pre><code>
+                (define (sqrt x)
+                    (define (good-enough? guess)
+                        (&lt; (abs (- (square guess) x)) 0.001))
+                    (define (improve guess)
+                        (average guess (/ x guess)))
+                    (define (sqrt-iter guess)
+                        (if (good-enough? guess)
+                            guess
+                            (sqrt-iter (improve guess))))
+                    (sqrt-iter 1.0))
+            </code></pre>
+        </section>
+        <section>
+            <h1>手続きとその生成するプロセス</h1>
+            <p>線形再帰的プロセス (linear recursive proces): 記憶しておくことが多いのだ。</p>
+            <pre><code>
+                (factorial 6)
+                (* 6 (factorial 5))
+                (* 6 (* 5 (factorial 4))
+                (* 6 (* 5 (* 4 (factorial 3)))
+                (* 6 (* 5 (* 4 (* 3 (factorial 2)))))
+                (* 6 (* 5 (* 4 (* 3 (* 2 (factorial 1))))))
+                (* 6 (* 5 (* 4 (* 3 (* 2 1)))))
+                (* 6 (* 5 (* 4 (* 3 2))))
+                (* 6 (* 5 (* 4 6)))
+                (* 6 (* 5 24))
+                (* 6 120)
+                720
+            </code></pre>
+            <p>線形反復的プロセス (linear iterrative process): 計算を途中で止められるのだ。末尾再帰的 (tail recursive) なのだ</p>
+            <pre><code>
+                (factorial 6)
+                (fact-iter 1 1 6)
+                (fact-iter 1 2 6)
+                (fact-iter 2 3 6)
+                (fact-iter 6 4 6)
+                (fact-iter 24 5 6)
+                (fact-iter 120 6 6)
+                (fact-iter 720 7 6)
+            </code></pre>
+            <p>・木構造再帰 (tree recursion) の代表例として、Fibonacci数列の素朴な（定義通りの）実装方法が挙げられる。だが、これは計算回数が黄金比のn乗のオーダーで増加する。これも線形反復的プロセスで示すことで、大幅に改善できる。以下のようにする</p>
+            <pre><code>
+                (define (fib n)
+                    (fib-iter 1 0 n))
+                (define (fib-iter a b count)
+                    (if (= count 0)
+                        b
+                        (fib-iter (+ a b) a (- count 1))))
+            </code></pre>
+        </section>
+        <footer>
+            <a href="../../index.html">戻る</a>
+        </footer>
+    </body>
+</html>
