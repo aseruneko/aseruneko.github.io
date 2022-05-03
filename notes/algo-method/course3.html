@@ -17,6 +17,32 @@
             <h1>配列の全探索</h1>
             <p class="katsuai">(割愛 / レポジトリに回答は載せてます)</p>
         </section>
+        <section>
+            <h1>数字の全探索</h1>
+            <p class="katsuai">(割愛 / レポジトリに回答は載せてます)</p>
+        </section>
+        <section>
+            <h1>文字列の全探索</h1>
+            <p>・こういうmutableな操作を久しぶりにすると混乱する</p>
+            <pre><code>
+                #include &lt;bits/stdc++.h> 
+                using namespace std;
+
+                int main() { 
+                    string S;
+                    cin >> S;
+                    int len = S.length();
+                    string first = S.substr(0, len / 2);
+                    string last = S.substr(len % 2 == 0 ? len / 2 : len / 2 + 1);
+                    reverse(last.begin(), last.end());
+                    cout &lt;&lt; (first == last ? "Yes" : "No") &lt;&lt; endl; 
+                }
+            </code></pre>
+            <p>・調べてないけど、substrで3文字とるのと、forで3文字分回すの、どちらが速いんだ？</p>
+        </section>
+        <section>
+            <h1>二重ループの全探索</h1>
+        </section>
         <footer>
             <a href="index.html">戻る</a>
         </footer>
